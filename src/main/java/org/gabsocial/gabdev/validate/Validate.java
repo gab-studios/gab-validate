@@ -29,10 +29,10 @@ public class Validate
 {
     
     /**
-     * Checks if a parameter is not null. If null then an
+     * Tests if a parameter is not null. If null then an
      * <code>IllegalArgumentException</code> is thrown.
      * 
-     * @param param
+     * @param param T
      *            The parameter to verify.
      * @param errorMessage
      *            The error message to include in an exception if it is created.
@@ -52,7 +52,7 @@ public class Validate
     }
     
     /**
-     * Checks if a parameter is not null or empty.
+     * Tests if a parameter is not null or empty.
      * 
      * @param clazz
      *            The class throwing the exception.
@@ -81,7 +81,16 @@ public class Validate
         
     }
     
-    
+    /**
+     * Tests if the param is not empty.  If it is then an exception is thrown.
+     * @param clazz
+     *            The class throwing the exception.
+     * @param errorMessage
+     *            The error message to include in an exception if it is created.
+     * @param param
+     *            The parameter to verify.
+     * @throws IllegalArgumentException This exception is thrown if the paramter is empty.
+     */
     public static void isNotEmpty(final Class<?> clazz,
             final String errorMessage, final char param)
             throws IllegalArgumentException
@@ -93,7 +102,7 @@ public class Validate
     }
     
     /**
-     * Checks if a param is zero.
+     * Tests if a param is zero.
      * 
      * @param clazz
      *            The class throwing the exception.
@@ -114,7 +123,7 @@ public class Validate
     }
     
     /**
-     * Checks if a param is greater than or equal to zero.
+     * Tests if a param is greater than or equal to zero.
      * 
      * @param clazz
      *            The class throwing the exception.
