@@ -32,12 +32,14 @@ public class Validate
      * Tests if a parameter is not null. If null then an
      * <code>IllegalArgumentException</code> is thrown.
      * 
-     * @param param T
-     *            The parameter to verify.
-     * @param errorMessage
-     *            The error message to include in an exception if it is created.
      * @param clazz
      *            The class throwing the exception.
+     * @param errorMessage
+     *            The error message to include in an exception if it is created.
+     * @param param
+     *            The parameter to verify.
+     * @param <T>
+     *            The runtime class type of the parameter to verify.
      * @throws IllegalArgumentException
      *             This exception is thrown if the parameter is null.
      */
@@ -82,20 +84,22 @@ public class Validate
     }
     
     /**
-     * Tests if the param is not empty.  If it is then an exception is thrown.
+     * Tests if the param is not empty. If it is then an exception is thrown.
+     * 
      * @param clazz
      *            The class throwing the exception.
      * @param errorMessage
      *            The error message to include in an exception if it is created.
      * @param param
      *            The parameter to verify.
-     * @throws IllegalArgumentException This exception is thrown if the paramter is empty.
+     * @throws IllegalArgumentException
+     *             This exception is thrown if the paramter is empty.
      */
     public static void isNotEmpty(final Class<?> clazz,
             final String errorMessage, final char param)
             throws IllegalArgumentException
     {
-        if ( param == '\0')
+        if (param == '\0')
         {
             Validate.throwIllegalArgumentException(errorMessage, clazz);
         }
@@ -113,8 +117,9 @@ public class Validate
      * @throws IllegalArgumentException
      *             This exception is thrown if the parameter is zero.
      */
-    public static void isNotZero(final Class<?> clazz, final String errorMessage,
-            final int param) throws IllegalArgumentException
+    public static void isNotZero(final Class<?> clazz,
+            final String errorMessage, final int param)
+            throws IllegalArgumentException
     {
         if (param != 0)
         {
