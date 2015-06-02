@@ -80,7 +80,7 @@ public class Validate
      * @throws IllegalArgumentException
      *             This exception is thrown if the parameter is null.
      */
-    public static <T> void isTrue(final Class<?> clazz,
+    public static void isTrue(final Class<?> clazz,
             final String errorMessage, boolean expression)
             throws IllegalArgumentException
     {
