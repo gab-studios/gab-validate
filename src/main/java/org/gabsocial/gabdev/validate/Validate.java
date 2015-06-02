@@ -47,9 +47,59 @@ public class Validate
             final String errorMessage, final T param)
             throws IllegalArgumentException
     {
-        if (param == null)
+        if (clazz == null)
         {
-            Validate.throwIllegalArgumentException(errorMessage, clazz);
+            throw (new IllegalArgumentException(
+                    "The parameter 'clazz' must not be null."));
+        }
+        else if (errorMessage == null || errorMessage.length() == 0)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'errorMessage' must not be null or empty."));
+        }
+        else
+        {
+            if (param == null)
+            {
+                Validate.throwIllegalArgumentException(errorMessage, clazz);
+            }
+        }
+    }
+    
+    /**
+     * Tests if a parameter is a boolean true value. If false then an
+     * <code>IllegalArgumentException</code> is thrown.
+     * 
+     * @param clazz
+     *            The class throwing the exception.
+     * @param errorMessage
+     *            The error message to include in an exception if it is created.
+     * @param expression
+     *            The expression to test.
+     * 
+     * @throws IllegalArgumentException
+     *             This exception is thrown if the parameter is null.
+     */
+    public static <T> void isTrue(final Class<?> clazz,
+            final String errorMessage, boolean expression)
+            throws IllegalArgumentException
+    {
+        if (clazz == null)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'clazz' must not be null."));
+        }
+        else if (errorMessage == null || errorMessage.length() == 0)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'errorMessage' must not be null or empty."));
+        }
+        else
+        {
+            if (!expression)
+            {
+                Validate.throwIllegalArgumentException(errorMessage, clazz);
+            }
         }
     }
     
@@ -99,9 +149,23 @@ public class Validate
             final String errorMessage, final char param)
             throws IllegalArgumentException
     {
-        if (param == '\0')
+        if (clazz == null)
         {
-            Validate.throwIllegalArgumentException(errorMessage, clazz);
+            throw (new IllegalArgumentException(
+                    "The parameter 'clazz' must not be null."));
+        }
+        else if (errorMessage == null || errorMessage.length() == 0)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'errorMessage' must not be null or empty."));
+        }
+        else
+        {
+            
+            if (param == '\0')
+            {
+                Validate.throwIllegalArgumentException(errorMessage, clazz);
+            }
         }
     }
     
@@ -121,9 +185,22 @@ public class Validate
             final String errorMessage, final int param)
             throws IllegalArgumentException
     {
-        if (param != 0)
+        if (clazz == null)
         {
-            Validate.throwIllegalArgumentException(errorMessage, clazz);
+            throw (new IllegalArgumentException(
+                    "The parameter 'clazz' must not be null."));
+        }
+        else if (errorMessage == null || errorMessage.length() == 0)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'errorMessage' must not be null or empty."));
+        }
+        else
+        {
+            if (param != 0)
+            {
+                Validate.throwIllegalArgumentException(errorMessage, clazz);
+            }
         }
     }
     
@@ -143,9 +220,22 @@ public class Validate
             final String errorMessage, final int param)
             throws IllegalArgumentException
     {
-        if (param < 0)
+        if (clazz == null)
         {
-            Validate.throwIllegalArgumentException(errorMessage, clazz);
+            throw (new IllegalArgumentException(
+                    "The parameter 'clazz' must not be null."));
+        }
+        else if (errorMessage == null || errorMessage.length() == 0)
+        {
+            throw (new IllegalArgumentException(
+                    "The parameter 'errorMessage' must not be null or empty."));
+        }
+        else
+        {
+            if (param < 0)
+            {
+                Validate.throwIllegalArgumentException(errorMessage, clazz);
+            }
         }
     }
     
