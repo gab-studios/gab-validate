@@ -47,6 +47,7 @@ public class Validate
             final String errorMessage, final T param)
             throws IllegalArgumentException
     {
+        
         if (clazz == null)
         {
             throw (new IllegalArgumentException(
@@ -64,6 +65,7 @@ public class Validate
                 Validate.throwIllegalArgumentException(errorMessage, clazz);
             }
         }
+        
     }
     
     /**
@@ -80,9 +82,8 @@ public class Validate
      * @throws IllegalArgumentException
      *             This exception is thrown if the parameter is null.
      */
-    public static void isTrue(final Class<?> clazz,
-            final String errorMessage, boolean expression)
-            throws IllegalArgumentException
+    public static void isTrue(final Class<?> clazz, final String errorMessage,
+            boolean expression) throws IllegalArgumentException
     {
         if (clazz == null)
         {
@@ -110,27 +111,63 @@ public class Validate
      *            The class throwing the exception.
      * @param errorMessage
      *            The error message to include in an exception if it is created.
-     * @param param
-     *            The parameter to verify.
+     * @param params
+     *            The parameters to verify.
      * @throws IllegalArgumentException
      *             This exception is thrown if the parameter is null or empty.
      */
     public static void isNotNullOrEmpty(final Class<?> clazz,
-            final String errorMessage, final String... param)
+            final String errorMessage, final String... params)
             throws IllegalArgumentException
     {
-        if ((param == null) || (param.length == 0))
+        if ((params == null) || (params.length == 0))
         {
             Validate.throwIllegalArgumentException(errorMessage, clazz);
         }
-        else if (param.length == 1)
+        else
         {
-            if (param[0].trim().length() == 0)
+            for (String param : params)
             {
-                Validate.throwIllegalArgumentException(errorMessage, clazz);
+                if (param == null || param.length() == 0)
+                {
+                    Validate.throwIllegalArgumentException(errorMessage, clazz);
+                }
             }
         }
-        
+
+    }
+    
+    /**
+     * Tests if a parameter is not null or empty.
+     * 
+     * @param clazz
+     *            The class throwing the exception.
+     * @param errorMessage
+     *            The error message to include in an exception if it is created.
+     * @param params
+     *            The parameters to verify.
+     * @throws IllegalArgumentException
+     *             This exception is thrown if the parameter is null or empty.
+     */
+    public static void isLessThanMaxLength(final Class<?> clazz,
+            final String errorMessage, final int maxLength,
+            final String... params) throws IllegalArgumentException
+    {
+        if ((params == null) || (params.length == 0))
+        {
+            Validate.throwIllegalArgumentException(errorMessage, clazz);
+        }
+        else if (params.length > 0)
+        {
+            for (String param : params)
+            {
+                if (param == null || param.length() > maxLength)
+                {
+                    Validate.throwIllegalArgumentException(errorMessage, clazz);
+                }
+            }
+            
+        }
     }
     
     /**
@@ -149,6 +186,7 @@ public class Validate
             final String errorMessage, final char param)
             throws IllegalArgumentException
     {
+        
         if (clazz == null)
         {
             throw (new IllegalArgumentException(
@@ -185,6 +223,7 @@ public class Validate
             final String errorMessage, final int param)
             throws IllegalArgumentException
     {
+        
         if (clazz == null)
         {
             throw (new IllegalArgumentException(
@@ -197,11 +236,12 @@ public class Validate
         }
         else
         {
-            if (param != 0)
+            if (param == 0)
             {
                 Validate.throwIllegalArgumentException(errorMessage, clazz);
             }
         }
+        
     }
     
     /**
@@ -220,6 +260,7 @@ public class Validate
             final String errorMessage, final int param)
             throws IllegalArgumentException
     {
+        
         if (clazz == null)
         {
             throw (new IllegalArgumentException(
@@ -237,6 +278,7 @@ public class Validate
                 Validate.throwIllegalArgumentException(errorMessage, clazz);
             }
         }
+        
     }
     
     /*
