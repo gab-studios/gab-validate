@@ -32,6 +32,17 @@ import org.gabsocial.gabdev.common.log.LogService;
 public class JavaLogProviderImpl extends LogProvider
 {
     
+    private LogService _logService;
+    
+    // TODO
+    // add meta data?
+    // add statistics?
+    
+    public JavaLogProviderImpl()
+    {
+        this._logService = new JavaLogServiceImpl();
+    }
+    
     /**
      * Gets the Log service provided by the Log Provider.
      * 
@@ -39,7 +50,7 @@ public class JavaLogProviderImpl extends LogProvider
      */
     public LogService getService()
     {
-        return (new JavaLogServiceImpl());
+        return (this._logService);
         
     }
 }

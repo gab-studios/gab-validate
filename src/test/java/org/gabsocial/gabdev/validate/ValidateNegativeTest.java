@@ -52,12 +52,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isNotNull(
-                    ValidateNegativeTest.class,
-                    "The parameter should not be null.  You should not see this message.",
-                    null);
+            Validate.isNotNull(ValidateNegativeTest.class, null);
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -72,12 +69,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isTrue(
-                    ValidateNegativeTest.class,
-                    "The parameter should be true.  You should not see this message.",
-                    false);
+            Validate.isTrue(ValidateNegativeTest.class, false);
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -92,12 +86,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isNotNullOrEmpty(
-                    ValidateNegativeTest.class,
-                    "The parameter should be 'HelloWorld'.  You should not see this message.",
-                    "");
+            Validate.isNotNullOrEmpty(ValidateNegativeTest.class, "");
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -112,12 +103,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isNotNullOrEmpty(
-                    ValidateNegativeTest.class,
-                    "The parameter should be 'HelloWorld'.  You should not see this message.",
-                    "");
+            Validate.isNotNullOrEmpty(ValidateNegativeTest.class, "");
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -132,12 +120,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isNotEmpty(
-                    ValidateNegativeTest.class,
-                    "The parameter should be 'C'.  You should not see this message.",
-                    '\0');
+            Validate.isCharNotEmpty(ValidateNegativeTest.class, '\0');
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -152,12 +137,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isNotZero(
-                    ValidateNegativeTest.class,
-                    "The parameter should be 1.  You should not see this message.",
-                    0);
+            Validate.isNotZero(ValidateNegativeTest.class, 0);
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -172,12 +154,9 @@ public class ValidateNegativeTest
         
         try
         {
-            Validate.isGreaterEqualZero(
-                    ValidateNegativeTest.class,
-                    "The parameter should be 1.  You should not see this message.",
-                    -1);
+            Validate.isGreaterEqualZero(ValidateNegativeTest.class, -1);
             
-            Assert.fail("THe test exeception was not thrown");
+            Assert.fail("The test exeception was not thrown");
         }
         catch (IllegalArgumentException e)
         {
@@ -186,4 +165,105 @@ public class ValidateNegativeTest
         
     }
     
+    @Test
+    public void isLessThanMaxLength()
+    {
+        
+        try
+        {
+            Validate.isLessThanMaxLength(ValidateTest.class, 6, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void isMinMaxLength1()
+    {
+        
+        try
+        {
+            Validate.isMinMaxLength(ValidateTest.class, 11, 12, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void isMinMaxLength2()
+    {
+        
+        try
+        {
+            Validate.isMinMaxLength(ValidateTest.class, 3, 7, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void isMinMaxLength3()
+    {
+        
+        try
+        {
+            Validate.isMinMaxLength(ValidateTest.class, 10, 8, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void isMinMaxLength4()
+    {
+        
+        try
+        {
+            Validate.isMinMaxLength(ValidateTest.class, -1, -1, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void isMinMaxLength5()
+    {
+        
+        try
+        {
+            Validate.isMinMaxLength(ValidateTest.class, 0, 0, "HelloWorld");
+            
+            Assert.fail("The test exeception was not thrown");
+        }
+        catch (IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
 }

@@ -25,10 +25,19 @@ import java.util.Map;
 
 public abstract class LogProvider
 {
+    /*
+     * The fully qualified class name.  Used as the property key to get the LogProvider implementation.
+     */
     private static final String                   FQCN             = "org.gabsocial.gabdev.common.log.LogProvider";
     
+    /*
+     * The default LogProvider implementation. 
+     */
     private static final String                   DEFAULT_LOG_FQCN = "org.gabsocial.gabdev.common.log.impl.JavaLogProviderImpl";
     
+    /*
+     * A cache that holds onto the different LogProvider implementation as they are used.
+     */
     private static final Map<String, LogProvider> LOG_PROVIDER_MAP;
     
     static
@@ -75,14 +84,26 @@ public abstract class LogProvider
      */
     public abstract LogService getService();
     
+    /**
+     * Clears cached <code>LogProvider</code> implementions from the
+     * LogProvider.
+     */
+    public void clear()
+    {
+        LOG_PROVIDER_MAP.clear();
+    }
+    
+    /*
+     * Dynamically loads a LogProvider implementation.
+     */
     protected final static LogProvider loadLogProvider(final String className)
     {
         assert (className != null) : "loadLogProvider() - the parameter 'className' should not be null or empty";
         
         try
         {
-            final LogProvider logProvider = (LogProvider) Class.forName(className)
-                    .newInstance();
+            final LogProvider logProvider = (LogProvider) Class.forName(
+                    className).newInstance();
             return (logProvider);
         }
         catch (final IllegalAccessException e)
@@ -101,4 +122,5 @@ public abstract class LogProvider
                     "Unable to instantiate the class name - " + className, e));
         }
     }
+    
 }
