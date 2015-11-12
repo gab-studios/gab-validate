@@ -1,7 +1,7 @@
-gab-dev
+gab-validate
 =======
 
-Development library for GAB Social Projects
+Validation library for GAB Social Projects
 
 
 Build
@@ -23,9 +23,9 @@ Donations
 ---------
 We accept tips through [Gratipay][tip].
 
-[![Gratipay](https://img.shields.io/gratipay/sysdevone.svg?style=flat)](https://www.gittip.com/sysdevone/)
+[![Gratipay](https://img.shields.io/gratipay/sysdevone.svg?style=flat)](https://www.gratipay.com/sysdevone/)
 
 
-[license]:https://github.com/sysdevone/gab-dev/tree/master/LICENSE
-[wiki]:https://github.com/sysdevone/gab-dev/wiki
+[license]:https://github.com/sysdevone/gab-validate/tree/master/LICENSE
+[wiki]:https://github.com/sysdevone/gab-validate/wiki
 [tip]:https://www.gratipay.com/sysdevone/

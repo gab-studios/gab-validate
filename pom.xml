@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.gabsocial.gabdev</groupId>
-	<artifactId>gab-dev</artifactId>
-	<version>0.6.alpha</version>
+	<groupId>org.gabsocial.gabvalidate</groupId>
+	<artifactId>gab-validate</artifactId>
+	<version>0.1.beta</version>
 	<packaging>jar</packaging>
 
 	<name>GAB Social Development Library</name>
-	<description>The GAB Social Development Library</description>
-	<url>https://github.com/sysdevone/gab-dev</url>
+	<description>The GAB Social Validation Library</description>
+	<url>https://github.com/sysdevone/gab-validate</url>
 
 	<properties>
 		<github.global.server>github</github.global.server>
@@ -26,14 +26,14 @@
 	<licenses>
 		<license>
 			<name>Apache v2.0</name>
-			<url>https://github.com/sysdevone/gab-dev/blob/master/LICENSE.txt</url>
+			<url>https://github.com/sysdevone/gab-validate/blob/master/LICENSE.txt</url>
 		</license>
 	</licenses>
 
 	<scm>
-		<connection>scm:http://github.com/sysdevone/gab-dev.git</connection>
-		<developerConnection>scm:http://github.com/sysdevone/gab-dev.git</developerConnection>
-		<url>http://github.com/sysdevone/gab-dev.git</url>
+		<connection>scm:http://github.com/sysdevone/gab-validate.git</connection>
+		<developerConnection>scm:http://github.com/sysdevone/gab-validate.git</developerConnection>
+		<url>http://github.com/sysdevone/gab-validate.git</url>
 	</scm>
 
 	<dependencies>
