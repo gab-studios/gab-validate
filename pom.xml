@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.gabsocial.gabdev</groupId>
 	<artifactId>gab-dev</artifactId>
-	<version>0.5.alpha</version>
+	<version>0.6.alpha</version>
 	<packaging>jar</packaging>
 
 	<name>GAB Social Development Library</name>
