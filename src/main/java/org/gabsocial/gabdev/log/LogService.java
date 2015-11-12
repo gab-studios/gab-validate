@@ -17,7 +17,7 @@
  *****************************************************************************************
  */
 
-package org.gabsocial.gabdev.common.log;
+package org.gabsocial.gabdev.log;
 
 
 
@@ -93,8 +93,8 @@ public abstract interface LogService
      * @param methodName
      *            The name of the class method that is calling this log method.
      */
-    public abstract void logMethodBegin(final Class<?> clazz,
-            final String methodName);
+//    public abstract void logMethodBegin(final Class<?> clazz,
+//            final String methodName);
     
     /**
      * Logs a message containing the class name, method name, endinging
@@ -105,8 +105,8 @@ public abstract interface LogService
      * @param methodName
      *            The name of the class method that is calling this log method.
      */
-    public abstract void logMethodEnd(final Class<?> clazz,
-            final String methodName);
+//    public abstract void logMethodEnd(final Class<?> clazz,
+//            final String methodName);
     
     /**
      * Call when you want to log a warning message.

@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- *
+ * Basic positive tests for the Validator class.
  *
  * @author Gregory Brown (sysdevone)
  *
@@ -34,34 +34,172 @@ import org.junit.Test;
 public class ValidateTest
 {
     
+    /*
+     * Tests the defineString method.
+     */
     @Test
-    public void isLessThanMaxLength()
+    public void defineString()
     {
         
         try
         {
-            Validate.isLessThanMaxLength(ValidateTest.class, 10, "HelloWorld");
-            
-            Assert.assertTrue(true);
+            StringValidator stringValidator = Validate
+                    .defineString("HelloWorld");
+            Assert.assertTrue(stringValidator != null);
         }
-        catch (final IllegalArgumentException e)
+        catch (final Exception e)
         {
             Assert.fail(e.toString());
         }
         
     }
     
+    /*
+     * Tests the defineBoolean method.
+     */
     @Test
-    public void isMinMaxLength()
+    public void defineBoolean()
     {
         
         try
         {
-            Validate.isMinMaxLength(ValidateTest.class, 8, 10, "HelloWorld");
-            
-            Assert.assertTrue(true);
+            BooleanValidator booleanValidator = Validate.defineBoolean(true);
+            Assert.assertTrue(booleanValidator != null);
         }
-        catch (final IllegalArgumentException e)
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineByte method.
+     */
+    @Test
+    public void defineByte()
+    {
+        
+        try
+        {
+            ByteValidator byteValidator = Validate.defineByte((byte) 0xa);
+            Assert.assertTrue(byteValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineChar method.
+     */
+    @Test
+    public void defineChar()
+    {
+        
+        try
+        {
+            CharValidator charValidator = Validate.defineChar('C');
+            Assert.assertTrue(charValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineDouble method.
+     */
+    @Test
+    public void defineDouble()
+    {
+        
+        try
+        {
+            DoubleValidator doubleValidator = Validate.defineDouble(1.5);
+            Assert.assertTrue(doubleValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineFloat method.
+     */
+    @Test
+    public void defineFloat()
+    {
+        
+        try
+        {
+            FloatValidator floatValidator = Validate.defineFloat(1.0F);
+            Assert.assertTrue(floatValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineInteger method.
+     */
+    @Test
+    public void defineInteger()
+    {
+        
+        try
+        {
+            IntegerValidator intValidator = Validate.defineInteger(55);
+            Assert.assertTrue(intValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineShort method.
+     */
+    @Test
+    public void defineShort()
+    {
+        
+        try
+        {
+            ShortValidator shortValidator = Validate.defineShort((short) 100);
+            Assert.assertTrue(shortValidator != null);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    /*
+     * Tests the defineLong method.
+     */
+    @Test
+    public void defineLong()
+    {
+        
+        try
+        {
+            LongValidator longValidator = Validate.defineLong(100L);
+            Assert.assertTrue(longValidator != null);
+        }
+        catch (final Exception e)
         {
             Assert.fail(e.toString());
         }
@@ -80,122 +218,4 @@ public class ValidateTest
         
     }
     
-    @Test
-    public void testIsGreaterEqualZero()
-    {
-        
-        try
-        {
-            Validate.isGreaterEqualZero(ValidateTest.class, 1);
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsNotEmpty()
-    {
-        
-        try
-        {
-            Validate.isCharNotEmpty(ValidateTest.class, 'C');
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsNotNull()
-    {
-        
-        try
-        {
-            Validate.isNotNull(ValidateTest.class, "HelloWorld");
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsNotNullOrEmpty1()
-    {
-        
-        try
-        {
-            Validate.isNotNullOrEmpty(ValidateTest.class, "HelloWorld");
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsNotNullOrEmpty2()
-    {
-        
-        try
-        {
-            Validate.isNotNullOrEmpty(ValidateTest.class, "H");
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsNotZero()
-    {
-        
-        try
-        {
-            Validate.isNotZero(ValidateTest.class, 1);
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testIsTrue()
-    {
-        
-        try
-        {
-            Validate.isTrue(ValidateTest.class, true);
-            
-            Assert.assertTrue(true);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
 }

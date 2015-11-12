@@ -17,15 +17,12 @@
  *****************************************************************************************
  */
 
-package org.gabsocial.gabdev.common.log.impl;
+package org.gabsocial.gabdev.log.impl;
 
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.gabsocial.gabdev.common.log.LogService;
+import org.gabsocial.gabdev.log.LogService;
 import org.gabsocial.gabdev.validate.Validate;
 
 
@@ -36,48 +33,48 @@ import org.gabsocial.gabdev.validate.Validate;
  */
 public class JavaLogServiceImpl implements LogService
 {
-    private static final int METHOD_NAME_MAX_LENGTH  = 64;
     private static final int MESSAGE_NAME_MAX_LENGTH = 256;
-    
-    private static String createJSONLogMethodMessage(final String fqcn,
-            final String methodName, final Long timeInMillis,
-            final String messageString)
-    {
-        
-        /*
-         * validity check.
-         */
-        assert (fqcn != null) : "The parameter 'fqcn' is NULL.";
-        assert (fqcn.length() > 0) : "The parameter 'fqcn' is empty.";
-        assert (methodName != null) : "The parameter 'methodName' is NULL.";
-        assert (methodName.length() > 0) : "The parameter 'methodName' is empty.";
-        assert (timeInMillis > -1L) : "The parameter 'timeInMillis' less than zero.";
-        assert (messageString != null) : "The parameter 'messageString' is NULL.";
-        assert (messageString.length() > 0) : "The parameter 'messageString' is empty.";
-        
-        /*
-         * Create the json message.
-         */
-        final StringBuilder message = new StringBuilder();
-        message.append("{");
-        message.append("'fqcn':'" + fqcn + "',");
-        message.append("'method':'" + methodName + "',");
-        message.append("'threadId':'" + Thread.currentThread().getId() + "',");
-        try
-        {
-            message.append("'ipAddress':'" + InetAddress.getLocalHost() + "',");
-        }
-        catch (UnknownHostException e)
-        {
-            message.append("'ipAddress':'unknown',");
-        }
-        message.append("'message':'" + messageString + "',");
-        message.append("'timeInMillis':" + timeInMillis);
-        
-        message.append("}");
-        return (message.toString());
-    }
-    
+    private static final int METHOD_NAME_MAX_LENGTH  = 64;
+
+//    private static String createJSONLogMethodMessage(final String fqcn,
+//            final String methodName, final Long timeInMillis,
+//            final String messageString)
+//    {
+//
+//        /*
+//         * validity check.
+//         */
+//        assert (fqcn != null) : "The parameter 'fqcn' is NULL.";
+//        assert (fqcn.length() > 0) : "The parameter 'fqcn' is empty.";
+//        assert (methodName != null) : "The parameter 'methodName' is NULL.";
+//        assert (methodName.length() > 0) : "The parameter 'methodName' is empty.";
+//        assert (timeInMillis > -1L) : "The parameter 'timeInMillis' less than zero.";
+//        assert (messageString != null) : "The parameter 'messageString' is NULL.";
+//        assert (messageString.length() > 0) : "The parameter 'messageString' is empty.";
+//
+//        /*
+//         * Create the json message.
+//         */
+//        final StringBuilder message = new StringBuilder();
+//        message.append("{");
+//        message.append("'fqcn':'" + fqcn + "',");
+//        message.append("'method':'" + methodName + "',");
+//        message.append("'threadId':'" + Thread.currentThread().getId() + "',");
+//        try
+//        {
+//            message.append("'ipAddress':'" + InetAddress.getLocalHost() + "',");
+//        }
+//        catch (final UnknownHostException e)
+//        {
+//            message.append("'ipAddress':'unknown',");
+//        }
+//        message.append("'message':'" + messageString + "',");
+//        message.append("'timeInMillis':" + timeInMillis);
+//
+//        message.append("}");
+//        return (message.toString());
+//    }
+
     /**
      * Protected class. Should only be created by LogProvider.
      */
@@ -85,7 +82,7 @@ public class JavaLogServiceImpl implements LogService
     {
         // void - protectes class scope.
     }
-    
+
     /**
      * Call when you want to log detailed information for debugging or tracing.
      *
@@ -98,17 +95,19 @@ public class JavaLogServiceImpl implements LogService
      *            The message to send to the log. The length must not be null or
      *            empty and less than 256 chars
      */
+    @Override
     public final void logDetail(final Class<?> clazz, final String methodName,
             final String message)
     {
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.FINEST))
@@ -116,7 +115,7 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.FINEST, fqcn, methodName, message);
         }
     }
-    
+
     /**
      * Call when you want to log a failure message.
      *
@@ -129,17 +128,20 @@ public class JavaLogServiceImpl implements LogService
      *            The message to send to the log. The length must not be null or
      *            empty and less than 256 chars
      */
+    @Override
     public final void logFailure(final Class<?> clazz, final String methodName,
             final String message)
     {
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        
+
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.SEVERE))
@@ -147,7 +149,7 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.SEVERE, fqcn, methodName, message);
         }
     }
-    
+
     /**
      * Call when you want to log a failure with throwable details.
      *
@@ -162,19 +164,21 @@ public class JavaLogServiceImpl implements LogService
      * @param thrown
      *            The throwable to log details about.
      */
+    @Override
     public final void logFailure(final Class<?> clazz, final String methodName,
             final String message, final Throwable thrown)
     {
-        
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        Validate.isNotNull(JavaLogServiceImpl.class, thrown);
-        
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineObject(thrown).testNotNull().throwOnNotValidate()
+                .validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.SEVERE))
@@ -182,7 +186,7 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.SEVERE, fqcn, methodName, message, thrown);
         }
     }
-    
+
     /**
      * Call when you want to log standard messages.
      *
@@ -195,17 +199,19 @@ public class JavaLogServiceImpl implements LogService
      *            The message to send to the log. The length must not be null or
      *            empty and less than 256 chars
      */
+    @Override
     public final void logMessage(final Class<?> clazz, final String methodName,
             final String message)
     {
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.INFO))
@@ -213,7 +219,7 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.INFO, fqcn, methodName, message);
         }
     }
-    
+
     /**
      * Logs a message containing the class name, method name and starting
      * timestamp;
@@ -224,29 +230,31 @@ public class JavaLogServiceImpl implements LogService
      *            The name of the class method that is calling this log method.
      *            The length must not be null or empty and less than 64
      */
-    public final void logMethodBegin(final Class<?> clazz,
-            final String methodName)
-    {
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        
-        final String fqcn = clazz.getName();
-        final Logger logger = Logger.getLogger(fqcn);
-        if (logger.isLoggable(Level.INFO))
-        {
-            final Long startTimeInMillis = Calendar.getInstance()
-                    .getTimeInMillis();
-            
-            final String message = JavaLogServiceImpl
-                    .createJSONLogMethodMessage(fqcn, methodName,
-                            startTimeInMillis, "Method Begin");
-            
-            logger.logp(Level.INFO, fqcn, methodName, message);
-        }
-    }
-    
+//    @Override
+//    public final void logMethodBegin(final Class<?> clazz,
+//            final String methodName)
+//    {
+//        Validate.defineString(clazz.getName()).testNotNullEmpty()
+//                .throwOnNotValidate().validate();
+//        Validate.defineString(methodName).testNotNullEmpty()
+//                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+//                .throwOnNotValidate().validate();
+//
+//        final String fqcn = clazz.getName();
+//        final Logger logger = Logger.getLogger(fqcn);
+//        if (logger.isLoggable(Level.INFO))
+//        {
+//            final Long startTimeInMillis = Calendar.getInstance()
+//                    .getTimeInMillis();
+//
+//            final String message = JavaLogServiceImpl
+//                    .createJSONLogMethodMessage(fqcn, methodName,
+//                            startTimeInMillis, "Method Begin");
+//
+//            logger.logp(Level.INFO, fqcn, methodName, message);
+//        }
+//    }
+
     /**
      * Logs a message containing the class name, method name, endinging
      * timestamp and difference time;
@@ -257,29 +265,31 @@ public class JavaLogServiceImpl implements LogService
      *            The name of the class method that is calling this log method.
      *            The length must not be null or empty and less than 64
      */
-    public final void logMethodEnd(final Class<?> clazz, final String methodName)
-    {
-        
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        
-        final String fqcn = clazz.getName();
-        final Logger logger = Logger.getLogger(fqcn);
-        if (logger.isLoggable(Level.INFO))
-        {
-            final Long endTimeInMillis = Calendar.getInstance()
-                    .getTimeInMillis();
-            
-            final String message = JavaLogServiceImpl
-                    .createJSONLogMethodMessage(fqcn, methodName,
-                            endTimeInMillis, "Method End");
-            
-            logger.logp(Level.INFO, fqcn, methodName, message);
-        }
-    }
-    
+//    @Override
+//    public final void logMethodEnd(final Class<?> clazz, final String methodName)
+//    {
+//
+//        Validate.defineString(clazz.getName()).testNotNullEmpty()
+//                .throwOnNotValidate().validate();
+//        Validate.defineString(methodName).testNotNullEmpty()
+//                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+//                .throwOnNotValidate().validate();
+//
+//        final String fqcn = clazz.getName();
+//        final Logger logger = Logger.getLogger(fqcn);
+//        if (logger.isLoggable(Level.INFO))
+//        {
+//            final Long endTimeInMillis = Calendar.getInstance()
+//                    .getTimeInMillis();
+//
+//            final String message = JavaLogServiceImpl
+//                    .createJSONLogMethodMessage(fqcn, methodName,
+//                            endTimeInMillis, "Method End");
+//
+//            logger.logp(Level.INFO, fqcn, methodName, message);
+//        }
+//    }
+
     /**
      * Call when you want to log a warning message.
      *
@@ -292,18 +302,20 @@ public class JavaLogServiceImpl implements LogService
      *            The message to send to the log. The length must not be null or
      *            empty and less than 256 chars
      */
+    @Override
     public final void logWarning(final Class<?> clazz, final String methodName,
             final String message)
     {
-        
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        
+
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.WARNING))
@@ -311,7 +323,7 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.WARNING, fqcn, methodName, message);
         }
     }
-    
+
     /**
      * Call when you want to log a warning message with a throwable details.
      *
@@ -326,19 +338,22 @@ public class JavaLogServiceImpl implements LogService
      * @param thrown
      *            The throwable to log details about.
      */
+    @Override
     public final void logWarning(final Class<?> clazz, final String methodName,
             final String message, final Throwable thrown)
     {
-        
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, clazz.getName());
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, methodName);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                METHOD_NAME_MAX_LENGTH, methodName);
-        Validate.isNotNullOrEmpty(JavaLogServiceImpl.class, message);
-        Validate.isLessThanMaxLength(JavaLogServiceImpl.class,
-                MESSAGE_NAME_MAX_LENGTH, message);
-        Validate.isNotNull(JavaLogServiceImpl.class, thrown);
-        
+
+        Validate.defineString(clazz.getName()).testNotNullEmpty()
+                .throwOnNotValidate().validate();
+        Validate.defineString(methodName).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.METHOD_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineString(message).testNotNullEmpty()
+                .testMaxLength(JavaLogServiceImpl.MESSAGE_NAME_MAX_LENGTH)
+                .throwOnNotValidate().validate();
+        Validate.defineObject(thrown).testNotNull().throwOnNotValidate()
+                .validate();
+
         final String fqcn = clazz.getName();
         final Logger logger = Logger.getLogger(fqcn);
         if (logger.isLoggable(Level.WARNING))
@@ -346,5 +361,5 @@ public class JavaLogServiceImpl implements LogService
             logger.logp(Level.WARNING, fqcn, methodName, message, thrown);
         }
     }
-    
+
 }

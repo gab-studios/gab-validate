@@ -1,7 +1,7 @@
 /*****************************************************************************************
- * 
+ *
  * Copyright 2015 Gregory Brown. All Rights Reserved.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
  * the License at
@@ -13,38 +13,44 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- * 
- ***************************************************************************************** 
+ *
+ *****************************************************************************************
  */
 
-package org.gabsocial.gabdev.validate;
+package org.gabsocial.gabdev.log.impl;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.gabsocial.gabdev.log.LogProvider;
+import org.gabsocial.gabdev.log.LogService;
 
 
 /**
- * 
+ *
  * 
  * @author Gregory Brown (sysdevone)
- * 
+ *
  */
-public class ValidateNegativeTest
+public class JavaLogProviderImpl extends LogProvider
 {
-
-    // TBD
     
-    @Before
-    public void setUp()
+    private LogService _logService;
+    
+    // TODO
+    // add meta data?
+    // add statistics?
+    
+    public JavaLogProviderImpl()
     {
-        //
+        this._logService = new JavaLogServiceImpl();
     }
     
-    @After
-    public void tearDown()
+    /**
+     * Gets the Log service provided by the Log Provider.
+     * 
+     * @return A <code>LogService</code> instance.
+     */
+    public LogService getService()
     {
+        return (this._logService);
         
     }
 }

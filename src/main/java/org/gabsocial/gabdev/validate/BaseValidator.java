@@ -17,11 +17,7 @@
  *****************************************************************************************
  */
 
-package org.gabsocial.gabdev.common.log.impl;
-
-import org.gabsocial.gabdev.common.log.LogProvider;
-import org.gabsocial.gabdev.common.log.LogService;
-
+package org.gabsocial.gabdev.validate;
 
 /**
  *
@@ -29,28 +25,21 @@ import org.gabsocial.gabdev.common.log.LogService;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class JavaLogProviderImpl extends LogProvider
+public abstract class BaseValidator
 {
-    
-    private LogService _logService;
-    
-    // TODO
-    // add meta data?
-    // add statistics?
-    
-    public JavaLogProviderImpl()
-    {
-        this._logService = new JavaLogServiceImpl();
-    }
-    
-    /**
-     * Gets the Log service provided by the Log Provider.
+    /*
+     * Forces an ValidateException to be thrown.
      * 
-     * @return A <code>LogService</code> instance.
+     * @param errorMessage The error message to include in an exception if it is
+     * created.
+     * 
      */
-    public LogService getService()
+    protected static void throwIllegalArgumentException(
+            final String errorMessage)
     {
-        return (this._logService);
+        assert (errorMessage != null) : "The parameter 'errorMessage' is NULL.";
+        assert (errorMessage.length() > 0) : "The parameter 'errorMessage' must not be empty.";
         
+        throw (new ValidateException(errorMessage));
     }
 }

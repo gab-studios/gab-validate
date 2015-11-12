@@ -17,7 +17,7 @@
  ***************************************************************************************** 
  */
 
-package org.gabsocial.gabdev.common.log;
+package org.gabsocial.gabdev.log;
 
 /**
  * 

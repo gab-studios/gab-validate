@@ -17,7 +17,7 @@
  *****************************************************************************************
  */
 
-package org.gabsocial.gabdev.common.log;
+package org.gabsocial.gabdev.log;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,12 +28,12 @@ public abstract class LogProvider
     /*
      * The fully qualified class name.  Used as the property key to get the LogProvider implementation.
      */
-    private static final String                   FQCN             = "org.gabsocial.gabdev.common.log.LogProvider";
+    private static final String                   FQCN             = "org.gabsocial.gabdev.log.LogProvider";
     
     /*
      * The default LogProvider implementation. 
      */
-    private static final String                   DEFAULT_LOG_FQCN = "org.gabsocial.gabdev.common.log.impl.JavaLogProviderImpl";
+    private static final String                   DEFAULT_LOG_FQCN = "org.gabsocial.gabdev.log.impl.JavaLogProviderImpl";
     
     /*
      * A cache that holds onto the different LogProvider implementation as they are used.

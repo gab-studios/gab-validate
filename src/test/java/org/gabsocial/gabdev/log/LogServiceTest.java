@@ -17,7 +17,7 @@
  ***************************************************************************************** 
  */
 
-package org.gabsocial.gabdev.common.log;
+package org.gabsocial.gabdev.log;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -158,40 +158,40 @@ public class LogServiceTest
         
     }
     
-    @Test
-    public void logMethodBegin()
-    {
-        
-        try
-        {
-            this._logService.logMethodBegin(LogProviderTest.class,
-                    "logMethodBegin");
-            
-            Assert.assertTrue(true);
-        }
-        catch (Exception e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void logMethodEnd()
-    {
-        
-        try
-        {
-            this._logService
-                    .logMethodEnd(LogProviderTest.class, "logMethodEnd");
-            
-            Assert.assertTrue(true);
-        }
-        catch (Exception e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
+//    @Test
+//    public void logMethodBegin()
+//    {
+//        
+//        try
+//        {
+//            this._logService.logMethodBegin(LogProviderTest.class,
+//                    "logMethodBegin");
+//            
+//            Assert.assertTrue(true);
+//        }
+//        catch (Exception e)
+//        {
+//            Assert.fail(e.toString());
+//        }
+//        
+//    }
+//    
+//    @Test
+//    public void logMethodEnd()
+//    {
+//        
+//        try
+//        {
+//            this._logService
+//                    .logMethodEnd(LogProviderTest.class, "logMethodEnd");
+//            
+//            Assert.assertTrue(true);
+//        }
+//        catch (Exception e)
+//        {
+//            Assert.fail(e.toString());
+//        }
+//        
+//    }
     
 }
