@@ -31,7 +31,7 @@ import org.junit.Test;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class StringValidatorTest
+public class StringValidatorNegativeTest
 {
     @Before
     public void setUp()
@@ -51,14 +51,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(10)
+            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5)
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(retVal, false);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -69,14 +69,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMinLength(8)
+            boolean retVal = Validate.defineString("HelloWorld").testMinLength(11)
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -87,14 +87,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testNotNullEmpty()
+            boolean retVal = Validate.defineString("").testNotNullEmpty()
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -106,14 +106,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testNotNull()
+            boolean retVal = Validate.defineString(null).testNotNull()
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -124,14 +124,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEquals("HelloWorld")
+            boolean retVal = Validate.defineString("HelloWorld").testEquals("1HelloWorld1")
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -142,14 +142,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
+            boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("1hELLOwORLD1")
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -160,14 +160,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld")
+            boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld1")
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -178,14 +178,14 @@ public class StringValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Za-z]*")
+            boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Z]*")
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }

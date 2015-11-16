@@ -56,7 +56,7 @@ public class ObjectValidatorTest
 
             Assert.assertTrue(retVal);
         }
-        catch (final IllegalArgumentException e)
+        catch (final ValidateException e)
         {
             Assert.fail(e.toString());
         }
@@ -74,7 +74,7 @@ public class ObjectValidatorTest
 
             Assert.assertTrue(retVal);
         }
-        catch (final IllegalArgumentException e)
+        catch (final ValidateException e)
         {
             Assert.fail(e.toString());
         }

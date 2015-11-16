@@ -19,6 +19,9 @@
 
 package org.gabsocial.gabvalidate;
 
+import java.util.regex.Pattern;
+
+
 /**
  * This is a String validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
@@ -37,6 +40,11 @@ public class StringValidator extends BaseValidator<StringValidator>
      * The value to use if the testEquals(boolean) method has been called.
      */
     private String       _equalsValue;
+    
+    /*
+     * The value to use if the testMatch(String) method has been called.
+     */
+    private String       _matchValue;
     
     /*
      * A flag indicating if an "equals" test will be performed when the
@@ -78,6 +86,12 @@ public class StringValidator extends BaseValidator<StringValidator>
      * A flag indicating if an exception should be thrown if the validate fails.
      */
     private boolean      _isTestThrowOnNotValidate = false;
+    
+    /*
+     * A flag inicating if a "match" will be performed using regrex expressions
+     * when the validate() method is called.
+     */
+    private boolean      _isTestMatch              = false;
     
     /*
      * The max length to test for. Defaults to -1.
@@ -151,6 +165,26 @@ public class StringValidator extends BaseValidator<StringValidator>
         this._isTestEqualsNoCase = true;
         this._isTestEquals = false;
         this._equalsValue = value;
+        return (this);
+    }
+    
+    /**
+     * A method to mark that an "match" test using regex will be performed when
+     * the validate() method is called.
+     * 
+     * @param value
+     *            A regular expression that be used to see if the String value
+     *            is a match.
+     * 
+     * @return The same StringValidator instance. This allows for method
+     *         chaining.
+     */
+    public StringValidator testMatch(String value)
+    {
+        // have to test for null if match is selected.
+        this._isTestNotNull = true;
+        this._isTestMatch = true;
+        this._matchValue = value;
         return (this);
     }
     
@@ -338,7 +372,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestMaxLength)
         {
             isTested = true;
-            isValid |= (this._value.length() <= this._maxLength);
+            isValid &= (this._value.length() <= this._maxLength);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
@@ -346,6 +380,20 @@ public class StringValidator extends BaseValidator<StringValidator>
                                 + this._value
                                 + "' max value = '"
                                 + this._maxLength + "').");
+            }
+        }
+        
+        if (this._isTestMatch)
+        {
+            isTested = true;
+            isValid &= (Pattern.matches(this._matchValue, this._value));
+            if (this._isTestThrowOnNotValidate && !isValid)
+            {
+                BaseValidator
+                        .throwIllegalArgumentException("The value does not match the reqular expression (value = '"
+                                + this._value
+                                + "' regex = '"
+                                + this._matchValue + "').");
             }
         }
         
