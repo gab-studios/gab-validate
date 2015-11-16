@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.gabsocial.gabvalidate</groupId>
 	<artifactId>gab-validate</artifactId>
-	<version>0.1.beta</version>
+	<version>0.2.beta</version>
 	<packaging>jar</packaging>
 
 	<name>GAB Social Development Library</name>
