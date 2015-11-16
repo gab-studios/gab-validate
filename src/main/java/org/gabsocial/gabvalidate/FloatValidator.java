@@ -58,11 +58,6 @@ public class FloatValidator extends BaseValidator<FloatValidator>
     private boolean      _isTestMinValue           = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean      _isTestThrowOnNotValidate = false;
-    
-    /*
      * The max value to test for. Defaults to Float.MAX_VALUE.
      */
     private float       _maxValue                 = Float.MAX_VALUE;
@@ -146,18 +141,6 @@ public class FloatValidator extends BaseValidator<FloatValidator>
         return (this);
     }
 
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same FloatValidator instance. This allows for method chaining.
-     */
-    public FloatValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -201,7 +184,7 @@ public class FloatValidator extends BaseValidator<FloatValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator

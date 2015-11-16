@@ -55,11 +55,6 @@ public class ByteValidator extends BaseValidator<ByteValidator>
      * validate() method is called.
      */
     private boolean    _isTestMinValue           = false;
-
-    /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean    _isTestThrowOnNotValidate = false;
     
     /*
      * The max value to test for. Defaults to Byte.MAX_VALUE.
@@ -146,18 +141,6 @@ public class ByteValidator extends BaseValidator<ByteValidator>
         return (this);
     }
     
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same ByteValidator instance. This allows for method chaining.
-     */
-    public ByteValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
-    
     /*
      * (non-Javadoc)
      * 
@@ -201,7 +184,7 @@ public class ByteValidator extends BaseValidator<ByteValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator

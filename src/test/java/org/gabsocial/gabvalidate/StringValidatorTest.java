@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- * A test class for the ShortValidator
+ * A test class for the StringValidator
  *
  * @author Gregory Brown (sysdevone)
  *

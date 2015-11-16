@@ -27,6 +27,12 @@ package org.gabsocial.gabvalidate;
  */
 public abstract class BaseValidator<T> implements Validator<T>
 {
+    
+    /*
+     * A flag indicating if an exception should be thrown if the validate fails.
+     */
+    protected boolean _isTestThrowOnNotValidate = false;
+    
     /*
      * Forces an ValidateException to be thrown.
      * 
@@ -42,5 +48,18 @@ public abstract class BaseValidator<T> implements Validator<T>
         throw (new ValidateException(errorMessage));
     }
     
+    /**
+     * A method to mark that an IllegalArgumentException should be thrown if the
+     * validate method returns false.
+     *
+     * @return The same BooleanValidator instance. This allows for method
+     *         chaining.
+     */
+    @Override
+    public T throwExceptionOnFailedValidation()
+    {
+        this._isTestThrowOnNotValidate = true;
+        return ((T)this);
+    }
     
 }

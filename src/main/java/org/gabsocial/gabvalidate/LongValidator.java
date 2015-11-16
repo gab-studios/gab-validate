@@ -57,11 +57,6 @@ public class LongValidator extends BaseValidator<LongValidator>
     private boolean    _isTestMinValue           = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean    _isTestThrowOnNotValidate = false;
-    
-    /*
      * The max value to test for. Defaults to Long.MAX_VALUE.
      */
     private long       _maxValue                 = Long.MAX_VALUE;
@@ -145,18 +140,6 @@ public class LongValidator extends BaseValidator<LongValidator>
         return (this);
     }
     
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same LongValidator instance. This allows for method chaining.
-     */
-    public LongValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
-    
     /*
      * (non-Javadoc)
      * 
@@ -200,7 +183,7 @@ public class LongValidator extends BaseValidator<LongValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator

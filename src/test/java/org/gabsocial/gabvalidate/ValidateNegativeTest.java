@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- * 
+ * A negative test class for the Validate.
  * 
  * @author Gregory Brown (sysdevone)
  * 

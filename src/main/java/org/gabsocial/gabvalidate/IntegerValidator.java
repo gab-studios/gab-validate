@@ -58,11 +58,6 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
     private boolean   _isTestMinValue           = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean   _isTestThrowOnNotValidate = false;
-    
-    /*
      * The max value to test for. Defaults to Integer.MAX_VALUE.
      */
     private int       _maxValue                 = Integer.MAX_VALUE;
@@ -146,18 +141,7 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
         this._minValue = minValue;
         return (this);
     }
-    
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same IntegerValidator instance. This allows for method chaining.
-     */
-    public IntegerValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
+
     
     /*
      * (non-Javadoc)
@@ -202,7 +186,7 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator

@@ -26,32 +26,34 @@ import org.junit.Test;
 
 
 /**
- * A negative test class for the StringValidator
+ * A negative test class for the  CharValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class StringValidatorNegativeTest
+public class CharValidatorNegativeTest
 {
     @Before
     public void setUp()
     {
         //
     }
-
+    
     @After
     public void tearDown()
     {
-
+        
     }
     
     @Test
-    public void testMaxLength()
+    public void testMaxValue()
     {
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5)
+            char x = '5';
+            char max = '4';
+            boolean retVal = Validate.defineChar(x).testMaxValue(max)
                     .throwExceptionOnFailedValidation().validate();
 
             Assert.assertEquals(retVal, false);
@@ -62,132 +64,126 @@ public class StringValidatorNegativeTest
         }
 
     }
-
+    
     @Test
     public void testMinLength()
     {
-
+        
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMinLength(11)
+            char x = '5';
+            char min = '8';
+            boolean retVal = Validate.defineChar(x).testMinValue(min)
                     .throwExceptionOnFailedValidation().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(retVal, false);
         }
         catch (final ValidateException e)
         {
             Assert.assertTrue(true);
         }
-
-    }
-
-    @Test
-    public void testNotNullEmpty()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineString("").testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
+        
     }
     
-
-    @Test
-    public void testNotNull()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineString(null).testNotNull()
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
     
     @Test
     public void testEquals()
     {
-
-        try
-        {
-            boolean retVal = Validate.defineString("HelloWorld").testEquals("1HelloWorld1")
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
-    
-    @Test
-    public void testEqualsNoCase()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("1hELLOwORLD1")
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
-    
-    @Test
-    public void testMatch()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld1")
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
-    
-    @Test
-    public void testMatch2()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Z]*")
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
         
+        try
+        {
+            char x = 'A';
+            char y = 'a';
+            boolean retVal = Validate.defineChar(x).testEquals(y)
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertEquals(retVal, false);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void testIsDigit()
+    {
+        
+        try
+        {
+            char x = '#';
+            boolean retVal = Validate.defineChar(x).testIsDigit()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertEquals(retVal, false);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    
+    @Test
+    public void testIsLowerCase()
+    {
+        
+        try
+        {
+            char x = 'A';
+            boolean retVal = Validate.defineChar(x).testIsLowerCase()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertEquals(retVal, false);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void testIsUpperCase()
+    {
+        
+        try
+        {
+            char x = 'a';
+            boolean retVal = Validate.defineChar(x).testIsUpperCase()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertEquals(retVal, false);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    @Test
+    public void testIsWhitespace()
+    {
+        
+        try
+        {
+            char x = 'A';
+            boolean retVal = Validate.defineChar(x).testIsWhitespace()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertEquals(retVal, false);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
+    
+    
+    
 }

@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- *
+ * A test class for the ByteValidator
  *
  * @author Gregory Brown (sysdevone)
  *

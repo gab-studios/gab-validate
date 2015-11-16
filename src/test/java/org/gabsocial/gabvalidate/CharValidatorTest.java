@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- *
+ * A test class for the  CharValidator
  *
  * @author Gregory Brown (sysdevone)
  *
@@ -105,5 +105,85 @@ public class CharValidatorTest
         }
         
     }
+    
+    @Test
+    public void testIsDigit()
+    {
+        
+        try
+        {
+            char x = '5';
+            boolean retVal = Validate.defineChar(x).testIsDigit()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    
+    @Test
+    public void testIsLowerCase()
+    {
+        
+        try
+        {
+            char x = 'a';
+            boolean retVal = Validate.defineChar(x).testIsLowerCase()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    @Test
+    public void testIsUpperCase()
+    {
+        
+        try
+        {
+            char x = 'A';
+            boolean retVal = Validate.defineChar(x).testIsUpperCase()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    @Test
+    public void testIsWhitespace()
+    {
+        
+        try
+        {
+            char x = ' ';
+            boolean retVal = Validate.defineChar(x).testIsWhitespace()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+        
+    }
+    
+    
+    
     
 }

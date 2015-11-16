@@ -26,7 +26,7 @@ import org.junit.Test;
 
 
 /**
- * Basic positive tests for the Validator class.
+ * Basic tests for the Validator class.
  *
  * @author Gregory Brown (sysdevone)
  *

@@ -40,43 +40,62 @@ public class CharValidator extends BaseValidator<CharValidator>
     private char       _equalsValue;
     
     /*
+     * A flag indicating if an "is the character a digit/number" test will be
+     * performed when the validate() method is called.
+     */
+    private boolean    _testIsDigit      = false;
+    
+    /*
+     * A flag indicating if an "is the character lower case" test will be
+     * performed when the validate() method is called.
+     */
+    private boolean    _testIsLowerCase  = false;
+    
+    /*
      * A flag indicating if an "equals" test will be performed when the
      * validate() method is called.
      */
-    private boolean    _isTestEquals             = false;
+    private boolean    _isTestEquals     = false;
     
     /*
      * A flag indicating that a max value test will be performed when the
      * validate() method is called.
      */
-    private boolean    _isTestMaxValue           = false;
+    private boolean    _isTestMaxValue   = false;
     
     /*
      * A flag indicating that a min value test will be performed when the
      * validate() method is called.
      */
-    private boolean    _isTestMinValue           = false;
+    private boolean    _isTestMinValue   = false;
     
     /*
      * A flag indicating if an "not empty" test will be performed when the
      * validate() method is called.
      */
-    private boolean    _isTestNotEmpty           = false;
+    private boolean    _isTestNotEmpty   = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
+     * A flag indicating if an "is the character upper case" test will be
+     * performed when the validate() method is called.
      */
-    private boolean    _isTestThrowOnNotValidate = false;
+    private boolean    _testIsUpperCase  = false;
+    
+    /*
+     * A flag indicating if an "is the character a white space" test will be
+     * performed when the validate() method is called.
+     */
+    private boolean    _testIsWhitespace = false;
     
     /*
      * The max value to test for. Defaults to Character.MAX_VALUE.
      */
-    private char       _maxValue                 = Character.MAX_VALUE;
+    private char       _maxValue         = Character.MAX_VALUE;
     
     /*
      * The min value to test for. Defaults to Character.MIN_VALUE.
      */
-    private char       _minValue                 = Character.MIN_VALUE;
+    private char       _minValue         = Character.MIN_VALUE;
     
     /*
      * The value that will be tested.
@@ -96,7 +115,7 @@ public class CharValidator extends BaseValidator<CharValidator>
     
     /**
      * Gets the value that was used to initialize this validator.
-     * 
+     *
      * @return A char value.
      */
     public char getValue()
@@ -107,7 +126,7 @@ public class CharValidator extends BaseValidator<CharValidator>
     /**
      * A method to mark that an "equals" test will be performed when the
      * validate() method is called.
-     * 
+     *
      * @param value
      *            The value to perform the equate with.
      * @return The same CharValidator instance. This allows for method chaining.
@@ -154,11 +173,10 @@ public class CharValidator extends BaseValidator<CharValidator>
     }
     
     /**
-     * A method to mark that an "not empty" test will be performed when
-     * the validate() method is called.
-     * 
-     * @return The same CharValidator instance. This allows for method
-     *         chaining.
+     * A method to mark that an "not empty" test will be performed when the
+     * validate() method is called.
+     *
+     * @return The same CharValidator instance. This allows for method chaining.
      */
     public CharValidator testNotEmpty()
     {
@@ -167,14 +185,55 @@ public class CharValidator extends BaseValidator<CharValidator>
     }
     
     /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
+     * A method to mark if an "is the character a digit/number" test will be
+     * performed when the validate() method is called.
      *
      * @return The same CharValidator instance. This allows for method chaining.
      */
-    public CharValidator throwExceptionOnFailedValidation()
+    public CharValidator testIsDigit()
     {
-        this._isTestThrowOnNotValidate = true;
+        this._testIsDigit = true;
+        return (this);
+    }
+    
+    /**
+     * A method to mark if an "is the character lower case" test will be
+     * performed when the validate() method is called. Calling this method will
+     * de-active the isUpperCase test.
+     *
+     * @return The same CharValidator instance. This allows for method chaining.
+     */
+    public CharValidator testIsLowerCase()
+    {
+        this._testIsLowerCase = true;
+        this._testIsUpperCase = false;
+        return (this);
+    }
+    
+    /**
+     * A method to mark if an "is the character upper case" test will be
+     * performed when the validate() method is called. Calling this method will
+     * de-active the isLowerCase test.
+     *
+     * @return The same CharValidator instance. This allows for method chaining.
+     */
+    public CharValidator testIsUpperCase()
+    {
+        this._testIsUpperCase = true;
+        this._testIsLowerCase = false;
+        return (this);
+    }
+    
+    /**
+     * A method to mark if an "is the character a whitecase" test will be
+     * performed when the validate() method is called. Calling this method will
+     * de-active the isLowerCase test.
+     *
+     * @return The same CharValidator instance. This allows for method chaining.
+     */
+    public CharValidator testIsWhitespace()
+    {
+        this._testIsWhitespace = true;
         return (this);
     }
     
@@ -183,6 +242,7 @@ public class CharValidator extends BaseValidator<CharValidator>
      * 
      * @see org.gabsocial.gabvalidate.Validator#validate()
      */
+    @Override
     public boolean validate()
     {
         boolean isTested = false;
@@ -190,7 +250,6 @@ public class CharValidator extends BaseValidator<CharValidator>
         
         if (this._isTestNotEmpty)
         {
-            
             
             isValid &= this._value != '\0';
             if (this._isTestThrowOnNotValidate && !isValid)
@@ -207,13 +266,13 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value does not equal the expected value (value = '"
-                        + this._value
-                        + "' expected value = '"
-                        + this._equalsValue + "').");
+                        .throwIllegalArgumentException("The value does not equal the expected value (value = '"
+                                + this._value
+                                + "' expected value = '"
+                                + this._equalsValue + "').");
             }
         }
-                
+        
         if (this._isTestMinValue)
         {
             isTested = true;
@@ -221,11 +280,10 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
-                        + this._value
-                        + "' min value = '"
-                        + this._minValue
-                        + "').");
+                        .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
+                                + this._value
+                                + "' min value = '"
+                                + this._minValue + "').");
             }
             
         }
@@ -233,23 +291,70 @@ public class CharValidator extends BaseValidator<CharValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
-                        + this._value
-                        + "' max value = '"
-                        + this._maxValue
-                        + "').");
+                        .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
+                                + this._value
+                                + "' max value = '"
+                                + this._maxValue + "').");
             }
         }
         
-        if( !isTested )
+        if (this._testIsDigit)
+        {
+            isTested = true;
+            isValid &= (Character.isDigit(this._value));
+            if (this._isTestThrowOnNotValidate && !isValid)
+            {
+                BaseValidator
+                        .throwIllegalArgumentException("The value is not a digit (value = '"
+                                + this._value + "').");
+            }
+        }
+        
+        if (this._testIsLowerCase)
+        {
+            isTested = true;
+            isValid &= (Character.isLowerCase(this._value));
+            if (this._isTestThrowOnNotValidate && !isValid)
+            {
+                BaseValidator
+                        .throwIllegalArgumentException("The value is not lower case (value = '"
+                                + this._value + "').");
+            }
+        }
+        
+        if (this._testIsUpperCase)
+        {
+            isTested = true;
+            isValid &= (Character.isUpperCase(this._value));
+            if (this._isTestThrowOnNotValidate && !isValid)
+            {
+                BaseValidator
+                        .throwIllegalArgumentException("The value is not upper case (value = '"
+                                + this._value + "').");
+            }
+        }
+        
+        if (this._testIsWhitespace)
+        {
+            isTested = true;
+            isValid &= (Character.isWhitespace(this._value));
+            if (this._isTestThrowOnNotValidate && !isValid)
+            {
+                BaseValidator
+                        .throwIllegalArgumentException("The value is not a whitespace (value = '"
+                                + this._value + "').");
+            }
+        }
+        
+        if (!isTested)
         {
             isValid = false;
         }
-       
+        
         return (isValid);
         
     }

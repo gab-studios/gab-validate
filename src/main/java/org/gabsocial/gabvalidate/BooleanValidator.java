@@ -52,11 +52,6 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
     private boolean       _isTestFalse              = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean       _isTestThrowOnNotValidate = false;
-    
-    /*
      * A flag indicating if a "true" test will be performed when the validate()
      * method is called.
      */
@@ -130,19 +125,6 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
         return (this);
     }
     
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same BooleanValidator instance. This allows for method
-     *         chaining.
-     */
-    @Override
-    public BooleanValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
     
     /*
      * (non-Javadoc)

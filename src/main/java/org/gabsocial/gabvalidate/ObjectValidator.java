@@ -52,11 +52,6 @@ public class ObjectValidator extends BaseValidator<ObjectValidator>
     private boolean      _isTestNotNull            = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean      _isTestThrowOnNotValidate = false;
-    
-    /*
      * The value that will be tested.
      */
     private final Object _value;
@@ -112,18 +107,6 @@ public class ObjectValidator extends BaseValidator<ObjectValidator>
         return (this);
     }
     
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same BooleanValidator instance. This allows for method
-     *         chaining.
-     */
-    public ObjectValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
     
     /*
      * (non-Javadoc)

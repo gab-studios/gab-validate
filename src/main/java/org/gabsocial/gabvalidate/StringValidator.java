@@ -83,12 +83,7 @@ public class StringValidator extends BaseValidator<StringValidator>
     private boolean      _isTestNotNull            = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean      _isTestThrowOnNotValidate = false;
-    
-    /*
-     * A flag inicating if a "match" will be performed using regrex expressions
+     * A flag indicating if a "match" will be performed using regrex expressions
      * when the validate() method is called.
      */
     private boolean      _isTestMatch              = false;
@@ -277,19 +272,6 @@ public class StringValidator extends BaseValidator<StringValidator>
         // have to test for null if empty is selected.
         this._isTestNotNull = true;
         this._isTestNotEmpty = true;
-        return (this);
-    }
-    
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same StringValidator instance. This allows for method
-     *         chaining.
-     */
-    public StringValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
         return (this);
     }
     

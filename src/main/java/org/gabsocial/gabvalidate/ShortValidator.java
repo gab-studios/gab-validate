@@ -57,11 +57,6 @@ public class ShortValidator extends BaseValidator<ShortValidator>
     private boolean     _isTestMinValue           = false;
     
     /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean     _isTestThrowOnNotValidate = false;
-    
-    /*
      * The max value to test for. Defaults to Long.MAX_VALUE.
      */
     private short       _maxValue                 = Short.MAX_VALUE;
@@ -147,19 +142,6 @@ public class ShortValidator extends BaseValidator<ShortValidator>
         return (this);
     }
     
-    /**
-     * A method to mark that an IllegalArgumentException should be thrown if the
-     * validate method returns false.
-     *
-     * @return The same ShortValidator instance. This allows for method
-     *         chaining.
-     */
-    public ShortValidator throwExceptionOnFailedValidation()
-    {
-        this._isTestThrowOnNotValidate = true;
-        return (this);
-    }
-    
     /*
      * (non-Javadoc)
      * 
@@ -203,7 +185,7 @@ public class ShortValidator extends BaseValidator<ShortValidator>
         if (this._isTestMaxValue)
         {
             isTested = true;
-            isValid |= (this._value <= this._maxValue);
+            isValid &= (this._value <= this._maxValue);
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
