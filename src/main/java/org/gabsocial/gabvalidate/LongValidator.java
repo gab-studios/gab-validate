@@ -31,7 +31,7 @@ package org.gabsocial.gabvalidate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class LongValidator extends BaseValidator
+public class LongValidator extends BaseValidator<LongValidator>
 {
     /*
      * The value to use if the testEquals(boolean) method has been called.
@@ -151,22 +151,16 @@ public class LongValidator extends BaseValidator
      *
      * @return The same LongValidator instance. This allows for method chaining.
      */
-    public LongValidator throwOnNotValidate()
+    public LongValidator throwExceptionOnFailedValidation()
     {
         this._isTestThrowOnNotValidate = true;
         return (this);
     }
     
-    /**
-     * Performs a validation test based on the methods that were called.If the
-     * method throwOnNotValidate has been called, then an
-     * ValidateException will be thrown.
+    /*
+     * (non-Javadoc)
      * 
-     * If no test method is called, this method returns a false.
-     *
-     * @return A boolean value that is true if the value is valid. Otherwise
-     *         false is return.
-     * @see throwOnNotValidate
+     * @see org.gabsocial.gabvalidate.Validator#validate()
      */
     public boolean validate()
     {

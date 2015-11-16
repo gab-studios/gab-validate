@@ -54,7 +54,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte max = '8';
             boolean retVal = Validate.defineByte(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte min = '4';
             boolean retVal = Validate.defineByte(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte y = '5';
             boolean retVal = Validate.defineByte(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

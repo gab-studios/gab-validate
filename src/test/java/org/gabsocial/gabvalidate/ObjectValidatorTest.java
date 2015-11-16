@@ -26,75 +26,32 @@ import org.junit.Test;
 
 
 /**
- *
+ * A test class for the ObjectValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class DoubleValidatorTest
+public class ObjectValidatorTest
 {
     @Before
     public void setUp()
     {
         //
     }
-    
+
     @After
     public void tearDown()
     {
-        
-    }
-    
-    @Test
-    public void testMaxValue()
-    {
-
-        try
-        {
-            double x = 5;
-            double max = 10;
-            boolean retVal = Validate.defineDouble(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertTrue(retVal);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
 
     }
-    
-    @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            double x = 5;
-            double min = 4;
-            boolean retVal = Validate.defineDouble(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
-
-            Assert.assertTrue(retVal);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
     
     @Test
     public void testEquals()
     {
-        
+
         try
         {
-            double x = 5;
-            double y = 5;
-            boolean retVal = Validate.defineDouble(x).testEquals(y)
+            boolean retVal = Validate.defineObject("HelloWorld").testEquals("HelloWorld")
                     .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
@@ -103,7 +60,25 @@ public class DoubleValidatorTest
         {
             Assert.fail(e.toString());
         }
-        
+
     }
-    
+
+    @Test
+    public void testNotNull()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineObject("HelloWorld").testNotNull()
+                    .throwExceptionOnFailedValidation().validate();
+
+            Assert.assertTrue(retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+        
 }

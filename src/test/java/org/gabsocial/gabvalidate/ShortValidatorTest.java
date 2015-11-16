@@ -54,7 +54,7 @@ public class ShortValidatorTest
             short x = 5;
             short max = 10;
             boolean retVal = Validate.defineShort(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class ShortValidatorTest
             short x = 5;
             short min = 4;
             boolean retVal = Validate.defineShort(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class ShortValidatorTest
             short x = 5;
             short y = 5;
             boolean retVal = Validate.defineShort(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

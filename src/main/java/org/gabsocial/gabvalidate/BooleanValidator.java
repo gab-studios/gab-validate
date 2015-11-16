@@ -25,13 +25,13 @@ package org.gabsocial.gabvalidate;
  *
  * If the throwOnNotValidate() method has been called and if the validate fails
  * then Fan ValidateException will be thrown.
- * 
+ *
  * If no test method is called, validate() returns a false.
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class BooleanValidator extends BaseValidator
+public class BooleanValidator extends BaseValidator<BooleanValidator>
 {
     
     /*
@@ -52,15 +52,15 @@ public class BooleanValidator extends BaseValidator
     private boolean       _isTestFalse              = false;
     
     /*
+     * A flag indicating if an exception should be thrown if the validate fails.
+     */
+    private boolean       _isTestThrowOnNotValidate = false;
+    
+    /*
      * A flag indicating if a "true" test will be performed when the validate()
      * method is called.
      */
     private boolean       _isTestTrue               = false;
-    
-    /*
-     * A flag indicating if an exception should be thrown if the validate fails.
-     */
-    private boolean       _isTestThrowOnNotValidate = false;
     
     /*
      * The value that will be tested.
@@ -80,7 +80,7 @@ public class BooleanValidator extends BaseValidator
     
     /**
      * Gets the value that was used to initialize this validator.
-     * 
+     *
      * @return A boolean value.
      */
     public boolean getValue()
@@ -91,7 +91,7 @@ public class BooleanValidator extends BaseValidator
     /**
      * A method to mark that an "equals" test will be performed when the
      * validate() method is called.
-     * 
+     *
      * @param equalsValue
      *            The value to perform the equate with.
      * @return The same BooleanValidator instance. This allows for method
@@ -137,23 +137,19 @@ public class BooleanValidator extends BaseValidator
      * @return The same BooleanValidator instance. This allows for method
      *         chaining.
      */
-    public BooleanValidator throwOnNotValidate()
+    @Override
+    public BooleanValidator throwExceptionOnFailedValidation()
     {
         this._isTestThrowOnNotValidate = true;
         return (this);
     }
     
-    /**
-     * Performs a validation test based on the methods that were called.If the
-     * method throwOnNotValidate has been called, then an
-     * ValidateException will be thrown.
+    /*
+     * (non-Javadoc)
      * 
-     * If no test method is called, this method returns a false.
-     *
-     * @return A boolean value that is true if the value is valid. Otherwise
-     *         false is return.
-     * @see throwOnNotValidate
+     * @see org.gabsocial.gabvalidate.Validator#validate()
      */
+    @Override
     public boolean validate()
     {
         boolean isTested = false;
@@ -198,7 +194,7 @@ public class BooleanValidator extends BaseValidator
             
         }
         
-        if( !isTested )
+        if (!isTested)
         {
             isValid = false;
         }

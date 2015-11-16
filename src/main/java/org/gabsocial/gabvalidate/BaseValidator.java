@@ -25,7 +25,7 @@ package org.gabsocial.gabvalidate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public abstract class BaseValidator
+public abstract class BaseValidator<T> implements Validator<T>
 {
     /*
      * Forces an ValidateException to be thrown.
@@ -41,4 +41,6 @@ public abstract class BaseValidator
         
         throw (new ValidateException(errorMessage));
     }
+    
+    
 }

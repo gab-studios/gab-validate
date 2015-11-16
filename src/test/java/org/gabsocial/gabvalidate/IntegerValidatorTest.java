@@ -54,7 +54,7 @@ public class IntegerValidatorTest
             int x = 5;
             int max = 10;
             boolean retVal = Validate.defineInteger(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class IntegerValidatorTest
             int x = 5;
             int min = 4;
             boolean retVal = Validate.defineInteger(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class IntegerValidatorTest
             int x = 5;
             int y = 5;
             boolean retVal = Validate.defineInteger(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

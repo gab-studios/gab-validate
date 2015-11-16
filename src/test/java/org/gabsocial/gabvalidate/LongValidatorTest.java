@@ -54,7 +54,7 @@ public class LongValidatorTest
             long x = 5;
             long max = 10;
             boolean retVal = Validate.defineLong(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class LongValidatorTest
             long x = 5;
             long min = 4;
             boolean retVal = Validate.defineLong(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class LongValidatorTest
             long x = 5;
             long y = 5;
             boolean retVal = Validate.defineLong(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

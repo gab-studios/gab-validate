@@ -54,7 +54,7 @@ public class FloatValidatorTest
             float x = 5;
             float max = 10;
             boolean retVal = Validate.defineFloat(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class FloatValidatorTest
             float x = 5;
             float min = 4;
             boolean retVal = Validate.defineFloat(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class FloatValidatorTest
             float x = 5;
             float y = 5;
             boolean retVal = Validate.defineFloat(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

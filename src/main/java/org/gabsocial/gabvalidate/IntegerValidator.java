@@ -31,7 +31,7 @@ package org.gabsocial.gabvalidate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class IntegerValidator extends BaseValidator
+public class IntegerValidator extends BaseValidator<IntegerValidator>
 {
     
     /*
@@ -153,22 +153,16 @@ public class IntegerValidator extends BaseValidator
      *
      * @return The same IntegerValidator instance. This allows for method chaining.
      */
-    public IntegerValidator throwOnNotValidate()
+    public IntegerValidator throwExceptionOnFailedValidation()
     {
         this._isTestThrowOnNotValidate = true;
         return (this);
     }
     
-    /**
-     * Performs a validation test based on the methods that were called.If the
-     * method throwOnNotValidate has been called, then an
-     * ValidateException will be thrown.
+    /*
+     * (non-Javadoc)
      * 
-     * If no test method is called, this method returns a false.
-     *
-     * @return A boolean value that is true if the value is valid. Otherwise
-     *         false is return.
-     * @see throwOnNotValidate
+     * @see org.gabsocial.gabvalidate.Validator#validate()
      */
     public boolean validate()
     {

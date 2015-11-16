@@ -54,7 +54,7 @@ public class CharValidatorTest
             char x = '5';
             char max = '8';
             boolean retVal = Validate.defineChar(x).testMaxValue(max)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +74,7 @@ public class CharValidatorTest
             char x = '5';
             char min = '4';
             boolean retVal = Validate.defineChar(x).testMinValue(min)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +95,7 @@ public class CharValidatorTest
             char x = '5';
             char y = '5';
             boolean retVal = Validate.defineChar(x).testEquals(y)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }

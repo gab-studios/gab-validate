@@ -31,36 +31,36 @@ package org.gabsocial.gabvalidate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ObjectValidator extends BaseValidator
+public class ObjectValidator extends BaseValidator<ObjectValidator>
 {
-
+    
     /*
      * The value to use if the testEquals(boolean) method has been called.
      */
     private Object       _equalsValue;
-
+    
     /*
      * A flag indicating if an "equals" test will be performed when the
      * validate() method is called.
      */
     private boolean      _isTestEquals             = false;
-
+    
     /*
      * A flag indicating if an "not null" test will be performed when the
      * validate() method is called.
      */
     private boolean      _isTestNotNull            = false;
-
+    
     /*
      * A flag indicating if an exception should be thrown if the validate fails.
      */
     private boolean      _isTestThrowOnNotValidate = false;
-
+    
     /*
      * The value that will be tested.
      */
     private final Object _value;
-
+    
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -71,7 +71,7 @@ public class ObjectValidator extends BaseValidator
     {
         this._value = value;
     }
-
+    
     /**
      * Gets the value that was used to initialize this validator.
      *
@@ -81,7 +81,7 @@ public class ObjectValidator extends BaseValidator
     {
         return (this._value);
     }
-
+    
     /**
      * A method to mark that an "equals" test will be performed when the
      * validate() method is called.
@@ -98,7 +98,7 @@ public class ObjectValidator extends BaseValidator
         this._equalsValue = value;
         return (this);
     }
-
+    
     /**
      * A method to mark that an "not null" test will be performed when the
      * validate() method is called.
@@ -111,7 +111,7 @@ public class ObjectValidator extends BaseValidator
         this._isTestNotNull = true;
         return (this);
     }
-
+    
     /**
      * A method to mark that an IllegalArgumentException should be thrown if the
      * validate method returns false.
@@ -119,50 +119,52 @@ public class ObjectValidator extends BaseValidator
      * @return The same BooleanValidator instance. This allows for method
      *         chaining.
      */
-    public ObjectValidator throwOnNotValidate()
+    public ObjectValidator throwExceptionOnFailedValidation()
     {
         this._isTestThrowOnNotValidate = true;
         return (this);
     }
-
-    /**
-     * Performs a validation test based on the methods that were called.If the
-     * method throwOnNotValidate has been called, then an
-     * ValidateException will be thrown.
+    
+    /*
+     * (non-Javadoc)
      * 
-     * If no test method is called, this method returns a false.
-     *
-     * @return A boolean value that is true if the value is valid. Otherwise
-     *         false is return.
-     * @see throwOnNotValidate
+     * @see org.gabsocial.gabvalidate.Validator#validate()
      */
     public boolean validate()
     {
-        boolean retVal = true;
+        boolean isTested = false;
+        boolean isValid = true;
         if (this._isTestNotNull)
         {
-            retVal &= (this._value == null);
-            if (this._isTestThrowOnNotValidate && retVal)
+            isTested = true;
+            isValid &= (this._value != null);
+            if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must not be null");
+                        .throwIllegalArgumentException("The String must not be null");
             }
         }
         
         if (this._isTestEquals)
         {
-            retVal &= !this._value.equals(this._equalsValue);
-            if (this._isTestThrowOnNotValidate && retVal)
+            isTested = true;
+            isValid &= this._value == this._equalsValue;
+            if (this._isTestThrowOnNotValidate && !isValid)
             {
-                
                 BaseValidator
-                        .throwIllegalArgumentException("The value does not equal the expected value (string value = '"
+                        .throwIllegalArgumentException("The value does not equal the expected value (value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
             }
         }
-        return (retVal);
+        
+        if (!isTested)
+        {
+            isValid = false;
+        }
+        
+        return (isValid);
     }
-
+    
 }

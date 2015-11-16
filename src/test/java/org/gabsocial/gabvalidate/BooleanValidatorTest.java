@@ -51,7 +51,7 @@ public class BooleanValidatorTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(true).testTrue().throwOnNotValidate().validate();
+            boolean retVal = Validate.defineBoolean(true).testTrue().throwExceptionOnFailedValidation().validate();
             
             Assert.assertTrue(retVal);
         }
@@ -68,7 +68,7 @@ public class BooleanValidatorTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(false).testFalse().throwOnNotValidate()
+            boolean retVal = Validate.defineBoolean(false).testFalse().throwExceptionOnFailedValidation()
                     .validate();
             
             Assert.assertTrue(retVal);
@@ -86,7 +86,7 @@ public class BooleanValidatorTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(true).testEquals(true).throwOnNotValidate()
+            boolean retVal = Validate.defineBoolean(true).testEquals(true).throwExceptionOnFailedValidation()
                     .validate();
             
             Assert.assertTrue(retVal);
@@ -105,7 +105,7 @@ public class BooleanValidatorTest
         try
         {
             boolean retVal = Validate.defineBoolean(false).testEquals(false)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
             
             Assert.assertTrue(retVal);
         }

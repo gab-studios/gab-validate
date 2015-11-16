@@ -52,7 +52,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMaxLength(10)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -70,7 +70,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMinLength(8)
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -88,7 +88,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testNotNullEmpty()
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -107,7 +107,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testNotNull()
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -125,7 +125,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEquals("HelloWorld")
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -143,7 +143,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
-                    .throwOnNotValidate().validate();
+                    .throwExceptionOnFailedValidation().validate();
 
             Assert.assertTrue(retVal);
         }
