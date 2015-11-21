@@ -22,9 +22,13 @@ package org.gabsocial.gabvalidate;
 /**
  * This is a Object validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
+ * 
+ *      Validate.defineObject(myObject).testNotNull().validate();
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * then a ValidateException will be thrown.
+ * 
+ *      Validate.defineObject(myObject).testEquals(expectedObject).throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *

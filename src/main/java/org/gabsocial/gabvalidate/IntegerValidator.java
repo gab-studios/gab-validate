@@ -20,11 +20,16 @@
 package org.gabsocial.gabvalidate;
 
 /**
- * This is an int validator. After this class is created, call the testXXXX()
+ * This is a int validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
+ * 
+ *      Validate.defineInteger(int).testNotNull().validate();
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * then a ValidateException will be thrown.
+ * 
+ *      Validate.defineInteger(int).testEquals(int)
+ *          .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *

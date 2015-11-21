@@ -22,9 +22,14 @@ package org.gabsocial.gabvalidate;
 /**
  * This is a float validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
+ * 
+ *      Validate.defineFloat(float).testNotNull().validate();
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * then a ValidateException will be thrown.
+ * 
+ *      Validate.defineFloat(float).testEquals(float)
+ *          .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *

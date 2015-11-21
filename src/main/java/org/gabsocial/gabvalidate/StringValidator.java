@@ -25,9 +25,14 @@ import java.util.regex.Pattern;
 /**
  * This is a String validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
+ * 
+ *      Validate.defineString(String).testNotNull().validate();
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * then a ValidateException will be thrown.
+ * 
+ *      Validate.defineString(String).testEquals(String)
+ *          .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *

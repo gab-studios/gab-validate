@@ -23,8 +23,13 @@ package org.gabsocial.gabvalidate;
  * This is a boolean validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ *      Validate.defineBoolean(myObject==null).testTrue().validate();
+ *
+ * If the throwExceptionOnFailedValidation() method has been called and if the
+ * validate fails then a ValidateException will be thrown.
+ * 
+ *      Validate.defineBoolean(myObject==null).testEquals(otherObject != null)
+ *          .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *
@@ -43,19 +48,19 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
      * A flag indicating if an "equals" test will be performed when the
      * validate() method is called.
      */
-    private boolean       _isTestEquals             = false;
+    private boolean       _isTestEquals = false;
     
     /*
      * A flag indicating if a "false" test will be performed when the validate()
      * method is called.
      */
-    private boolean       _isTestFalse              = false;
+    private boolean       _isTestFalse  = false;
     
     /*
      * A flag indicating if a "true" test will be performed when the validate()
      * method is called.
      */
-    private boolean       _isTestTrue               = false;
+    private boolean       _isTestTrue   = false;
     
     /*
      * The value that will be tested.
@@ -124,7 +129,6 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
         this._isTestTrue = true;
         return (this);
     }
-    
     
     /*
      * (non-Javadoc)

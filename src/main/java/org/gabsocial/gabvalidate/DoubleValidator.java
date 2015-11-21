@@ -22,9 +22,14 @@ package org.gabsocial.gabvalidate;
 /**
  * This is a double validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
+ * 
+ *      Validate.defineDouble(double).testNotNull().validate();
  *
- * If the throwOnNotValidate() method has been called and if the validate fails
- * then Fan ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * then a ValidateException will be thrown.
+ * 
+ *      Validate.defineDouble(double).testEquals(char)
+ *          .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *
