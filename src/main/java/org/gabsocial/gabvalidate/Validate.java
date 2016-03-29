@@ -156,4 +156,16 @@ public class Validate
     {
         return (new ObjectValidator(value));
     }
+    
+//    /**
+//     * This method defines a Array validator. Each call creates a new validator.
+//     *
+//     * @param value
+//     *            The Object[] value to validate.
+//     * @return A <code>ObjectValidator</code> instance.
+//     */
+//    public static final ArrayValidator defineArray(final Object[] value)
+//    {
+//        return (new ArrayValidator(value));
+//    }
 }

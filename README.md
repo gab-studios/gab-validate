@@ -1,31 +1,56 @@
-gab-validate
+
+Master: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=master)](https://travis-ci.org/sysdevone/gab-validate)
+[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/sysdevone/gab-validate?branch=master)
+[![Coverity Scan](https://scan.coverity.com/projects/8317/badge.svg)](https://scan.coverity.com/projects/sysdevone-gab-validate)
+
+Integration: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=integration)](https://travis-ci.org/sysdevone/gab-validate)
+[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
+
+GAB-Validate
 =======
 
-Validation library for GAB Social Projects
+The GAB Social Validation Library for Java.  The purpose of this project is to analyze and examine how I would create a validation library for Java.  Comments are welcome.  Thank you.
 
+
+Required
+---------
+This project requires the following: 
+
+    * Java 7+
+    * Maven
 
 Build
 ---------
-Use Maven to build - mvn package.
+Use Maven to build - `mvn package`.
 
+Usage
+---------
+
+In order to validate, you need to call a defineXXXXXX() method `Validate.defineString("HelloWorld")`.  Once that is done, you can perform tests by chain calling test methods.
+
+```java
+Validate.defineString("HelloWorld").testMaxLength(10).throwExceptionOnFailedValidation().validate();
+
+boolean retVal = Validate.defineInteger(5000).testMaxValue(max).testMinValue(min).validate();
+
+```
 
 More Documentation
 ------------------
-Check our [wiki][].
+Check the project [wiki] [].
 
 
 License
 -------
-Code is under the Apache v2.0 License [license].
+This codebase is licensed under the [Apache v2.0 License] [license].
 
 
-Donations
+Feedback
 ---------
-We accept tips through [Gratipay][tip].
-
-[![Gratipay](https://img.shields.io/gratipay/sysdevone.svg?style=flat)](https://www.gratipay.com/sysdevone/)
+Comments and feedback are greatly appreciated!!!
 
 
-[license]:https://github.com/sysdevone/gab-validate/tree/master/LICENSE
-[wiki]:https://github.com/sysdevone/gab-validate/wiki
-[tip]:https://www.gratipay.com/sysdevone/
+
+[license]: https://github.com/sysdevone/gab-validate/tree/master/LICENSE
+[wiki]: https://github.com/sysdevone/gab-validate/wiki
+[examples]: https://github.com/sysdevone/gab-validate/wiki/Examples
