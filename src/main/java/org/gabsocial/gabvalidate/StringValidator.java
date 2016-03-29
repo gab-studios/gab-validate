@@ -350,6 +350,8 @@ public class StringValidator extends BaseValidator<StringValidator>
                 BaseValidator
                         .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
                                 + this._value
+                                + "' length = '"
+                                + this._value.length() 
                                 + "' min value = '"
                                 + this._minLength + "').");
             }
@@ -365,6 +367,8 @@ public class StringValidator extends BaseValidator<StringValidator>
                 BaseValidator
                         .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
                                 + this._value
+                                + "' length = '"
+                                + this._value.length() 
                                 + "' max value = '"
                                 + this._maxLength + "').");
             }
