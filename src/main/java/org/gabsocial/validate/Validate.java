@@ -164,7 +164,7 @@ public class Validate
      *            The Object[] value to validate.
      * @return A <code>ObjectValidator</code> instance.
      */
-    public static final <T> ArrayValidator defineArray(final T[] value)
+    public static final ArrayValidator defineArray(final Object[] value)
     {
         return (new ArrayValidator(value));
     }
