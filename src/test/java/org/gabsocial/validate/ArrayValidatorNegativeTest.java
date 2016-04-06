@@ -85,7 +85,7 @@ public class ArrayValidatorNegativeTest
     public void testNotNullEmpty()
     {
 
-        String[] strArray1 = { "", "", "", "" };
+        String[] strArray1 = null;
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNullEmpty()
