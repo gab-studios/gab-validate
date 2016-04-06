@@ -98,7 +98,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      *            The value that will be validated. This value can be null or
      *            empty.
      */
-    protected <T> ArrayValidator(final T[] value)
+    protected ArrayValidator(final Object[] value)
     {
         this._value = value;
     }
@@ -108,9 +108,15 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * 
      * @return A String value.
      */
-    public <T> T[] getValue()
+    public Object[] getValue()
     {
-        return (T[]) (this._value);
+        Object[] retVal = null;
+        if( this._value != null )
+        {
+            retVal = Arrays.copyOf(this._value, this._value.length);
+        }
+        
+        return (retVal);
     }
     
     /**
@@ -122,12 +128,17 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * @return The same StringValidator instance. This allows for method
      *         chaining.
      */
-    public <T> ArrayValidator testEquals(final T[] equalsValue)
+    public ArrayValidator testEquals(final Object[] equalsValue)
     {
         // have to test for null if empty is selected.
         this._isTestNotNull = true;
         this._isTestEquals = true;
-        this._equalsValue = equalsValue;
+        
+        if( equalsValue != null )
+        {
+            this._equalsValue = Arrays.copyOf(equalsValue, this._value.length);
+        }
+        
         return (this);
     }
     
@@ -249,15 +260,14 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             
             isTested = true;
             isValid &= this._value.length > 0;
-//            if( !isValid )
-//            {
-//                for( int i = 0; i < this._value.length; ++i )
-//                {
-//                    Object value = this._value[i];
-//                    isValid &= ( value == null );
-//                }
-//            }
-            
+            // if( !isValid )
+            // {
+            // for( int i = 0; i < this._value.length; ++i )
+            // {
+            // Object value = this._value[i];
+            // isValid &= ( value == null );
+            // }
+            // }
             
             if (this._isTestThrowOnNotValidate && !isValid)
             {
@@ -273,10 +283,11 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
-                                + this._value
-                                + "' min value = '"
-                                + this._minLength + "').");
+                        .throwIllegalArgumentException("The value must be greater than or equal to the min value.");
+//                                + " (value = '"
+//                                + this._value
+//                                + "' min value = '"
+//                                + this._minLength + "').");
             }
             
         }
@@ -288,10 +299,11 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
-                                + this._value
-                                + "' max value = '"
-                                + this._maxLength + "').");
+                        .throwIllegalArgumentException("The value must be less than or equal to the max value.");
+//                                + " (value = '"
+//                                + this._value
+//                                + "' max value = '"
+//                                + this._maxLength + "').");
             }
         }
         
@@ -307,10 +319,11 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
                 if (this._isTestThrowOnNotValidate && !isValid)
                 {
                     BaseValidator
-                            .throwIllegalArgumentException("The value does not equal the expected value (value = '"
-                                    + this._value
-                                    + "' expected value = '"
-                                    + this._equalsValue + "').");
+                            .throwIllegalArgumentException("The value does not equal the expected value.");
+//                    (value = '"
+//                                    + this._value
+//                                    + "' expected value = '"
+//                                    + this._equalsValue + "').");
                 }
             }
         }
