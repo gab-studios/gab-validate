@@ -35,7 +35,7 @@ public abstract interface Validator<T>
      *
      * @return A boolean value that is true if the value is valid. Otherwise
      *         false is return.
-     * @see throwExceptionOnFailedValidation
+     * @see throwValidationExceptionOnFail
      */
     public abstract boolean validate();
     
@@ -46,5 +46,5 @@ public abstract interface Validator<T>
      * @return The same BooleanValidator instance. This allows for method
      *         chaining.
      */
-    public T throwExceptionOnFailedValidation();
+    public T throwValidationExceptionOnFail();
 }

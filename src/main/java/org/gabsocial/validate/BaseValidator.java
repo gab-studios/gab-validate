@@ -39,7 +39,7 @@ public abstract class BaseValidator<T> implements Validator<T>
      * @param errorMessage The error message to include in an exception if it is
      * created.
      */
-    protected static void throwIllegalArgumentException(
+    protected static void throwValidateException(
             final String errorMessage)
     {
         assert (errorMessage != null) : "The parameter 'errorMessage' is NULL.";
@@ -56,7 +56,7 @@ public abstract class BaseValidator<T> implements Validator<T>
      *         chaining.
      */
     @Override
-    public T throwExceptionOnFailedValidation()
+    public T throwValidationExceptionOnFail()
     {
         this._isTestThrowOnNotValidate = true;
         return ((T)this);

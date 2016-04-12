@@ -26,13 +26,13 @@ import java.util.regex.Pattern;
  * This is a String validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
- *      Validate.defineString(String).testNotNull().validate();
+ * Validate.defineString(String).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
- * then a ValidateException will be thrown.
+ * If the throwExceptionOnFailedValidation() method has been called and if the
+ * validate fails then a ValidateException will be thrown.
  * 
- *      Validate.defineString(String).testEquals(String)
- *          .throwExceptionOnFailedValidation().validate();
+ * Validate.defineString(String).testEquals(String)
+ * .throwExceptionOnFailedValidation().validate();
  *
  * If no test method is called, validate() returns a false.
  *
@@ -55,53 +55,53 @@ public class StringValidator extends BaseValidator<StringValidator>
      * A flag indicating if an "equals" test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestEquals             = false;
+    private boolean      _isTestEquals       = false;
     
     /*
      * A flag indicating if an "equals no case" test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestEqualsNoCase       = false;
+    private boolean      _isTestEqualsNoCase = false;
     
     /*
      * A flag indicating that a max length test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestMaxLength          = false;
+    private boolean      _isTestMaxLength    = false;
     
     /*
      * A flag indicating that a min length test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestMinLength          = false;
+    private boolean      _isTestMinLength    = false;
     
     /*
      * A flag indicating if an "not empty" test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestNotEmpty           = false;
+    private boolean      _isTestNotEmpty     = false;
     
     /*
      * A flag indicating if an "not null" test will be performed when the
      * validate() method is called.
      */
-    private boolean      _isTestNotNull            = false;
+    private boolean      _isTestNotNull      = false;
     
     /*
      * A flag indicating if a "match" will be performed using regrex expressions
      * when the validate() method is called.
      */
-    private boolean      _isTestMatch              = false;
+    private boolean      _isTestMatch        = false;
     
     /*
      * The max length to test for. Defaults to -1.
      */
-    private int          _maxLength                = -1;
+    private int          _maxLength          = -1;
     
     /*
      * The min length to test for. Defaults to -1.
      */
-    private int          _minLength                = -1;
+    private int          _minLength          = -1;
     
     /*
      * The String that will be tested.
@@ -202,13 +202,13 @@ public class StringValidator extends BaseValidator<StringValidator>
     {
         if (maxLength < 0)
         {
-            BaseValidator
-                    .throwIllegalArgumentException("The parameter 'maxLength' must be greater than zero (0).");
+            throw (new IllegalArgumentException(
+                    "The parameter 'maxLength' must be greater than zero (0)."));
         }
         else if (maxLength < this._minLength)
         {
-            BaseValidator
-                    .throwIllegalArgumentException("The parameter 'maxLength' must be greater than the min length value.");
+            throw (new IllegalArgumentException(
+                    "The parameter 'maxLength' must be greater than the min length value."));
         }
         else
         {
@@ -234,13 +234,11 @@ public class StringValidator extends BaseValidator<StringValidator>
     {
         if (minLength < 0)
         {
-            BaseValidator
-                    .throwIllegalArgumentException("The parameter 'minLength' must be greater than zero (0).");
+            throw( new IllegalArgumentException("The parameter 'minLength' must be greater than zero (0)."));
         }
         else if ((minLength > this._maxLength) && (this._maxLength != -1))
         {
-            BaseValidator
-                    .throwIllegalArgumentException("The parameter 'minLength' must be less than the max length value.");
+            throw( new IllegalArgumentException("The parameter 'minLength' must be less than the max length value."));
         }
         else
         {
@@ -297,7 +295,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The String must not be null");
+                        .throwValidateException("The String must not be null");
             }
         }
         
@@ -309,7 +307,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must not be empty.");
+                        .throwValidateException("The value must not be empty.");
             }
         }
         
@@ -320,7 +318,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The String does not equal the expected value (string value = '"
+                        .throwValidateException("The String does not equal the expected value (string value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
@@ -334,7 +332,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value does not equal the expected value (value = '"
+                        .throwValidateException("The value does not equal the expected value (value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
@@ -348,10 +346,10 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
+                        .throwValidateException("The value must be greater than or equal to the min value (value = '"
                                 + this._value
                                 + "' length = '"
-                                + this._value.length() 
+                                + this._value.length()
                                 + "' min value = '"
                                 + this._minLength + "').");
             }
@@ -365,10 +363,10 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
+                        .throwValidateException("The value must be less than or equal to the max value (value = '"
                                 + this._value
                                 + "' length = '"
-                                + this._value.length() 
+                                + this._value.length()
                                 + "' max value = '"
                                 + this._maxLength + "').");
             }
@@ -381,7 +379,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value does not match the reqular expression (value = '"
+                        .throwValidateException("The value does not match the reqular expression (value = '"
                                 + this._value
                                 + "' regex = '"
                                 + this._matchValue + "').");

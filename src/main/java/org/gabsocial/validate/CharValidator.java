@@ -260,7 +260,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char must not be empty.");
+                        .throwValidateException("The char must not be empty.");
             }
         }
         
@@ -271,7 +271,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char does not equal the expected value (value = '"
+                        .throwValidateException("The char does not equal the expected value (value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
@@ -285,7 +285,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
+                        .throwValidateException("The value must be greater than or equal to the min value (value = '"
                                 + this._value
                                 + "' min value = '"
                                 + this._minValue + "').");
@@ -300,7 +300,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
+                        .throwValidateException("The value must be less than or equal to the max value (value = '"
                                 + this._value
                                 + "' max value = '"
                                 + this._maxValue + "').");
@@ -314,7 +314,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char is not a digit (value = '"
+                        .throwValidateException("The char is not a digit (value = '"
                                 + this._value + "').");
             }
         }
@@ -326,7 +326,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char is not lower case (value = '"
+                        .throwValidateException("The char is not lower case (value = '"
                                 + this._value + "').");
             }
         }
@@ -338,7 +338,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char is not upper case (value = '"
+                        .throwValidateException("The char is not upper case (value = '"
                                 + this._value + "').");
             }
         }
@@ -350,7 +350,7 @@ public class CharValidator extends BaseValidator<CharValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The char is not a whitespace (value = '"
+                        .throwValidateException("The char is not a whitespace (value = '"
                                 + this._value + "').");
             }
         }

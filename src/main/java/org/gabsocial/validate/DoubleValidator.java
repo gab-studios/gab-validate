@@ -162,7 +162,7 @@ public class DoubleValidator extends BaseValidator<DoubleValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value does not equal the expected value (value = '"
+                .throwValidateException("The value does not equal the expected value (value = '"
                         + this._value
                         + "' expected value = '"
                         + this._equalsValue + "').");
@@ -176,7 +176,7 @@ public class DoubleValidator extends BaseValidator<DoubleValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value must be greater than or equal to the min value (value = '"
+                .throwValidateException("The value must be greater than or equal to the min value (value = '"
                         + this._value
                         + "' min value = '"
                         + this._minValue
@@ -192,7 +192,7 @@ public class DoubleValidator extends BaseValidator<DoubleValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                .throwIllegalArgumentException("The value must be less than or equal to the max value (value = '"
+                .throwValidateException("The value must be less than or equal to the max value (value = '"
                         + this._value
                         + "' max value = '"
                         + this._maxValue

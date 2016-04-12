@@ -33,6 +33,14 @@ public class Validate
 {
     
     /**
+     * Prevent a new instance.
+     */
+    private Validate()
+    {
+        // void - ignore this.
+    }
+    
+    /**
      * This method defines a boolean validator. Each call creates a new
      * validator.
      *

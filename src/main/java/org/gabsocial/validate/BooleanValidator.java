@@ -148,7 +148,7 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value is not false. (value = '"
+                        .throwValidateException("The value is not false. (value = '"
                                 + this._value + "').");
             }
         }
@@ -160,7 +160,7 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value is not true. (value = '"
+                        .throwValidateException("The value is not true. (value = '"
                                 + this._value + "').");
             }
         }
@@ -172,7 +172,7 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
             if (this._isTestThrowOnNotValidate && !isValid)
             {
                 BaseValidator
-                        .throwIllegalArgumentException("The value does not equal the expected value (value = '"
+                        .throwValidateException("The value does not equal the expected value (value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
