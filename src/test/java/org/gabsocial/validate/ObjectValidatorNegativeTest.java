@@ -31,7 +31,7 @@ import org.junit.Test;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ObjectValidatorTest
+public class ObjectValidatorNegativeTest
 {
     @Before
     public void setUp()
@@ -43,56 +43,7 @@ public class ObjectValidatorTest
     public void tearDown()
     {
 
-    }
-    
-    @Test
-    public void testGetValue()
-    {
-        String x = "5";
-        try
-        {
-            String retVal = (String) Validate.defineObject(x).getValue();
-            Assert.assertEquals(x, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
-    
-    
-    @Test
-    public void testNoTest()
-    {
-        String x = "5";
-        try
-        {
-            boolean retVal = Validate.defineObject(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
-    
-    @Test
-    public void testNoTest2()
-    {
-        String x = "5";
-        try
-        {
-            boolean retVal = Validate.defineObject(x).validate();
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }     
+    }   
     
     
     @Test
@@ -101,14 +52,14 @@ public class ObjectValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineObject("HelloWorld").testEquals("HelloWorld")
+            boolean retVal = Validate.defineObject("HelloWorld").testEquals("HelloWorld1231")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
@@ -119,16 +70,15 @@ public class ObjectValidatorTest
 
         try
         {
-            boolean retVal = Validate.defineObject("HelloWorld").testNotNull()
+            boolean retVal = Validate.defineObject(null).testNotNull()
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertTrue(retVal);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
-
     }
         
 }

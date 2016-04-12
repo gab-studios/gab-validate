@@ -46,6 +46,55 @@ public class ShortValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        short x = '5';
+        try
+        {
+            short retVal = Validate.defineShort(x).getValue();
+            Assert.assertEquals(x, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
+    public void testNoTest()
+    {
+        short x = '5';
+        try
+        {
+            boolean retVal = Validate.defineShort(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+        short x = '5';
+        try
+        {
+            boolean retVal = Validate.defineShort(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    } 
+    
+    @Test
     public void testMaxValue()
     {
 
@@ -54,7 +103,7 @@ public class ShortValidatorTest
             short x = 5;
             short max = 10;
             boolean retVal = Validate.defineShort(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +123,7 @@ public class ShortValidatorTest
             short x = 5;
             short min = 4;
             boolean retVal = Validate.defineShort(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +144,7 @@ public class ShortValidatorTest
             short x = 5;
             short y = 5;
             boolean retVal = Validate.defineShort(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

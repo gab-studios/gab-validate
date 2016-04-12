@@ -54,9 +54,9 @@ public class CharValidatorNegativeTest
             char x = '5';
             char max = '4';
             boolean retVal = Validate.defineChar(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -74,9 +74,9 @@ public class CharValidatorNegativeTest
             char x = '5';
             char min = '8';
             boolean retVal = Validate.defineChar(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -95,9 +95,9 @@ public class CharValidatorNegativeTest
             char x = 'A';
             char y = 'a';
             boolean retVal = Validate.defineChar(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -114,9 +114,9 @@ public class CharValidatorNegativeTest
         {
             char x = '#';
             boolean retVal = Validate.defineChar(x).testIsDigit()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -134,9 +134,9 @@ public class CharValidatorNegativeTest
         {
             char x = 'A';
             boolean retVal = Validate.defineChar(x).testIsLowerCase()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -153,9 +153,9 @@ public class CharValidatorNegativeTest
         {
             char x = 'a';
             boolean retVal = Validate.defineChar(x).testIsUpperCase()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -172,9 +172,9 @@ public class CharValidatorNegativeTest
         {
             char x = 'A';
             boolean retVal = Validate.defineChar(x).testIsWhitespace()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -182,8 +182,6 @@ public class CharValidatorNegativeTest
         }
         
     }
-    
-    
     
     
 }

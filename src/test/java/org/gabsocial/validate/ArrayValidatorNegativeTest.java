@@ -52,7 +52,7 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testMaxLength(2)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -70,13 +70,59 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testMinLength(5)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
             Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLength2()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMinLength(-5)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        catch (final Exception e)
+        {
+            e.printStackTrace();
+            Assert.assertTrue(false);
+        }
+
+    }
+    
+    @Test
+    public void testMinLength3()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMinLength(11).testMaxLength(10)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+        catch (final Exception e)
+        {
+            e.printStackTrace();
+            Assert.assertTrue(false);
         }
 
     }
@@ -89,7 +135,7 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -108,7 +154,7 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -128,7 +174,7 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNull()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -147,7 +193,7 @@ public class ArrayValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testEquals(strArray2)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }

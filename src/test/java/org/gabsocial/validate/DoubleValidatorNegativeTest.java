@@ -26,12 +26,12 @@ import org.junit.Test;
 
 
 /**
- *
+ * A test class for the DoubleValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class BooleanValidatorTest
+public class DoubleValidatorNegativeTest
 {
     @Before
     public void setUp()
@@ -45,88 +45,87 @@ public class BooleanValidatorTest
         
     }
     
-    @Test
-    public void testGetValue()
-    {
-        try
-        {
-            boolean retValue = Validate.defineBoolean(true).getValue();
-            Assert.assertEquals(true, retValue);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
-    
     
     @Test
-    public void testNoTest()
+    public void testMaxValue()
     {
 
         try
         {
-            boolean retVal = Validate.defineBoolean(true).throwValidationExceptionOnFail().validate();
+            double x = 5;
+            double max = 4;
+            boolean retVal = Validate.defineDouble(x).testMaxValue(max)
+                    .throwValidationExceptionOnFail().validate();
+
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
     
     @Test
-    public void testNoTest2()
+    public void testMaxValue2()
     {
 
         try
         {
-            boolean retVal = Validate.defineBoolean(true).validate();
-            Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
-    
-    @Test
-    public void testTrue()
-    {
-        
-        try
-        {
-            boolean retVal = Validate.defineBoolean(true).testTrue().throwValidationExceptionOnFail().validate();
-            
-            Assert.assertTrue(retVal);
-        }
-        catch (final IllegalArgumentException e)
-        {
-            Assert.fail(e.toString());
-        }
-        
-    }
-    
-    @Test
-    public void testFalse()
-    {
-        
-        try
-        {
-            boolean retVal = Validate.defineBoolean(false).testFalse().throwValidationExceptionOnFail()
+            double x = 5;
+            double max = 4;
+            boolean retVal = Validate.defineDouble(x).testMaxValue(max)
                     .validate();
-            
-            Assert.assertTrue(retVal);
+
+            Assert.assertEquals(false, retVal);
         }
-        catch (final IllegalArgumentException e)
+        catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(false);
+        }
+
+    }
+    
+    @Test
+    public void testMinLength()
+    {
+        
+        try
+        {
+            double x = 5;
+            double min = 7;
+            boolean retVal = Validate.defineDouble(x).testMinValue(min)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
         }
         
     }
+    
+    @Test
+    public void testMinLength2()
+    {
+        
+        try
+        {
+            double x = 5;
+            double min = 7;
+            boolean retVal = Validate.defineDouble(x).testMinValue(min)
+                    .validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(false);
+        }
+        
+    }
+    
     
     @Test
     public void testEquals()
@@ -134,14 +133,16 @@ public class BooleanValidatorTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(true).testEquals(true).throwValidationExceptionOnFail()
-                    .validate();
-            
-            Assert.assertTrue(retVal);
+            double x = 5;
+            double y = 6;
+            boolean retVal = Validate.defineDouble(x).testEquals(y)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
         }
-        catch (final IllegalArgumentException e)
+        catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
         
     }
@@ -152,14 +153,16 @@ public class BooleanValidatorTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(false).testEquals(false)
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.assertTrue(retVal);
+            double x = 5;
+            double y = 6;
+            boolean retVal = Validate.defineDouble(x).testEquals(y)
+                    .validate();
+
+            Assert.assertEquals(false, retVal);
         }
-        catch (final IllegalArgumentException e)
+        catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(false);
         }
         
     }

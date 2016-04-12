@@ -52,9 +52,9 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(retVal, false);
+            Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
@@ -70,7 +70,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMinLength(11)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -88,7 +88,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("").testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -107,7 +107,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString(null).testNotNull()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -125,7 +125,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEquals("1HelloWorld1")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -143,7 +143,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("1hELLOwORLD1")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -161,7 +161,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld1")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }
@@ -179,7 +179,7 @@ public class StringValidatorNegativeTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Z]*")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertEquals(false, retVal);
         }

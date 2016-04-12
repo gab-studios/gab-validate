@@ -46,6 +46,57 @@ public class ByteValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        byte x = '5';
+        try
+        {
+            byte retVal = Validate.defineByte(x).getValue();
+            Assert.assertEquals(x, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest()
+    {
+
+        try
+        {
+            byte x = '5';
+            boolean retVal = Validate.defineByte(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+
+        try
+        {
+            byte x = '5';
+            boolean retVal = Validate.defineByte(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
     public void testMaxValue()
     {
 
@@ -54,7 +105,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte max = '8';
             boolean retVal = Validate.defineByte(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +125,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte min = '4';
             boolean retVal = Validate.defineByte(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +146,7 @@ public class ByteValidatorTest
             byte x = '5';
             byte y = '5';
             boolean retVal = Validate.defineByte(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

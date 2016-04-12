@@ -46,13 +46,62 @@ public class StringValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        String x = "5";
+        try
+        {
+            String retVal = (String) Validate.defineString(x).getValue();
+            Assert.assertEquals(x, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
+    public void testNoTest()
+    {
+        String x = "5";
+        try
+        {
+            boolean retVal = Validate.defineString(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+        String x = "5";
+        try
+        {
+            boolean retVal = Validate.defineString(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }  
+    
+    @Test
     public void testMaxLength()
     {
 
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMaxLength(10)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -70,7 +119,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMinLength(8)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -88,7 +137,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -107,7 +156,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testNotNull()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -125,7 +174,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEquals("HelloWorld")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -143,7 +192,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -161,7 +210,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -179,7 +228,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Za-z]*")
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

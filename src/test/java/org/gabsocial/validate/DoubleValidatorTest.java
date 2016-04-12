@@ -46,6 +46,56 @@ public class DoubleValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        double x = '5';
+        try
+        {
+            double retVal = Validate.defineDouble(x).getValue();
+            Assert.assertEquals(x, retVal, 0);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
+    public void testNoTest()
+    {
+        double x = '5';
+        try
+        {
+            boolean retVal = Validate.defineDouble(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+        double x = '5';
+        try
+        {
+            boolean retVal = Validate.defineDouble(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }    
+    
+    
+    @Test
     public void testMaxValue()
     {
 
@@ -54,7 +104,7 @@ public class DoubleValidatorTest
             double x = 5;
             double max = 10;
             boolean retVal = Validate.defineDouble(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +124,7 @@ public class DoubleValidatorTest
             double x = 5;
             double min = 4;
             boolean retVal = Validate.defineDouble(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +145,7 @@ public class DoubleValidatorTest
             double x = 5;
             double y = 5;
             boolean retVal = Validate.defineDouble(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

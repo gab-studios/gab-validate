@@ -46,6 +46,57 @@ public class CharValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        char x = '5';
+        try
+        {
+            char retVal = Validate.defineChar(x).getValue();
+            Assert.assertEquals(x, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest()
+    {
+
+        try
+        {
+            char x = '5';
+            boolean retVal = Validate.defineChar(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+
+        try
+        {
+            char x = '5';
+            boolean retVal = Validate.defineChar(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
     public void testMaxValue()
     {
 
@@ -54,7 +105,7 @@ public class CharValidatorTest
             char x = '5';
             char max = '8';
             boolean retVal = Validate.defineChar(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +125,7 @@ public class CharValidatorTest
             char x = '5';
             char min = '4';
             boolean retVal = Validate.defineChar(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +146,7 @@ public class CharValidatorTest
             char x = '5';
             char y = '5';
             boolean retVal = Validate.defineChar(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -114,7 +165,7 @@ public class CharValidatorTest
         {
             char x = '5';
             boolean retVal = Validate.defineChar(x).testIsDigit()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -134,7 +185,7 @@ public class CharValidatorTest
         {
             char x = 'a';
             boolean retVal = Validate.defineChar(x).testIsLowerCase()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -153,7 +204,7 @@ public class CharValidatorTest
         {
             char x = 'A';
             boolean retVal = Validate.defineChar(x).testIsUpperCase()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -172,7 +223,7 @@ public class CharValidatorTest
         {
             char x = ' ';
             boolean retVal = Validate.defineChar(x).testIsWhitespace()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

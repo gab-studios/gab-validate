@@ -46,6 +46,55 @@ public class FloatValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        float x = '5';
+        try
+        {
+            float retVal = Validate.defineFloat(x).getValue();
+            Assert.assertEquals(x, retVal, 0);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
+    public void testNoTest()
+    {
+        float x = '5';
+        try
+        {
+            boolean retVal = Validate.defineFloat(x).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+        float x = '5';
+        try
+        {
+            boolean retVal = Validate.defineFloat(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }     
+    
+    @Test
     public void testMaxValue()
     {
 
@@ -54,7 +103,7 @@ public class FloatValidatorTest
             float x = 5;
             float max = 10;
             boolean retVal = Validate.defineFloat(x).testMaxValue(max)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -74,7 +123,7 @@ public class FloatValidatorTest
             float x = 5;
             float min = 4;
             boolean retVal = Validate.defineFloat(x).testMinValue(min)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -95,7 +144,7 @@ public class FloatValidatorTest
             float x = 5;
             float y = 5;
             boolean retVal = Validate.defineFloat(x).testEquals(y)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }

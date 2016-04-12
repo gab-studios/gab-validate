@@ -26,109 +26,84 @@ import org.junit.Test;
 
 
 /**
- * A test class for the ObjectValidator
+ * A test class for the ShortValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ObjectValidatorTest
+public class ShortValidatorNegativeTest
 {
     @Before
     public void setUp()
     {
         //
     }
-
+    
     @After
     public void tearDown()
     {
-
+        
     }
     
     @Test
-    public void testGetValue()
+    public void testMaxValue()
     {
-        String x = "5";
-        try
-        {
-            String retVal = (String) Validate.defineObject(x).getValue();
-            Assert.assertEquals(x, retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
 
-    }
-    
-    
-    @Test
-    public void testNoTest()
-    {
-        String x = "5";
         try
         {
-            boolean retVal = Validate.defineObject(x).throwValidationExceptionOnFail().validate();
+            short x = 5;
+            short max = 4;
+            boolean retVal = Validate.defineShort(x).testMaxValue(max)
+                    .throwValidationExceptionOnFail().validate();
+
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
 
     }
     
     @Test
-    public void testNoTest2()
+    public void testMinLength()
     {
-        String x = "5";
+        
         try
         {
-            boolean retVal = Validate.defineObject(x).validate();
+            short x = 5;
+            short min = 7;
+            boolean retVal = Validate.defineShort(x).testMinValue(min)
+                    .throwValidationExceptionOnFail().validate();
+
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
         {
-            Assert.fail(e.toString());
+            Assert.assertTrue(true);
         }
-
-    }     
+        
+    }
     
     
     @Test
     public void testEquals()
     {
-
-        try
-        {
-            boolean retVal = Validate.defineObject("HelloWorld").testEquals("HelloWorld")
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.assertTrue(retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
-
-    @Test
-    public void testNotNull()
-    {
-
-        try
-        {
-            boolean retVal = Validate.defineObject("HelloWorld").testNotNull()
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.assertTrue(retVal);
-        }
-        catch (final ValidateException e)
-        {
-            Assert.fail(e.toString());
-        }
-
-    }
         
+        try
+        {
+            short x = 5;
+            short y = 6;
+            boolean retVal = Validate.defineShort(x).testEquals(y)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+        
+    }
+    
 }

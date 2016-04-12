@@ -46,13 +46,64 @@ public class ArrayValidatorTest
     }
     
     @Test
+    public void testGetValue()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            Object[] retArray = Validate.defineArray(strArray1).getValue();
+            Assert.assertArrayEquals(strArray1, retArray);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest()
+    {
+
+        try
+        {
+            String[] strArray1 = { "Hello", "World", "is", "awesome" };
+            boolean retVal = Validate.defineArray(strArray1).throwValidationExceptionOnFail().validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNoTest2()
+    {
+
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    
+    @Test
     public void testMaxLength()
     {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testMaxLength(4)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -70,7 +121,7 @@ public class ArrayValidatorTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testMinLength(4)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -89,7 +140,7 @@ public class ArrayValidatorTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNullEmpty()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -109,7 +160,7 @@ public class ArrayValidatorTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testNotNull()
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
@@ -128,7 +179,7 @@ public class ArrayValidatorTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).testEquals(strArray2)
-                    .throwExceptionOnFailedValidation().validate();
+                    .throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
         }
