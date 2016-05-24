@@ -42,7 +42,7 @@ Check the project [wiki] [].
 
 Copyright
 -------
-[Copyright 2015 Gregory Brown] [copyright].
+[Copyright 2015 Gregory Brown] [copyright]
 
 
 License
