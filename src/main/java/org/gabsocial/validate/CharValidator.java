@@ -257,7 +257,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             
             isValid &= this._value != '\0';
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char must not be empty.");
@@ -268,7 +268,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= this._value == this._equalsValue;
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char does not equal the expected value (value = '"
@@ -282,7 +282,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (this._value >= this._minValue);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be greater than or equal to the min value (value = '"
@@ -297,7 +297,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (this._value <= this._maxValue);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be less than or equal to the max value (value = '"
@@ -311,7 +311,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (Character.isDigit(this._value));
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char is not a digit (value = '"
@@ -323,7 +323,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (Character.isLowerCase(this._value));
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char is not lower case (value = '"
@@ -335,7 +335,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (Character.isUpperCase(this._value));
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char is not upper case (value = '"
@@ -347,7 +347,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         {
             isTested = true;
             isValid &= (Character.isWhitespace(this._value));
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The char is not a whitespace (value = '"

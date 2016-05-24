@@ -292,7 +292,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= (this._value != null);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The String must not be null");
@@ -304,7 +304,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             
             isTested = true;
             isValid &= this._value.length() > 0;
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must not be empty.");
@@ -315,7 +315,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= this._value.equalsIgnoreCase(this._equalsValue);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The String does not equal the expected value (string value = '"
@@ -329,7 +329,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= this._value == this._equalsValue;
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value does not equal the expected value (value = '"
@@ -343,7 +343,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= (this._value.length() >= this._minLength);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be greater than or equal to the min value (value = '"
@@ -360,7 +360,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= (this._value.length() <= this._maxLength);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be less than or equal to the max value (value = '"
@@ -376,7 +376,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             isTested = true;
             isValid &= (Pattern.matches(this._matchValue, this._value));
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value does not match the reqular expression (value = '"

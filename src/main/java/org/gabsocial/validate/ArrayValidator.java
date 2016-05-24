@@ -244,7 +244,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         {
             isTested = true;
             isValid &= (this._value != null);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The String must not be null");
@@ -265,7 +265,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             // }
             // }
             
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must not be empty.");
@@ -276,7 +276,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         {
             isTested = true;
             isValid &= (this._value.length >= this._minLength);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be greater than or equal to the min value.");
@@ -292,7 +292,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         {
             isTested = true;
             isValid &= (this._value.length <= this._maxLength);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be less than or equal to the max value.");
@@ -312,7 +312,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             {
                 isValid &= Arrays.equals(this._value, this._equalsValue);
                 
-                if (this._isTestThrowOnNotValidate && !isValid)
+                if (this._isValidationExceptionThrownOnFail && !isValid)
                 {
                     BaseValidator
                             .throwValidateException("The value does not equal the expected value.");

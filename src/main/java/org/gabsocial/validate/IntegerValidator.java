@@ -162,7 +162,7 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
         {
             isTested = true;
             isValid &= this._value == this._equalsValue;
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                 .throwValidateException("The value does not equal the expected value (value = '"
@@ -176,7 +176,7 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
         {
             isTested = true;
             isValid &= (this._value >= this._minValue);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                 .throwValidateException("The value must be greater than or equal to the min value (value = '"
@@ -192,7 +192,7 @@ public class IntegerValidator extends BaseValidator<IntegerValidator>
         {
             isTested = true;
             isValid &= (this._value <= this._maxValue);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                 .throwValidateException("The value must be less than or equal to the max value (value = '"

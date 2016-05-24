@@ -125,7 +125,7 @@ public class ObjectValidator extends BaseValidator<ObjectValidator>
         {
             isTested = true;
             isValid &= (this._value != null);
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The String must not be null");
@@ -136,7 +136,7 @@ public class ObjectValidator extends BaseValidator<ObjectValidator>
         {
             isTested = true;
             isValid &= this._value == this._equalsValue;
-            if (this._isTestThrowOnNotValidate && !isValid)
+            if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value does not equal the expected value (value = '"

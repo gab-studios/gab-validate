@@ -31,7 +31,7 @@ public abstract class BaseValidator<T> implements Validator<T>
     /*
      * A flag indicating if an exception should be thrown if the validate fails.
      */
-    protected boolean _isTestThrowOnNotValidate = false;
+    protected boolean _isValidationExceptionThrownOnFail = false;
     
     /*
      * Forces an ValidateException to be thrown.
@@ -58,7 +58,7 @@ public abstract class BaseValidator<T> implements Validator<T>
     @Override
     public T throwValidationExceptionOnFail()
     {
-        this._isTestThrowOnNotValidate = true;
+        this._isValidationExceptionThrownOnFail = true;
         return ((T)this);
     }
     
