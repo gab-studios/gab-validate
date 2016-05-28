@@ -255,16 +255,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         {
             
             isTested = true;
-            isValid &= this._value.length > 0;
-            // if( !isValid )
-            // {
-            // for( int i = 0; i < this._value.length; ++i )
-            // {
-            // Object value = this._value[i];
-            // isValid &= ( value == null );
-            // }
-            // }
-            
+            isValid &= (this._value != null && this._value.length > 0);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
