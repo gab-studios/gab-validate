@@ -111,7 +111,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
     public Object[] getValue()
     {
         Object[] retVal = null;
-        if( this._value != null )
+        if (this._value != null)
         {
             retVal = Arrays.copyOf(this._value, this._value.length);
         }
@@ -134,7 +134,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         this._isTestNotNull = true;
         this._isTestEquals = true;
         
-        if( equalsValue != null )
+        if (equalsValue != null)
         {
             this._equalsValue = Arrays.copyOf(equalsValue, this._value.length);
         }
@@ -156,11 +156,13 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
     {
         if (maxLength < 0)
         {
-            throw( new IllegalArgumentException("The parameter 'maxLength' must be greater than zero (0)."));
+            throw (new IllegalArgumentException(
+                    "The parameter 'maxLength' must be greater than zero (0)."));
         }
         else if (maxLength < this._minLength)
         {
-            throw( new IllegalArgumentException("The parameter 'maxLength' must be greater than the min length value."));
+            throw (new IllegalArgumentException(
+                    "The parameter 'maxLength' must be greater than the min length value."));
         }
         else
         {
@@ -186,11 +188,13 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
     {
         if (minLength < 0)
         {
-            throw( new IllegalArgumentException("The parameter 'minLength' must be greater than zero (0)."));
+            throw (new IllegalArgumentException(
+                    "The parameter 'minLength' must be greater than zero (0)."));
         }
         else if ((minLength > this._maxLength) && (this._maxLength != -1))
         {
-            throw( new IllegalArgumentException("The parameter 'minLength' must be less than the max length value."));
+            throw (new IllegalArgumentException(
+                    "The parameter 'minLength' must be less than the max length value."));
         }
         else
         {
@@ -266,15 +270,15 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         if (this._isTestMinLength)
         {
             isTested = true;
-            isValid &= (this._value.length >= this._minLength);
+            isValid &= (this._value != null && this._value.length >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be greater than or equal to the min value.");
-//                                + " (value = '"
-//                                + this._value
-//                                + "' min value = '"
-//                                + this._minLength + "').");
+                // + " (value = '"
+                // + this._value
+                // + "' min value = '"
+                // + this._minLength + "').");
             }
             
         }
@@ -282,15 +286,15 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         if (this._isTestMaxLength)
         {
             isTested = true;
-            isValid &= (this._value.length <= this._maxLength);
+            isValid &= (this._value != null && this._value.length <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
                         .throwValidateException("The value must be less than or equal to the max value.");
-//                                + " (value = '"
-//                                + this._value
-//                                + "' max value = '"
-//                                + this._maxLength + "').");
+                // + " (value = '"
+                // + this._value
+                // + "' max value = '"
+                // + this._maxLength + "').");
             }
         }
         
@@ -307,10 +311,10 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
                 {
                     BaseValidator
                             .throwValidateException("The value does not equal the expected value.");
-//                    (value = '"
-//                                    + this._value
-//                                    + "' expected value = '"
-//                                    + this._equalsValue + "').");
+                    // (value = '"
+                    // + this._value
+                    // + "' expected value = '"
+                    // + this._equalsValue + "').");
                 }
             }
         }
