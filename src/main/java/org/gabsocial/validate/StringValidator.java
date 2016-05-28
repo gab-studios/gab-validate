@@ -303,7 +303,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             
             isTested = true;
-            isValid &= this._value.length() > 0;
+            isValid &= this._value != null && this._value.length() > 0;
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
@@ -314,7 +314,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestEqualsNoCase)
         {
             isTested = true;
-            isValid &= this._value.equalsIgnoreCase(this._equalsValue);
+            isValid &= this._value != null && this._value.equalsIgnoreCase(this._equalsValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
@@ -328,7 +328,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestEquals)
         {
             isTested = true;
-            isValid &= this._value == this._equalsValue;
+            isValid &= this._value != null && this._value.equals(this._equalsValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
@@ -342,7 +342,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestMinLength)
         {
             isTested = true;
-            isValid &= (this._value.length() >= this._minLength);
+            isValid &= (this._value != null && this._value.length() >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
@@ -359,7 +359,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestMaxLength)
         {
             isTested = true;
-            isValid &= (this._value.length() <= this._maxLength);
+            isValid &= (this._value != null && this._value.length() <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
@@ -375,7 +375,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         if (this._isTestMatch)
         {
             isTested = true;
-            isValid &= (Pattern.matches(this._matchValue, this._value));
+            isValid &= this._value != null && (Pattern.matches(this._matchValue, this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator

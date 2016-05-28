@@ -135,7 +135,7 @@ public class ObjectValidator extends BaseValidator<ObjectValidator>
         if (this._isTestEquals)
         {
             isTested = true;
-            isValid &= this._value == this._equalsValue;
+            isValid &= this._value != null && this._value.equals( this._equalsValue );
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
