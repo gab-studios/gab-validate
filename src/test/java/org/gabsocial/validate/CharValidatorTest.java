@@ -104,7 +104,7 @@ public class CharValidatorTest
         {
             char x = '5';
             boolean retVal = Validate.defineChar(x).testNotEmpty().throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertTrue(retVal);
         }
         catch (final ValidateException e)
         {

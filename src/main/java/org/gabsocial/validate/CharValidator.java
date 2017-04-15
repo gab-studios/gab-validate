@@ -255,7 +255,7 @@ public class CharValidator extends BaseValidator<CharValidator>
         
         if (this._isTestNotEmpty)
         {
-            
+            isTested = true;
             isValid &= this._value != '\0';
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
