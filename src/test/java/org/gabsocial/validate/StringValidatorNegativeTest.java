@@ -62,6 +62,41 @@ public class StringValidatorNegativeTest
         }
 
     }
+    
+    public void testMaxLengthLessThanZero()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(-1)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMaxLengthGreaterThanMin()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineString("HelloWorld").testMinLength(11).testMaxLength(5)
+            .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
 
     @Test
     public void testMinLength()
@@ -75,6 +110,42 @@ public class StringValidatorNegativeTest
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanZero()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineString("HelloWorld").testMinLength(-10)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanMax()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5).testMinLength(11)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
         {
             Assert.assertTrue(true);
         }
