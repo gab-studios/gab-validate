@@ -62,6 +62,41 @@ public class ArrayValidatorNegativeTest
         }
 
     }
+    
+    public void testMaxLengthLessThanZero()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMaxLength(-1)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMaxLengthGreaterThanMin()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMinLength(11).testMaxLength(5)
+            .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
 
     @Test
     public void testMinLength()
@@ -123,6 +158,42 @@ public class ArrayValidatorNegativeTest
         {
             e.printStackTrace();
             Assert.assertTrue(false);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanZero()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMinLength(-10)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanMax()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            boolean retVal = Validate.defineArray(strArray1).testMaxLength(5).testMinLength(11)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
         }
 
     }
