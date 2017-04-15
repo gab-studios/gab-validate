@@ -94,14 +94,14 @@ public class StringValidator extends BaseValidator<StringValidator>
     private boolean      _isTestMatch        = false;
     
     /*
-     * The max length to test for. Defaults to -1.
+     * The max length to test for. Defaults to 0.
      */
-    private int          _maxLength          = -1;
+    private int          _maxLength          = 0;
     
     /*
-     * The min length to test for. Defaults to -1.
+     * The min length to test for. Defaults to 0.
      */
-    private int          _minLength          = -1;
+    private int          _minLength          = 0;
     
     /*
      * The String that will be tested.
@@ -205,7 +205,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             throw (new IllegalArgumentException(
                     "The parameter 'maxLength' must be greater than zero (0)."));
         }
-        else if (maxLength < this._minLength)
+        else if (maxLength < this._minLength) 
         {
             throw (new IllegalArgumentException(
                     "The parameter 'maxLength' must be greater than the min length value."));
@@ -236,7 +236,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             throw( new IllegalArgumentException("The parameter 'minLength' must be greater than zero (0)."));
         }
-        else if ((minLength > this._maxLength) && (this._maxLength != -1))
+        else if ((minLength > this._maxLength) && (this._maxLength != 0))
         {
             throw( new IllegalArgumentException("The parameter 'minLength' must be less than the max length value."));
         }
