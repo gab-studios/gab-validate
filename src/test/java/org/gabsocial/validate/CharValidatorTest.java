@@ -78,6 +78,7 @@ public class CharValidatorTest
 
     }
     
+    
     @Test
     public void testNoTest2()
     {
@@ -86,6 +87,23 @@ public class CharValidatorTest
         {
             char x = '5';
             boolean retVal = Validate.defineChar(x).validate();
+            Assert.assertEquals(false, retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
+    public void testNotEmpty()
+    {
+
+        try
+        {
+            char x = '5';
+            boolean retVal = Validate.defineChar(x).testNotEmpty().throwValidationExceptionOnFail().validate();
             Assert.assertEquals(false, retVal);
         }
         catch (final ValidateException e)
