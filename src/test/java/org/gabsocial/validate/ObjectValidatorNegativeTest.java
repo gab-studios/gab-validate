@@ -52,10 +52,10 @@ public class ObjectValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineObject("HelloWorld").testEquals("HelloWorld1231")
+            Validate.defineObject("HelloWorld").testEquals("HelloWorld1231")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -70,10 +70,10 @@ public class ObjectValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineObject(null).testNotNull()
+            Validate.defineObject(null).testNotNull()
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

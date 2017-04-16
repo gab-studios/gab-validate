@@ -54,10 +54,10 @@ public class DoubleValidatorNegativeTest
         {
             double x = 5;
             double max = 4;
-            boolean retVal = Validate.defineDouble(x).testMaxValue(max)
+            Validate.defineDouble(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -81,7 +81,7 @@ public class DoubleValidatorNegativeTest
         }
         catch (final ValidateException e)
         {
-            Assert.assertTrue(false);
+            Assert.fail();
         }
 
     }
@@ -94,10 +94,10 @@ public class DoubleValidatorNegativeTest
         {
             double x = 5;
             double min = 7;
-            boolean retVal = Validate.defineDouble(x).testMinValue(min)
+            Validate.defineDouble(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -135,10 +135,10 @@ public class DoubleValidatorNegativeTest
         {
             double x = 5;
             double y = 6;
-            boolean retVal = Validate.defineDouble(x).testEquals(y)
+            Validate.defineDouble(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

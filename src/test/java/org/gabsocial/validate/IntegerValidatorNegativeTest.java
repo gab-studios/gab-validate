@@ -53,10 +53,10 @@ public class IntegerValidatorNegativeTest
         {
             int x = 5;
             int max = 4;
-            boolean retVal = Validate.defineInteger(x).testMaxValue(max)
+            Validate.defineInteger(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -73,10 +73,10 @@ public class IntegerValidatorNegativeTest
         {
             int x = 5;
             int min = 7;
-            boolean retVal = Validate.defineInteger(x).testMinValue(min)
+            Validate.defineInteger(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -94,10 +94,10 @@ public class IntegerValidatorNegativeTest
         {
             int x = 5;
             int y = 6;
-            boolean retVal = Validate.defineInteger(x).testEquals(y)
+            Validate.defineInteger(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

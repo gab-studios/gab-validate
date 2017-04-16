@@ -54,10 +54,10 @@ public class ByteValidatorNegativeTest
         {
             byte x = '5';
             byte max = '4';
-            boolean retVal = Validate.defineByte(x).testMaxValue(max)
+            Validate.defineByte(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -74,10 +74,10 @@ public class ByteValidatorNegativeTest
         {
             byte x = '5';
             byte min = '7';
-            boolean retVal = Validate.defineByte(x).testMinValue(min)
+            Validate.defineByte(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -95,10 +95,10 @@ public class ByteValidatorNegativeTest
         {
             byte x = '5';
             byte y = '6';
-            boolean retVal = Validate.defineByte(x).testEquals(y)
+            Validate.defineByte(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

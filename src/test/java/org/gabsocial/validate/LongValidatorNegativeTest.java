@@ -53,10 +53,10 @@ public class LongValidatorNegativeTest
         {
             long x = 5;
             long max = 4;
-            boolean retVal = Validate.defineLong(x).testMaxValue(max)
+            Validate.defineLong(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -73,10 +73,10 @@ public class LongValidatorNegativeTest
         {
             long x = 5;
             long min = 7;
-            boolean retVal = Validate.defineLong(x).testMinValue(min)
+            Validate.defineLong(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -94,10 +94,10 @@ public class LongValidatorNegativeTest
         {
             long x = 5;
             long y = 6;
-            boolean retVal = Validate.defineLong(x).testEquals(y)
+            Validate.defineLong(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
             
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
