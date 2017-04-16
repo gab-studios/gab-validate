@@ -63,6 +63,7 @@ public class ArrayValidatorNegativeTest
 
     }
     
+    @Test
     public void testMaxLengthLessThanZero()
     {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };

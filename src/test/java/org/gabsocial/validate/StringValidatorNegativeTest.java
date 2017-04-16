@@ -63,6 +63,7 @@ public class StringValidatorNegativeTest
 
     }
     
+    @Test
     public void testMaxLengthLessThanZero()
     {
 
