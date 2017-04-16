@@ -6,7 +6,7 @@ Master: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch
 [![Coverage Status](https://coveralls.io/repos/github/sysdevone/gab-validate/badge.svg?branch=master)](https://coveralls.io/github/sysdevone/gab-validate?branch=master)
 
 Integration: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=integration)](https://travis-ci.org/sysdevone/gab-validate)
-[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
+[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
 
 GAB-Validate
 =======
