@@ -39,7 +39,7 @@ public class ValidateException extends RuntimeException
      * @param message
      *            A <code>String</code> message.
      */
-    public ValidateException(final String message)
+    protected ValidateException(final String message)
     {
         super(message);
     }

@@ -25,11 +25,11 @@ package org.gabsocial.validate;
  * 
  *      Validate.defineInteger(int).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the validate fails
+ * If the throwValidationExceptionOnFail() method has been called and if the validate fails
  * then a ValidateException will be thrown.
  * 
  *      Validate.defineInteger(int).testEquals(int)
- *          .throwExceptionOnFailedValidation().validate();
+ *          .throwValidationExceptionOnFail().validate();
  *
  * If no test method is called, validate() returns a false.
  *

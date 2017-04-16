@@ -28,11 +28,11 @@ import java.util.Arrays;
  * 
  * Validate.defineString(String).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the
+ * If the throwValidationExceptionOnFail() method has been called and if the
  * validate fails then a ValidateException will be thrown.
  * 
  * Validate.defineString(String).testEquals(String)
- * .throwExceptionOnFailedValidation().validate();
+ * .throwValidationExceptionOnFail().validate();
  *
  * If no test method is called, validate() returns a false.
  *

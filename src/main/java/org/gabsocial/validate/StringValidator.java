@@ -21,18 +21,17 @@ package org.gabsocial.validate;
 
 import java.util.regex.Pattern;
 
-
 /**
  * This is a String validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
  * Validate.defineString(String).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the
+ * If the throwValidationExceptionOnFail() method has been called and if the
  * validate fails then a ValidateException will be thrown.
  * 
  * Validate.defineString(String).testEquals(String)
- * .throwExceptionOnFailedValidation().validate();
+ * .throwValidationExceptionOnFail().validate();
  *
  * If no test method is called, validate() returns a false.
  *

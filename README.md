@@ -29,7 +29,7 @@ Usage
 In order to validate, you need to call a defineXXXXXX() method `Validate.defineString("HelloWorld")`.  Once that is done, you can perform tests by chain calling test methods.
 
 ```java
-Validate.defineString("HelloWorld").testMaxLength(10).throwExceptionOnFailedValidation().validate();
+Validate.defineString("HelloWorld").testMaxLength(10).throwValidationExceptionOnFail().validate();
 
 boolean retVal = Validate.defineInteger(5000).testMaxValue(max).testMinValue(min).validate();
 
@@ -40,8 +40,12 @@ More Documentation
 Check the project [wiki] [].
 
 
-License
+Copyright and License
 -------
+
+This codebase is copyrighted.
+2017 Copyright Gregory Brown
+
 This codebase is licensed under the [Apache v2.0 License] [license].
 
 
