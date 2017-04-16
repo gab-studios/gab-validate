@@ -40,12 +40,13 @@ More Documentation
 Check the project [wiki] [].
 
 
-Copyright and License
+Copyright
 -------
+[Copyright 2015 Gregory Brown] [copyright]
 
-This codebase is copyrighted.
-2017 Copyright Gregory Brown
 
+License
+-------
 This codebase is licensed under the [Apache v2.0 License] [license].
 
 
