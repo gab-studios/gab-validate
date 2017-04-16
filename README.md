@@ -4,7 +4,7 @@ Master: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch
 [![Coverity Scan](https://scan.coverity.com/projects/8317/badge.svg)](https://scan.coverity.com/projects/sysdevone-gab-validate)
 
 Integration: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=integration)](https://travis-ci.org/sysdevone/gab-validate)
-[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
+[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
 
 GAB-Validate
 =======
