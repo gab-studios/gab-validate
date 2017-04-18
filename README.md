@@ -37,6 +37,43 @@ boolean retVal = Validate.defineInteger(5000).testMaxValue(max).testMinValue(min
 
 ```
 
+
+Example
+---------
+
+
+To validate a Boolean:
+
+```java
+   Validate.defineBoolean(name != null && name.length() > 0)
+           .testTrue()
+           .throwValidationExceptionOnFail()
+           .validate();
+```
+
+```java
+    boolean retVal = Validate.defineBoolean(name != null && name.length() > 0)
+                             .testTrue()
+                             .validate();
+```
+
+To validate a String:
+
+```java
+   Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
+           .testMaxLength(10)
+           .throwValidationExceptionOnFail()
+           .validate();
+```
+
+```java
+   boolean retVal = Validate.defineString("HelloWorld")
+                            .testMaxLength(10)
+                            .testEqualsNoCase("hELLOwORLD")
+                            .validate();
+```
+
+
 More Documentation
 ------------------
 Check the project [wiki] [].
