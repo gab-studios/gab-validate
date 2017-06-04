@@ -51,12 +51,48 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5)
+            Validate.defineString("HelloWorld").testMaxLength(5)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMaxLengthLessThanZero()
+    {
+
+        try
+        {
+             Validate.defineString("HelloWorld").testMaxLength(-1)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.fail();
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMaxLengthGreaterThanMin()
+    {
+
+        try
+        {
+             Validate.defineString("HelloWorld").testMinLength(11).testMaxLength(5)
+            .throwValidationExceptionOnFail().validate();
+
+            Assert.fail();
+        }
+        catch (final IllegalArgumentException e)
         {
             Assert.assertTrue(true);
         }
@@ -69,12 +105,48 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMinLength(11)
+             Validate.defineString("HelloWorld").testMinLength(11)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanZero()
+    {
+
+        try
+        {
+             Validate.defineString("HelloWorld").testMinLength(-10)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.fail();
+        }
+        catch (final IllegalArgumentException e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    @Test
+    public void testMinLengthLessThanMax()
+    {
+
+        try
+        {
+            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5).testMinLength(11)
+                    .throwValidationExceptionOnFail().validate();
+
+            Assert.fail();
+        }
+        catch (final IllegalArgumentException e)
         {
             Assert.assertTrue(true);
         }
@@ -87,10 +159,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("").testNotNullEmpty()
+            Validate.defineString("").testNotNullEmpty()
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -106,10 +178,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString(null).testNotNull()
+             Validate.defineString(null).testNotNull()
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -124,10 +196,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEquals("1HelloWorld1")
+             Validate.defineString("HelloWorld").testEquals("1HelloWorld1")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -142,10 +214,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("1hELLOwORLD1")
+             Validate.defineString("HelloWorld").testEqualsNoCase("1hELLOwORLD1")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -160,10 +232,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("HelloWorld1")
+             Validate.defineString("HelloWorld").testMatch("HelloWorld1")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -178,10 +250,10 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMatch("[A-Z]*")
+            Validate.defineString("HelloWorld").testMatch("[A-Z]*")
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

@@ -53,10 +53,10 @@ public class FloatValidatorNegativeTest
         {
             float x = 5;
             float max = 4;
-            boolean retVal = Validate.defineFloat(x).testMaxValue(max)
+            Validate.defineFloat(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -73,10 +73,10 @@ public class FloatValidatorNegativeTest
         {
             float x = 5;
             float min = 7;
-            boolean retVal = Validate.defineFloat(x).testMinValue(min)
+            Validate.defineFloat(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -92,10 +92,10 @@ public class FloatValidatorNegativeTest
         {
             float x = 5;
             float y = 6;
-            boolean retVal = Validate.defineFloat(x).testEquals(y)
+            Validate.defineFloat(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

@@ -28,7 +28,7 @@ public abstract interface Validator<T>
 {
     /**
      * Performs a validation test based on the methods that were called.If the
-     * method throwOnNotValidate has been called, then an
+     * method throwValidationExceptionOnFail has been called, then an
      * ValidateException will be thrown.
      * 
      * If no test method is called, this method returns a false.

@@ -52,9 +52,9 @@ public class BooleanValidatorNegativeTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(true).testFalse().throwValidationExceptionOnFail().validate();
+            Validate.defineBoolean(true).testFalse().throwValidationExceptionOnFail().validate();
             
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -69,10 +69,10 @@ public class BooleanValidatorNegativeTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(false).testTrue().throwValidationExceptionOnFail()
+            Validate.defineBoolean(false).testTrue().throwValidationExceptionOnFail()
                     .validate();
             
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -87,10 +87,10 @@ public class BooleanValidatorNegativeTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(false).testEquals(true).throwValidationExceptionOnFail()
+            Validate.defineBoolean(false).testEquals(true).throwValidationExceptionOnFail()
                     .validate();
             
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -105,10 +105,10 @@ public class BooleanValidatorNegativeTest
         
         try
         {
-            boolean retVal = Validate.defineBoolean(true).testEquals(false)
+            Validate.defineBoolean(true).testEquals(false)
                     .throwValidationExceptionOnFail().validate();
             
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

@@ -53,10 +53,10 @@ public class ShortValidatorNegativeTest
         {
             short x = 5;
             short max = 4;
-            boolean retVal = Validate.defineShort(x).testMaxValue(max)
+            Validate.defineShort(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -73,10 +73,10 @@ public class ShortValidatorNegativeTest
         {
             short x = 5;
             short min = 7;
-            boolean retVal = Validate.defineShort(x).testMinValue(min)
+            Validate.defineShort(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {
@@ -94,10 +94,10 @@ public class ShortValidatorNegativeTest
         {
             short x = 5;
             short y = 6;
-            boolean retVal = Validate.defineShort(x).testEquals(y)
+            Validate.defineShort(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 
-            Assert.assertEquals(false, retVal);
+            Assert.fail();
         }
         catch (final ValidateException e)
         {

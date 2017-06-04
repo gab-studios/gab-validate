@@ -23,16 +23,16 @@ import java.util.Arrays;
 
 
 /**
- * This is a String validator. After this class is created, call the testXXXX()
+ * This is a Array validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
  * Validate.defineString(String).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the
+ * If the throwValidationExceptionOnFail() method has been called and if the
  * validate fails then a ValidateException will be thrown.
  * 
  * Validate.defineString(String).testEquals(String)
- * .throwExceptionOnFailedValidation().validate();
+ * .throwValidationExceptionOnFail().validate();
  *
  * If no test method is called, validate() returns a false.
  *
@@ -77,14 +77,14 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
     private boolean  _isTestNotNull   = false;
     
     /*
-     * The max length to test for. Defaults to -1.
+     * The max length to test for. Defaults to 0.
      */
-    private int      _maxLength       = -1;
+    private int      _maxLength       = 0;
     
     /*
-     * The min length to test for. Defaults to -1.
+     * The min length to test for. Defaults to 0.
      */
-    private int      _minLength       = -1;
+    private int      _minLength       = 0;
     
     /*
      * The String that will be tested.
@@ -125,7 +125,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * 
      * @param equalsValue
      *            The value to perform the equate with.
-     * @return The same StringValidator instance. This allows for method
+     * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
     public ArrayValidator testEquals(final Object[] equalsValue)
@@ -149,7 +149,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * 
      * @param maxLength
      *            The value to perform the test with.
-     * @return The same StringValidator instance. This allows for method
+     * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
     public ArrayValidator testMaxLength(final int maxLength)
@@ -181,7 +181,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * 
      * @param minLength
      *            The value to perform the test with.
-     * @return The same StringValidator instance. This allows for method
+     * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
     public ArrayValidator testMinLength(final int minLength)
@@ -191,7 +191,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             throw (new IllegalArgumentException(
                     "The parameter 'minLength' must be greater than zero (0)."));
         }
-        else if ((minLength > this._maxLength) && (this._maxLength != -1))
+        else if ((minLength > this._maxLength) && (this._maxLength != 0))
         {
             throw (new IllegalArgumentException(
                     "The parameter 'minLength' must be less than the max length value."));
@@ -210,7 +210,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * A method to mark that an "not null" test will be performed when the
      * validate() method is called.
      * 
-     * @return The same StringValidator instance. This allows for method
+     * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
     public ArrayValidator testNotNull()
@@ -223,7 +223,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      * A method to mark that an "not null or empty" test will be performed when
      * the validate() method is called.
      * 
-     * @return The same StringValidator instance. This allows for method
+     * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
     public ArrayValidator testNotNullEmpty()
@@ -251,7 +251,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
                 BaseValidator
-                        .throwValidateException("The String must not be null");
+                        .throwValidateException("The value must not be null");
             }
         }
         

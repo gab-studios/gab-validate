@@ -31,11 +31,48 @@ Usage
 In order to validate, you need to call a defineXXXXXX() method `Validate.defineString("HelloWorld")`.  Once that is done, you can perform tests by chain calling test methods.
 
 ```java
-Validate.defineString("HelloWorld").testMaxLength(10).throwExceptionOnFailedValidation().validate();
+Validate.defineString("HelloWorld").testMaxLength(10).throwValidationExceptionOnFail().validate();
 
 boolean retVal = Validate.defineInteger(5000).testMaxValue(max).testMinValue(min).validate();
 
 ```
+
+
+Example
+---------
+
+
+To validate a Boolean:
+
+```java
+   Validate.defineBoolean(name != null && name.length() > 0)
+           .testTrue()
+           .throwValidationExceptionOnFail()
+           .validate();
+```
+
+```java
+    boolean retVal = Validate.defineBoolean(name != null && name.length() > 0)
+                             .testTrue()
+                             .validate();
+```
+
+To validate a String:
+
+```java
+   Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
+           .testMaxLength(10)
+           .throwValidationExceptionOnFail()
+           .validate();
+```
+
+```java
+   boolean retVal = Validate.defineString("HelloWorld")
+                            .testMaxLength(10)
+                            .testEqualsNoCase("hELLOwORLD")
+                            .validate();
+```
+
 
 More Documentation
 ------------------

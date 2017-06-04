@@ -21,18 +21,17 @@ package org.gabsocial.validate;
 
 import java.util.regex.Pattern;
 
-
 /**
  * This is a String validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
  * Validate.defineString(String).testNotNull().validate();
  *
- * If the throwExceptionOnFailedValidation() method has been called and if the
+ * If the throwValidationExceptionOnFail() method has been called and if the
  * validate fails then a ValidateException will be thrown.
  * 
  * Validate.defineString(String).testEquals(String)
- * .throwExceptionOnFailedValidation().validate();
+ * .throwValidationExceptionOnFail().validate();
  *
  * If no test method is called, validate() returns a false.
  *
@@ -94,14 +93,14 @@ public class StringValidator extends BaseValidator<StringValidator>
     private boolean      _isTestMatch        = false;
     
     /*
-     * The max length to test for. Defaults to -1.
+     * The max length to test for. Defaults to 0.
      */
-    private int          _maxLength          = -1;
+    private int          _maxLength          = 0;
     
     /*
-     * The min length to test for. Defaults to -1.
+     * The min length to test for. Defaults to 0.
      */
-    private int          _minLength          = -1;
+    private int          _minLength          = 0;
     
     /*
      * The String that will be tested.
@@ -205,7 +204,7 @@ public class StringValidator extends BaseValidator<StringValidator>
             throw (new IllegalArgumentException(
                     "The parameter 'maxLength' must be greater than zero (0)."));
         }
-        else if (maxLength < this._minLength)
+        else if (maxLength < this._minLength) 
         {
             throw (new IllegalArgumentException(
                     "The parameter 'maxLength' must be greater than the min length value."));
@@ -236,7 +235,7 @@ public class StringValidator extends BaseValidator<StringValidator>
         {
             throw( new IllegalArgumentException("The parameter 'minLength' must be greater than zero (0)."));
         }
-        else if ((minLength > this._maxLength) && (this._maxLength != -1))
+        else if ((minLength > this._maxLength) && (this._maxLength != 0))
         {
             throw( new IllegalArgumentException("The parameter 'minLength' must be less than the max length value."));
         }
