@@ -94,7 +94,7 @@ Feedback
 Comments and feedback are greatly appreciated!!!
 
 
-
+[copyright]: https://github.com/sysdevone/gab-validate/tree/master/COPYRIGHT
 [license]: https://github.com/sysdevone/gab-validate/tree/master/LICENSE
 [wiki]: https://github.com/sysdevone/gab-validate/wiki
 [examples]: https://github.com/sysdevone/gab-validate/wiki/Examples
