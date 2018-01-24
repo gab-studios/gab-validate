@@ -80,5 +80,65 @@ public class ObjectValidatorNegativeTest
             Assert.assertTrue(true);
         }
     }
+    
+    @Test
+    public void testEmptyThrowValidateExceptionMessage()
+    {
+        try
+        {
+        	ObjectValidatorTester validator = new ObjectValidatorTester("");
+            validator.validate();
+            
+            Assert.fail();
+        }
+        catch (final AssertionError e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
+    
+    
+    @Test
+    public void testNullThrowValidateExceptionMessage()
+    {
+        try
+        {
+        	ObjectValidatorTester validator = new ObjectValidatorTester(null);
+            validator.validate();
+            
+            Assert.fail();
+        }
+        catch (final AssertionError e)
+        {
+            Assert.assertTrue(true);
+        }
+
+    }
         
+}
+
+class ObjectValidatorTester extends ObjectValidator<Object>
+{
+
+    String _message;
+    
+    public ObjectValidatorTester(String message )
+    {
+    		super( new Object() );
+        this._message = message;
+    }
+    
+    /* (non-Javadoc)
+     * @see org.gabsocial.validate.Validator#validate()
+     */
+    @Override
+    public boolean validate()
+    {
+        ObjectValidator
+        .throwValidateException(this._message);
+        
+        return false;
+    }
+    
 }

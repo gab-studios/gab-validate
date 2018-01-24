@@ -160,9 +160,9 @@ public class Validate
      *            The Object value to validate.
      * @return A <code>ObjectValidator</code> instance.
      */
-    public static final ObjectValidator defineObject(final Object value)
+    public static final ObjectValidator<Object> defineObject(final Object value)
     {
-        return (new ObjectValidator(value));
+        return (new ObjectValidator<Object>(value));
     }
     
     /**

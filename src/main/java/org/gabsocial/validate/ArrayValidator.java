@@ -39,18 +39,8 @@ import java.util.Arrays;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ArrayValidator extends BaseValidator<ArrayValidator>
+public class ArrayValidator extends ObjectValidator<Object[]>
 {
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private Object[] _equalsValue;
-    
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean  _isTestEquals    = false;
     
     /*
      * A flag indicating that a max length test will be performed when the
@@ -70,11 +60,6 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      */
     private boolean  _isTestNotEmpty  = false;
     
-    /*
-     * A flag indicating if an "not null" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean  _isTestNotNull   = false;
     
     /*
      * The max length to test for. Defaults to 0.
@@ -86,11 +71,6 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      */
     private int      _minLength       = 0;
     
-    /*
-     * The String that will be tested.
-     */
-    private Object[] _value;
-    
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -100,7 +80,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      */
     protected ArrayValidator(final Object[] value)
     {
-        this._value = value;
+        super( value );
     }
     
     /**
@@ -241,6 +221,10 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
      */
     public boolean validate()
     {
+    	
+		// call ObjectValidator validate method.
+		//super.validate();
+		
         boolean isTested = false;
         boolean isValid = true;
         
@@ -250,7 +234,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             isValid &= (this._value != null);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must not be null");
             }
         }
@@ -262,7 +246,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             isValid &= (this._value != null && this._value.length > 0);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must not be empty.");
             }
         }
@@ -273,7 +257,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             isValid &= (this._value != null && this._value.length >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must be greater than or equal to the min value.");
                 // + " (value = '"
                 // + this._value
@@ -289,7 +273,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
             isValid &= (this._value != null && this._value.length <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must be less than or equal to the max value.");
                 // + " (value = '"
                 // + this._value
@@ -309,7 +293,7 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
                 
                 if (this._isValidationExceptionThrownOnFail && !isValid)
                 {
-                    BaseValidator
+                	ObjectValidator
                             .throwValidateException("The value does not equal the expected value.");
                     // (value = '"
                     // + this._value
@@ -327,4 +311,18 @@ public class ArrayValidator extends BaseValidator<ArrayValidator>
         return (isValid);
         
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"ArrayValidator [_isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_isTestMaxLength, _isTestMinLength, _isTestNotEmpty, _maxLength, _minLength,
+				_isValidationExceptionThrownOnFail, Arrays.toString(_equalsValue), _isTestEquals, _isTestNotNull,
+				_isTested, Arrays.toString(_value));
+	}
+    
+    
 }
