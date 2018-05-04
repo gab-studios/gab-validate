@@ -141,7 +141,7 @@ public class StringValidatorNegativeTest
 
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testMaxLength(5).testMinLength(11)
+            Validate.defineString("HelloWorld").testMaxLength(5).testMinLength(11)
                     .throwValidationExceptionOnFail().validate();
 
             Assert.fail();

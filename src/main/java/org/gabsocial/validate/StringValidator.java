@@ -38,23 +38,14 @@ import java.util.regex.Pattern;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class StringValidator extends BaseValidator<StringValidator>
+public class StringValidator extends ObjectValidator<String>
 {
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private String       _equalsValue;
     
     /*
      * The value to use if the testMatch(String) method has been called.
      */
     private String       _matchValue;
     
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean      _isTestEquals       = false;
     
     /*
      * A flag indicating if an "equals no case" test will be performed when the
@@ -81,12 +72,6 @@ public class StringValidator extends BaseValidator<StringValidator>
     private boolean      _isTestNotEmpty     = false;
     
     /*
-     * A flag indicating if an "not null" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean      _isTestNotNull      = false;
-    
-    /*
      * A flag indicating if a "match" will be performed using regrex expressions
      * when the validate() method is called.
      */
@@ -102,11 +87,6 @@ public class StringValidator extends BaseValidator<StringValidator>
      */
     private int          _minLength          = 0;
     
-    /*
-     * The String that will be tested.
-     */
-    private final String _value;
-    
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -116,18 +96,9 @@ public class StringValidator extends BaseValidator<StringValidator>
      */
     protected StringValidator(final String value)
     {
-        this._value = value;
+        super( value );
     }
     
-    /**
-     * Gets the value that was used to initialize this validator.
-     * 
-     * @return A String value.
-     */
-    public String getValue()
-    {
-        return (this._value);
-    }
     
     /**
      * A method to mark that an "equals" test will be performed when the
@@ -141,30 +112,28 @@ public class StringValidator extends BaseValidator<StringValidator>
     public StringValidator testEquals(final String equalsValue)
     {
         // have to test for null if empty is selected.
-        this._isTestNotNull = true;
-        this._isTestEquals = true;
         this._isTestEqualsNoCase = false;
-        this._equalsValue = equalsValue;
-        return (this);
+    		super.testEquals(equalsValue);
+    		return( this );
     }
     
     /**
      * A method to mark that an "equals no case" test will be performed when the
      * validate() method is called.
      * 
-     * @param value
+     * @param equalsValue
      *            The value to perform the equate with.
      * @return The same StringValidator instance. This allows for method
      *         chaining.
      */
-    public StringValidator testEqualsNoCase(final String value)
+    public StringValidator testEqualsNoCase(final String equalsValue)
     {
         // have to test for null if empty is selected.
         this._isTestNotNull = true;
         this._isTestEqualsNoCase = true;
         this._isTestEquals = false;
-        this._equalsValue = value;
-        return (this);
+        this._equalsValue = equalsValue;
+    		return( this );
     }
     
     /**
@@ -250,19 +219,6 @@ public class StringValidator extends BaseValidator<StringValidator>
     }
     
     /**
-     * A method to mark that an "not null" test will be performed when the
-     * validate() method is called.
-     * 
-     * @return The same StringValidator instance. This allows for method
-     *         chaining.
-     */
-    public StringValidator testNotNull()
-    {
-        this._isTestNotNull = true;
-        return (this);
-    }
-    
-    /**
      * A method to mark that an "not null or empty" test will be performed when
      * the validate() method is called.
      * 
@@ -284,67 +240,44 @@ public class StringValidator extends BaseValidator<StringValidator>
      */
     public boolean validate()
     {
-        boolean isTested = false;
-        boolean isValid = true;
-        
-        if (this._isTestNotNull)
-        {
-            isTested = true;
-            isValid &= (this._value != null);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                        .throwValidateException("The String must not be null");
-            }
-        }
+    	
+    		// call ObjectValidator validate method.
+        boolean isValid = super.validate(true);
         
         if (this._isTestNotEmpty)
         {
             
-            isTested = true;
+        		this._isTested = true;
             isValid &= this._value != null && this._value.length() > 0;
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must not be empty.");
             }
         }
         
         if (this._isTestEqualsNoCase)
         {
-            isTested = true;
+        		this._isTested = true;
             isValid &= this._value != null && this._value.equalsIgnoreCase(this._equalsValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
-                        .throwValidateException("The String does not equal the expected value (string value = '"
+            	ObjectValidator
+                        .throwValidateException("The value does not equal the expected value (string value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
             }
         }
         
-        if (this._isTestEquals)
-        {
-            isTested = true;
-            isValid &= this._value != null && this._value.equals(this._equalsValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                        .throwValidateException("The value does not equal the expected value (value = '"
-                                + this._value
-                                + "' expected value = '"
-                                + this._equalsValue + "').");
-            }
-        }
         
         if (this._isTestMinLength)
         {
-            isTested = true;
+        		this._isTested = true;
             isValid &= (this._value != null && this._value.length() >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must be greater than or equal to the min value (value = '"
                                 + this._value
                                 + "' length = '"
@@ -357,11 +290,11 @@ public class StringValidator extends BaseValidator<StringValidator>
         
         if (this._isTestMaxLength)
         {
-            isTested = true;
+        		this._isTested = true;
             isValid &= (this._value != null && this._value.length() <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value must be less than or equal to the max value (value = '"
                                 + this._value
                                 + "' length = '"
@@ -373,11 +306,11 @@ public class StringValidator extends BaseValidator<StringValidator>
         
         if (this._isTestMatch)
         {
-            isTested = true;
+        		this._isTested = true;
             isValid &= this._value != null && (Pattern.matches(this._matchValue, this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value does not match the reqular expression (value = '"
                                 + this._value
                                 + "' regex = '"
@@ -385,7 +318,9 @@ public class StringValidator extends BaseValidator<StringValidator>
             }
         }
         
-        if (!isTested)
+        // since we are using bitwise &, we have to start with a true condition.  We need to have this test to ensure that 
+        // tests are executed in order to return a true.
+        if (!this._isTested)
         {
             isValid = false;
         }
@@ -393,4 +328,21 @@ public class StringValidator extends BaseValidator<StringValidator>
         return (isValid);
         
     }
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"StringValidator [_matchValue=%s, _isTestEqualsNoCase=%s, _isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _isTestMatch=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_matchValue, _isTestEqualsNoCase, _isTestMaxLength, _isTestMinLength, _isTestNotEmpty, _isTestMatch,
+				_maxLength, _minLength, _isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals, _isTestNotNull,
+				_isTested, _value);
+	}
+
+
+    
+    
 }

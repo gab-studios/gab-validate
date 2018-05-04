@@ -18,7 +18,7 @@ Required
 ---------
 This project requires the following: 
 
-    * Java 7+
+    * Java 8
     * Maven
 
 Build

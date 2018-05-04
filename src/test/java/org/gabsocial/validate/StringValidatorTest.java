@@ -170,11 +170,13 @@ public class StringValidatorTest
     @Test
     public void testEquals()
     {
-
+		StringValidator stringValidator = Validate.defineString("HelloWorld");
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEquals("HelloWorld")
-                    .throwValidationExceptionOnFail().validate();
+            stringValidator.testEquals("HelloWorld")
+                    .throwValidationExceptionOnFail();
+            System.err.println( stringValidator.toString() );
+            boolean retVal = stringValidator.validate();
 
             Assert.assertTrue(retVal);
         }
@@ -182,18 +184,20 @@ public class StringValidatorTest
         {
             Assert.fail(e.toString());
         }
-
     }
     
     @Test
     public void testEqualsNoCase()
     {
-
+		StringValidator stringValidator = Validate.defineString("HelloWorld");
         try
         {
-            boolean retVal = Validate.defineString("HelloWorld").testEqualsNoCase("hELLOwORLD")
-                    .throwValidationExceptionOnFail().validate();
 
+			stringValidator.testEqualsNoCase("hELLOwORLD")
+			        .throwValidationExceptionOnFail();
+			System.err.println( stringValidator.toString() );
+			boolean retVal = stringValidator.validate();
+            
             Assert.assertTrue(retVal);
         }
         catch (final ValidateException e)

@@ -20,7 +20,7 @@
 package org.gabsocial.validate;
 
 /**
- * This is a int validator. After this class is created, call the testXXXX()
+ * This is a long validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
  *      Validate.defineLong(long).testNotNull().validate();
@@ -36,18 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class LongValidator extends BaseValidator<LongValidator>
+public class LongValidator  extends ObjectValidator<Long>
 {
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private long       _equalsValue              = 0L;
-    
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean    _isTestEquals             = false;
     
     /*
      * A flag indicating that a max value test will be performed when the
@@ -70,11 +60,7 @@ public class LongValidator extends BaseValidator<LongValidator>
      * The min value to test for. Defaults to Long.MIN_VALUE.
      */
     private long       _minValue                 = Long.MIN_VALUE;
-    
-    /*
-     * The value that will be tested.
-     */
-    private final long _value;
+
     
     /**
      * Protected constructor. Use Validate static method to create validator.
@@ -84,34 +70,9 @@ public class LongValidator extends BaseValidator<LongValidator>
      */
     protected LongValidator(final long value)
     {
-        this._value = value;
+        super( value );
     }
-    
-    /**
-     * Gets the value that was used to initialize this validator.
-     * 
-     * @return A long value.
-     */
-    public long getValue()
-    {
-        return (this._value);
-    }
-    
-    /**
-     * A method to mark that an "equals" test will be performed when the
-     * validate() method is called.
-     * 
-     * @param value
-     *            The value to perform the equate with.
-     * @return The same LongValidator instance. This allows for method chaining.
-     */
-    public LongValidator testEquals(final long value)
-    {
-        this._isTestEquals = true;
-        this._equalsValue = value;
-        return (this);
-    }
-    
+  
     /**
      * A method to mark that an "max value" test will be performed when the
      * validate() method is called. Tests if the value is less than or equal to
@@ -128,6 +89,7 @@ public class LongValidator extends BaseValidator<LongValidator>
         this._maxValue = maxValue;
         return (this);
     }
+    
     /**
      * A method to mark that an "min value" test will be performed when the
      * validate() method is called. Tests if the value is greater than or equal
@@ -152,30 +114,16 @@ public class LongValidator extends BaseValidator<LongValidator>
      */
     public boolean validate()
     {
-        boolean isTested = false;
-        boolean isValid = true;
-        
-        if (this._isTestEquals)
-        {
-            isTested = true;
-            isValid &= this._value == this._equalsValue;
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                .throwValidateException("The value does not equal the expected value (value = '"
-                        + this._value
-                        + "' expected value = '"
-                        + this._equalsValue + "').");
-            }
-        }
+		// call ObjectValidator validate method.
+        boolean isValid = super.validate(true);
                 
         if (this._isTestMinValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value >= this._minValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be greater than or equal to the min value (value = '"
                         + this._value
                         + "' min value = '"
@@ -187,11 +135,11 @@ public class LongValidator extends BaseValidator<LongValidator>
         
         if (this._isTestMaxValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value <= this._maxValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be less than or equal to the max value (value = '"
                         + this._value
                         + "' max value = '"
@@ -200,11 +148,24 @@ public class LongValidator extends BaseValidator<LongValidator>
             }
         }
         
-        if( !isTested )
+        if( !this._isTested )
         {
             isValid = false;
         }
        
         return (isValid);
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"LongValidator [_isTestMaxValue=%s, _isTestMinValue=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_isTestMaxValue, _isTestMinValue, _maxValue, _minValue, _isValidationExceptionThrownOnFail,
+				_equalsValue, _isTestEquals, _isTestNotNull, _isTested, _value);
+	}
+    
+    
 }

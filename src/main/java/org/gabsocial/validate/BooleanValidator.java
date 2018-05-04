@@ -36,19 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class BooleanValidator extends BaseValidator<BooleanValidator>
+public class BooleanValidator extends ObjectValidator<Boolean>
 {
-    
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private boolean       _equalsValue;
-    
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean       _isTestEquals = false;
     
     /*
      * A flag indicating if a "false" test will be performed when the validate()
@@ -62,11 +51,6 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
      */
     private boolean       _isTestTrue   = false;
     
-    /*
-     * The value that will be tested.
-     */
-    private final boolean _value;
-    
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -75,33 +59,7 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
      */
     protected BooleanValidator(final boolean value)
     {
-        this._value = value;
-    }
-    
-    /**
-     * Gets the value that was used to initialize this validator.
-     *
-     * @return A boolean value.
-     */
-    public boolean getValue()
-    {
-        return (this._value);
-    }
-    
-    /**
-     * A method to mark that an "equals" test will be performed when the
-     * validate() method is called.
-     *
-     * @param equalsValue
-     *            The value to perform the equate with.
-     * @return The same BooleanValidator instance. This allows for method
-     *         chaining.
-     */
-    public BooleanValidator testEquals(final boolean equalsValue)
-    {
-        this._isTestEquals = true;
-        this._equalsValue = equalsValue;
-        return (this);
+        super( value );
     }
     
     /**
@@ -138,16 +96,17 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
     @Override
     public boolean validate()
     {
-        boolean isTested = false;
-        boolean isValid = true;
+    	
+		// call ObjectValidator validate method.
+        boolean isValid = super.validate(true);
         
         if (this._isTestFalse)
         {
-            isTested = true;
-            isValid &= this._value == Boolean.FALSE;
+    			this._isTested = true;
+            isValid &= this._value.equals(Boolean.FALSE);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value is not false. (value = '"
                                 + this._value + "').");
             }
@@ -155,37 +114,34 @@ public class BooleanValidator extends BaseValidator<BooleanValidator>
         
         if (this._isTestTrue)
         {
-            isTested = true;
-            isValid &= this._value == Boolean.TRUE;
+			this._isTested = true;
+            isValid &= this._value.equals(Boolean.TRUE);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                         .throwValidateException("The value is not true. (value = '"
                                 + this._value + "').");
             }
         }
         
-        if (this._isTestEquals)
-        {
-            isTested = true;
-            isValid &= (this._value == this._equalsValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                        .throwValidateException("The value does not equal the expected value (value = '"
-                                + this._value
-                                + "' expected value = '"
-                                + this._equalsValue + "').");
-            }
-            
-        }
-        
-        if (!isTested)
+        if (!this._isTested)
         {
             isValid = false;
         }
         
         return (isValid);
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"BooleanValidator [_isTestFalse=%s, _isTestTrue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_isTestFalse, _isTestTrue, _isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals,
+				_isTestNotNull, _isTested, _value);
+	}
+    
     
 }

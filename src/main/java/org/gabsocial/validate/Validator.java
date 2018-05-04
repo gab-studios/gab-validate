@@ -24,7 +24,7 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public abstract interface Validator<T>
+public abstract interface Validator
 {
     /**
      * Performs a validation test based on the methods that were called.If the
@@ -42,9 +42,12 @@ public abstract interface Validator<T>
     /**
      * A method to mark that an ValidateException should be thrown if the
      * validate method returns false.
-     *
+     * 
+     * @param <T> The Validator class to return.
+     * 
      * @return The same BooleanValidator instance. This allows for method
      *         chaining.
      */
-    public T throwValidationExceptionOnFail();
+    @SuppressWarnings("hiding")
+	public <T extends Validator> T throwValidationExceptionOnFail();
 }

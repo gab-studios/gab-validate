@@ -36,18 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ByteValidator extends BaseValidator<ByteValidator>
+public class ByteValidator extends ObjectValidator<Byte>
 {
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private byte       _equalsValue;
-
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean    _isTestEquals             = false;
     
     /*
      * A flag indicating that a max value test will be performed when the
@@ -71,11 +61,6 @@ public class ByteValidator extends BaseValidator<ByteValidator>
      */
     private byte       _minValue                 = Byte.MIN_VALUE;
     
-    /*
-     * The value that will be tested.
-     */
-    private final byte _value;
-    
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -84,32 +69,7 @@ public class ByteValidator extends BaseValidator<ByteValidator>
      */
     protected ByteValidator(final byte value)
     {
-        this._value = value;
-    }
-    
-    /**
-     * Gets the value that was used to initialize this validator.
-     * 
-     * @return A byte value.
-     */
-    public byte getValue()
-    {
-        return (this._value);
-    }
-    
-    /**
-     * A method to mark that an "equals" test will be performed when the
-     * validate() method is called.
-     * 
-     * @param value
-     *            The value to perform the equate with.
-     * @return The same ByteValidator instance. This allows for method chaining.
-     */
-    public ByteValidator testEquals(final byte value)
-    {
-        this._isTestEquals = true;
-        this._equalsValue = value;
-        return (this);
+        super( value );
     }
     
     /**
@@ -153,30 +113,17 @@ public class ByteValidator extends BaseValidator<ByteValidator>
      */
     public boolean validate()
     {
-        boolean isTested = false;
-        boolean isValid = true;
-        
-        if (this._isTestEquals)
-        {
-            isTested = true;
-            isValid &= this._value == this._equalsValue;
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                .throwValidateException("The value does not equal the expected value (value = '"
-                        + this._value
-                        + "' expected value = '"
-                        + this._equalsValue + "').");
-            }
-        }
+    	
+		// call ObjectValidator validate method.
+        boolean isValid = super.validate(true);
                 
         if (this._isTestMinValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value >= this._minValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be greater than or equal to the min value (value = '"
                         + this._value
                         + "' min value = '"
@@ -188,11 +135,11 @@ public class ByteValidator extends BaseValidator<ByteValidator>
         
         if (this._isTestMaxValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value <= this._maxValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be less than or equal to the max value (value = '"
                         + this._value
                         + "' max value = '"
@@ -201,11 +148,24 @@ public class ByteValidator extends BaseValidator<ByteValidator>
             }
         }
         
-        if( !isTested )
+        if( !this._isTested )
         {
             isValid = false;
         }
        
         return (isValid);
     }
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"ByteValidator [_isTestMaxValue=%s, _isTestMinValue=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_isTestMaxValue, _isTestMinValue, _maxValue, _minValue, _isValidationExceptionThrownOnFail,
+				_equalsValue, _isTestEquals, _isTestNotNull, _isTested, _value);
+	}
+    
+    
 }

@@ -36,19 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class FloatValidator extends BaseValidator<FloatValidator>
+public class FloatValidator extends ObjectValidator<Float>
 {
-
-    /*
-     * The value to use if the testEquals(boolean) method has been called.
-     */
-    private float       _equalsValue              = 0F;
-    
-    /*
-     * A flag indicating if an "equals" test will be performed when the
-     * validate() method is called.
-     */
-    private boolean      _isTestEquals             = false;
     
     /*
      * A flag indicating that a max value test will be performed when the
@@ -72,47 +61,19 @@ public class FloatValidator extends BaseValidator<FloatValidator>
      */
     private float       _minValue                 = Float.MIN_VALUE;
     
-    /*
-     * The value that will be tested.
-     */
-    private final float _value;
     
     /**
-     * F Protected constructor. Use Validate static method to create validator.
+     * Protected constructor. Use Validate static method to create validator.
      *
      * @param value
      *            The value that will be validated.
      */
     protected FloatValidator(final float value)
     {
-        this._value = value;
+        super( value );
     }
-    
-    /**
-     * Gets the value that was used to initialize this validator.
-     * 
-     * @return A float value.
-     */
-    public float getValue()
-    {
-        return (this._value);
-    }
-    
-    /**
-     * A method to mark that an "equals" test will be performed when the
-     * validate() method is called.
-     * 
-     * @param value
-     *            The value to perform the equate with.
-     * @return The same FloatValidator instance. This allows for method
-     *         chaining.
-     */
-    public FloatValidator testEquals(final float value)
-    {
-        this._isTestEquals = true;
-        this._equalsValue = value;
-        return (this);
-    }
+
+
     /**
      * A method to mark that an "max value" test will be performed when the
      * validate() method is called. Tests if the value is less than or equal to
@@ -153,30 +114,17 @@ public class FloatValidator extends BaseValidator<FloatValidator>
      */
     public boolean validate()
     {
-        boolean isTested = false;
-        boolean isValid = true;
-        
-        if (this._isTestEquals)
-        {
-            isTested = true;
-            isValid &= this._value == this._equalsValue;
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-                BaseValidator
-                .throwValidateException("The value does not equal the expected value (value = '"
-                        + this._value
-                        + "' expected value = '"
-                        + this._equalsValue + "').");
-            }
-        }
+    	
+		// call ObjectValidator validate method.
+        boolean isValid = super.validate(true);
                 
         if (this._isTestMinValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value >= this._minValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be greater than or equal to the min value (value = '"
                         + this._value
                         + "' min value = '"
@@ -188,11 +136,11 @@ public class FloatValidator extends BaseValidator<FloatValidator>
         
         if (this._isTestMaxValue)
         {
-            isTested = true;
+			this._isTested = true;
             isValid &= (this._value <= this._maxValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-                BaseValidator
+            	ObjectValidator
                 .throwValidateException("The value must be less than or equal to the max value (value = '"
                         + this._value
                         + "' max value = '"
@@ -201,11 +149,25 @@ public class FloatValidator extends BaseValidator<FloatValidator>
             }
         }
         
-        if( !isTested )
+        if( !this._isTested )
         {
             isValid = false;
         }
        
         return (isValid);
     }
+
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return String.format(
+				"FloatValidator [_isTestMaxValue=%s, _isTestMinValue=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				_isTestMaxValue, _isTestMinValue, _maxValue, _minValue, _isValidationExceptionThrownOnFail,
+				_equalsValue, _isTestEquals, _isTestNotNull, _isTested, _value);
+	}
+    
+    
 }
