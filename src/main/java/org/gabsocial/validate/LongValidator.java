@@ -20,7 +20,7 @@
 package org.gabsocial.validate;
 
 /**
- * This is a int validator. After this class is created, call the testXXXX()
+ * This is a long validator. After this class is created, call the testXXXX()
  * methods to perform tests when the validate() method is called.
  * 
  *      Validate.defineLong(long).testNotNull().validate();
