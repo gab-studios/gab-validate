@@ -63,7 +63,7 @@ public class FloatValidator extends ObjectValidator<Float>
     
     
     /**
-     * F Protected constructor. Use Validate static method to create validator.
+     * Protected constructor. Use Validate static method to create validator.
      *
      * @param value
      *            The value that will be validated.
