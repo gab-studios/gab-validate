@@ -46,9 +46,25 @@ public class FloatValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+    	float x = 5.0f;
+        try
+        {
+            String desc = Validate.defineFloat(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
-        float x = '5';
+    	float x = 5.0f;
         try
         {
             float retVal = Validate.defineFloat(x).getValue();
@@ -65,7 +81,7 @@ public class FloatValidatorTest
     @Test
     public void testNoTest()
     {
-        float x = '5';
+    	float x = 5.0f;
         try
         {
             boolean retVal = Validate.defineFloat(x).throwValidationExceptionOnFail().validate();
@@ -81,7 +97,7 @@ public class FloatValidatorTest
     @Test
     public void testNoTest2()
     {
-        float x = '5';
+    	float x = 5.0f;
         try
         {
             boolean retVal = Validate.defineFloat(x).validate();
@@ -100,8 +116,8 @@ public class FloatValidatorTest
 
         try
         {
-            float x = 5;
-            float max = 10;
+        	float x = 5.0f;
+            float max = 10.0f;
             boolean retVal = Validate.defineFloat(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
@@ -120,8 +136,8 @@ public class FloatValidatorTest
         
         try
         {
-            float x = 5;
-            float min = 4;
+        	float x = 5.0f;
+            float min = 4.0f;
             boolean retVal = Validate.defineFloat(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
@@ -141,8 +157,8 @@ public class FloatValidatorTest
         
         try
         {
-            float x = 5;
-            float y = 5;
+        	float x = 5.0f;
+        	float y = 5.0f;
             boolean retVal = Validate.defineFloat(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 

@@ -46,9 +46,25 @@ public class ShortValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+    	short x = 5;
+        try
+        {
+            String desc = Validate.defineShort(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
-        short x = '5';
+        short x = 5;
         try
         {
             short retVal = Validate.defineShort(x).getValue();

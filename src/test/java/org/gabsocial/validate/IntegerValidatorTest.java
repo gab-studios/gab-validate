@@ -46,9 +46,25 @@ public class IntegerValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+    	int x = 5;
+        try
+        {
+            String desc = Validate.defineInteger(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
-        int x = '5';
+    	int x = 5;
         try
         {
             int retVal = Validate.defineInteger(x).getValue();
@@ -65,7 +81,7 @@ public class IntegerValidatorTest
     @Test
     public void testNoTest()
     {
-        int x = '5';
+    	int x = 5;
         try
         {
             boolean retVal = Validate.defineInteger(x).throwValidationExceptionOnFail().validate();
@@ -81,7 +97,7 @@ public class IntegerValidatorTest
     @Test
     public void testNoTest2()
     {
-        int x = '5';
+    	int x = 5;
         try
         {
             boolean retVal = Validate.defineInteger(x).validate();
