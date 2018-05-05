@@ -36,30 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class IntegerValidator extends ObjectValidator<Integer>
+public class IntegerValidator extends NumberValidator<Integer>
 {
-    
-    /*
-     * A flag indicating that a max value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean   _isTestMaxValue           = false;
-    
-    /*
-     * A flag indicating that a min value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean   _isTestMinValue           = false;
-    
-    /*
-     * The max value to test for. Defaults to Integer.MAX_VALUE.
-     */
-    private int       _maxValue                 = Integer.MAX_VALUE;
-    
-    /*
-     * The min value to test for. Defaults to Integer.MIN_VALUE.
-     */
-    private int       _minValue                 = Integer.MIN_VALUE;
     
     /**
      * Protected constructor. Use Validate static method to create validator.
@@ -69,92 +47,7 @@ public class IntegerValidator extends ObjectValidator<Integer>
      */
     protected IntegerValidator(final int value)
     {
-        super( value );
-    }
-    
-    /**
-     * A method to mark that an "max value" test will be performed when the
-     * validate() method is called. Tests if the value is less than or equal to
-     * the max value when the validate method is called.
-     * 
-     * @param maxValue
-     *            The value to perform the test with.
-     * @return The same IntegerValidator instance. This allows for method
-     *         chaining.
-     */
-    public IntegerValidator testMaxValue(final int maxValue)
-    {
-        this._isTestMaxValue = true;
-        this._maxValue = maxValue;
-        return (this);
-    }
-    
-    /**
-     * A method to mark that an "min value" test will be performed when the
-     * validate() method is called. Tests if the value is greater than or equal
-     * to the min value when the validate method is called.
-     * 
-     * @param minValue
-     *            The value to perform the test with.
-     * @return The same IntegerValidator instance. This allows for method
-     *         chaining.
-     */
-    public IntegerValidator testMinValue(final int minValue)
-    {
-        this._isTestMinValue = true;
-        this._minValue = minValue;
-        return (this);
-    }
-
-    
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.gabsocial.gabvalidate.Validator#validate()
-     */
-    public boolean validate()
-    {
-    	
-		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-                
-        if (this._isTestMinValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value >= this._minValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be greater than or equal to the min value (value = '"
-                        + this._value
-                        + "' min value = '"
-                        + this._minValue
-                        + "').");
-            }
-            
-        }
-        
-        if (this._isTestMaxValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value <= this._maxValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be less than or equal to the max value (value = '"
-                        + this._value
-                        + "' max value = '"
-                        + this._maxValue
-                        + "').");
-            }
-        }
-        
-        if( !this._isTested )
-        {
-            isValid = false;
-        }
-       
-        return (isValid);
+        super( value, Integer.MIN_VALUE, Integer.MAX_VALUE );
     }
 
 	/* (non-Javadoc)

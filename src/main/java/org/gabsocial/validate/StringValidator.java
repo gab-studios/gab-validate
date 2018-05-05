@@ -133,7 +133,7 @@ public class StringValidator extends ObjectValidator<String>
         this._isTestEqualsNoCase = true;
         this._isTestEquals = false;
         this._equalsValue = equalsValue;
-    		return( this );
+    	return( this );
     }
     
     /**
@@ -233,6 +233,11 @@ public class StringValidator extends ObjectValidator<String>
         return (this);
     }
     
+	protected boolean notNullValue()
+	{
+		return( this._value != null && this._value.length() > 0 );
+	}
+    
     /*
      * (non-Javadoc)
      * 
@@ -243,18 +248,6 @@ public class StringValidator extends ObjectValidator<String>
     	
     		// call ObjectValidator validate method.
         boolean isValid = super.validate(true);
-        
-        if (this._isTestNotEmpty)
-        {
-            
-        		this._isTested = true;
-            isValid &= this._value != null && this._value.length() > 0;
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                        .throwValidateException("The value must not be empty.");
-            }
-        }
         
         if (this._isTestEqualsNoCase)
         {
