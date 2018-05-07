@@ -1,12 +1,12 @@
 
-Master: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=master)](https://travis-ci.org/sysdevone/gab-validate)
-[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/sysdevone/gab-validate?branch=master)
+Master: [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=master)](https://travis-ci.org/gab-studios/gab-validate)
+[![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-validate?branch=master)
 [![Coverity Scan](https://scan.coverity.com/projects/8317/badge.svg)](https://scan.coverity.com/projects/sysdevone-gab-validate)
 [![Issue Count](https://codeclimate.com/github/sysdevone/gab-validate/badges/issue_count.svg)](https://codeclimate.com/github/sysdevone/gab-validate)
 [![Coverage Status](https://coveralls.io/repos/github/sysdevone/gab-validate/badge.svg?branch=master)](https://coveralls.io/github/sysdevone/gab-validate?branch=master)
 
-Integration: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?branch=integration)](https://travis-ci.org/sysdevone/gab-validate)
-[![codecov.io](https://codecov.io/github/sysdevone/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/sysdevone/gab-validate?branch=integration)
+Integration: [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=integration)](https://travis-ci.org/gab-studios/gab-validate)
+[![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/gab-studios/gab-validate?branch=integration)
 
 GAB-Validate
 =======
