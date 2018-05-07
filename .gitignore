@@ -17,3 +17,6 @@ hs_err_pid*
 /bin1/
 /bak/
 /.settings/
+/release2.properties.bak
+/release.properties
+/pom.xml.releaseBackup

@@ -46,9 +46,25 @@ public class DoubleValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+    	double x = 5.0d;
+        try
+        {
+            String desc = Validate.defineDouble(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
-        double x = '5';
+    	double x = 5.0d;
         try
         {
             double retVal = Validate.defineDouble(x).getValue();
@@ -65,7 +81,7 @@ public class DoubleValidatorTest
     @Test
     public void testNoTest()
     {
-        double x = '5';
+    	double x = 5.0d;
         try
         {
             boolean retVal = Validate.defineDouble(x).throwValidationExceptionOnFail().validate();
@@ -81,7 +97,7 @@ public class DoubleValidatorTest
     @Test
     public void testNoTest2()
     {
-        double x = '5';
+    	double x = 5.0d;
         try
         {
             boolean retVal = Validate.defineDouble(x).validate();
@@ -101,8 +117,8 @@ public class DoubleValidatorTest
 
         try
         {
-            double x = 5;
-            double max = 10;
+        	double x = 5.0d;
+            double max = 10.0d;
             boolean retVal = Validate.defineDouble(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
@@ -121,8 +137,8 @@ public class DoubleValidatorTest
         
         try
         {
-            double x = 5;
-            double min = 4;
+        	double x = 5.0d;
+            double min = 4.0d;
             boolean retVal = Validate.defineDouble(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
@@ -142,8 +158,8 @@ public class DoubleValidatorTest
         
         try
         {
-            double x = 5;
-            double y = 5;
+        	double x = 5.0d;
+        	double y = 5.0d;
             boolean retVal = Validate.defineDouble(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 

@@ -36,32 +36,9 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class FloatValidator extends ObjectValidator<Float>
+public class FloatValidator extends NumberValidator<Float>
 {
-    
-    /*
-     * A flag indicating that a max value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean      _isTestMaxValue           = false;
-    
-    /*
-     * A flag indicating that a min value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean      _isTestMinValue           = false;
-    
-    /*
-     * The max value to test for. Defaults to Float.MAX_VALUE.
-     */
-    private float       _maxValue                 = Float.MAX_VALUE;
-    
-    /*
-     * The min value to test for. Defaults to Float.MIN_VALUE.
-     */
-    private float       _minValue                 = Float.MIN_VALUE;
-    
-    
+       
     /**
      * Protected constructor. Use Validate static method to create validator.
      *
@@ -70,91 +47,7 @@ public class FloatValidator extends ObjectValidator<Float>
      */
     protected FloatValidator(final float value)
     {
-        super( value );
-    }
-
-
-    /**
-     * A method to mark that an "max value" test will be performed when the
-     * validate() method is called. Tests if the value is less than or equal to
-     * the max value when the validate method is called.
-     * 
-     * @param maxValue
-     *            The value to perform the test with.
-     * @return The same FloatValidator instance. This allows for method
-     *         chaining.
-     */
-    public FloatValidator testMaxValue(final float maxValue)
-    {
-        this._isTestMaxValue = true;
-        this._maxValue = maxValue;
-        return (this);
-    }
-    /**
-     * A method to mark that an "min value" test will be performed when the
-     * validate() method is called. Tests if the value is greater than or equal
-     * to the min value when the validate method is called.
-     * 
-     * @param minValue
-     *            The value to perform the test with.
-     * @return The same FloatValidator instance. This allows for method
-     *         chaining.
-     */
-    public FloatValidator testMinValue(final float minValue)
-    {
-        this._isTestMinValue = true;
-        this._minValue = minValue;
-        return (this);
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.gabsocial.gabvalidate.Validator#validate()
-     */
-    public boolean validate()
-    {
-    	
-		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-                
-        if (this._isTestMinValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value >= this._minValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be greater than or equal to the min value (value = '"
-                        + this._value
-                        + "' min value = '"
-                        + this._minValue
-                        + "').");
-            }
-            
-        }
-        
-        if (this._isTestMaxValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value <= this._maxValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be less than or equal to the max value (value = '"
-                        + this._value
-                        + "' max value = '"
-                        + this._maxValue
-                        + "').");
-            }
-        }
-        
-        if( !this._isTested )
-        {
-            isValid = false;
-        }
-       
-        return (isValid);
+        super( value, Float.MIN_VALUE, Float.MAX_VALUE );
     }
 
 

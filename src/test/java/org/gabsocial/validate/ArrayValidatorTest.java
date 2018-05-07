@@ -46,6 +46,22 @@ public class ArrayValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+        String[] strArray1 = { "Hello", "World", "is", "awesome" };
+        try
+        {
+            String desc = Validate.defineArray(strArray1).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };

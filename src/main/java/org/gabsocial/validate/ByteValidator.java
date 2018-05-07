@@ -36,30 +36,8 @@ package org.gabsocial.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ByteValidator extends ObjectValidator<Byte>
+public class ByteValidator extends NumberValidator<Byte>
 {
-    
-    /*
-     * A flag indicating that a max value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean    _isTestMaxValue           = false;
-    
-    /*
-     * A flag indicating that a min value test will be performed when the
-     * validate() method is called.
-     */
-    private boolean    _isTestMinValue           = false;
-    
-    /*
-     * The max value to test for. Defaults to Byte.MAX_VALUE.
-     */
-    private byte       _maxValue                 = Byte.MAX_VALUE;
-
-    /*
-     * The min value to test for. Defaults to Byte.MIN_VALUE.
-     */
-    private byte       _minValue                 = Byte.MIN_VALUE;
     
     /**
      * Protected constructor. Use Validate static method to create validator.
@@ -69,93 +47,9 @@ public class ByteValidator extends ObjectValidator<Byte>
      */
     protected ByteValidator(final byte value)
     {
-        super( value );
+        super( value, Byte.MIN_VALUE, Byte.MAX_VALUE);
     }
-    
-    /**
-     * A method to mark that a max value test will be performed when the
-     * validate() method is called. The value must be less than or equal to the
-     * maxValue.
-     *
-     * @param maxValue
-     *            The max value to compare to.
-     *
-     * @return The same ByteValidator instance. This allows for method chaining.
-     */
-    public ByteValidator testMaxValue(final byte maxValue)
-    {
-        this._isTestMaxValue = true;
-        this._maxValue = maxValue;
-        return (this);
-    }
-    
-    /**
-     * A method to mark that a min value test will be performed when the
-     * validate() method is called. The value must be less than or equal to the
-     * minValue.
-     *
-     * @param minValue
-     *            The min value to compare to.
-     *
-     * @return The same ByteValidator instance. This allows for method chaining.
-     */
-    public ByteValidator testMinValue(final byte minValue)
-    {
-        this._isTestMinValue = true;
-        this._minValue = minValue;
-        return (this);
-    }
-    
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.gabsocial.gabvalidate.Validator#validate()
-     */
-    public boolean validate()
-    {
-    	
-		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-                
-        if (this._isTestMinValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value >= this._minValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be greater than or equal to the min value (value = '"
-                        + this._value
-                        + "' min value = '"
-                        + this._minValue
-                        + "').");
-            }
-            
-        }
-        
-        if (this._isTestMaxValue)
-        {
-			this._isTested = true;
-            isValid &= (this._value <= this._maxValue);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                .throwValidateException("The value must be less than or equal to the max value (value = '"
-                        + this._value
-                        + "' max value = '"
-                        + this._maxValue
-                        + "').");
-            }
-        }
-        
-        if( !this._isTested )
-        {
-            isValid = false;
-        }
-       
-        return (isValid);
-    }
-
+  
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */

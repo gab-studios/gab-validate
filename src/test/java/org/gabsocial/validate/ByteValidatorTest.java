@@ -46,9 +46,25 @@ public class ByteValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+        byte x = 5;
+        try
+        {
+            String desc = Validate.defineByte(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
-        byte x = '5';
+        byte x = 5;
         try
         {
             byte retVal = Validate.defineByte(x).getValue();
@@ -67,7 +83,7 @@ public class ByteValidatorTest
 
         try
         {
-            byte x = '5';
+            byte x = 5;
             boolean retVal = Validate.defineByte(x).throwValidationExceptionOnFail().validate();
             Assert.assertEquals(false, retVal);
         }
@@ -84,7 +100,7 @@ public class ByteValidatorTest
 
         try
         {
-            byte x = '5';
+            byte x = 5;
             boolean retVal = Validate.defineByte(x).validate();
             Assert.assertEquals(false, retVal);
         }
@@ -102,8 +118,8 @@ public class ByteValidatorTest
 
         try
         {
-            byte x = '5';
-            byte max = '8';
+            byte x = 5;
+            byte max = 8;
             boolean retVal = Validate.defineByte(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
@@ -122,8 +138,8 @@ public class ByteValidatorTest
         
         try
         {
-            byte x = '5';
-            byte min = '4';
+            byte x = 5;
+            byte min = 4;
             boolean retVal = Validate.defineByte(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
@@ -143,8 +159,8 @@ public class ByteValidatorTest
         
         try
         {
-            byte x = '5';
-            byte y = '5';
+            byte x = 5;
+            byte y= 5;
             boolean retVal = Validate.defineByte(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 

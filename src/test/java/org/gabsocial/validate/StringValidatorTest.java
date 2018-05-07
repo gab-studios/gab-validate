@@ -46,6 +46,22 @@ public class StringValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+        String x = "5";
+        try
+        {
+            String desc = Validate.defineString(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
         String x = "5";

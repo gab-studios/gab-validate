@@ -46,6 +46,21 @@ public class BooleanValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+        try
+        {
+            String desc = Validate.defineBoolean(true).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
         try

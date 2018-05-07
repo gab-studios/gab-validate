@@ -127,6 +127,16 @@ public class ObjectValidator<C> implements Validator
 		return (isValid);
 	}
 	
+	protected boolean notNullValue()
+	{
+		return( this._value != null );
+	}
+
+	protected boolean equalsValue()
+	{
+		return( this._value != null && this._value.equals(this._equalsValue) );
+	}
+	
 	/*
 	 * 
 	 */
@@ -137,7 +147,7 @@ public class ObjectValidator<C> implements Validator
         if (this._isTestNotNull)
         {
         		this._isTested = true;
-            isValid &= (this._value != null);
+            isValid &= notNullValue();
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
@@ -148,7 +158,7 @@ public class ObjectValidator<C> implements Validator
         if (this._isTestEquals)
         {
         		this._isTested = true;
-            isValid &= this._value != null && this._value.equals(this._equalsValue);
+            isValid &= equalsValue();
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator

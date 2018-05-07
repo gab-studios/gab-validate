@@ -44,11 +44,27 @@ public class LongValidatorTest
     {
         
     }
+    
+    @Test
+    public void testToString()
+    {
+    	long x = 5L;
+        try
+        {
+            String desc = Validate.defineLong(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
 
     @Test
     public void testGetValue()
     {
-        long x = '5';
+    	long x = 5L;
         try
         {
             long retVal = Validate.defineLong(x).getValue();
@@ -65,7 +81,7 @@ public class LongValidatorTest
     @Test
     public void testNoTest()
     {
-        long x = '5';
+    	long x = 5L;
         try
         {
             boolean retVal = Validate.defineLong(x).throwValidationExceptionOnFail().validate();
@@ -81,7 +97,7 @@ public class LongValidatorTest
     @Test
     public void testNoTest2()
     {
-        long x = '5';
+    	long x = 5L;
         try
         {
             boolean retVal = Validate.defineLong(x).validate();
@@ -100,8 +116,8 @@ public class LongValidatorTest
 
         try
         {
-            long x = 5;
-            long max = 10;
+        	long x = 5L;
+            long max = 10L;
             boolean retVal = Validate.defineLong(x).testMaxValue(max)
                     .throwValidationExceptionOnFail().validate();
 
@@ -120,8 +136,8 @@ public class LongValidatorTest
         
         try
         {
-            long x = 5;
-            long min = 4;
+        	long x = 5L;
+            long min = 4L;
             boolean retVal = Validate.defineLong(x).testMinValue(min)
                     .throwValidationExceptionOnFail().validate();
 
@@ -141,8 +157,8 @@ public class LongValidatorTest
         
         try
         {
-            long x = 5;
-            long y = 5;
+        	long x = 5L;
+        	long y = 5L;
             boolean retVal = Validate.defineLong(x).testEquals(y)
                     .throwValidationExceptionOnFail().validate();
 

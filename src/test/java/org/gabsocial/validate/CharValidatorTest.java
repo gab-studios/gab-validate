@@ -46,6 +46,22 @@ public class CharValidatorTest
     }
     
     @Test
+    public void testToString()
+    {
+    	char x = '5';
+        try
+        {
+            String desc = Validate.defineChar(x).toString();
+            Assert.assertTrue(desc != null && desc.length() != 0);
+        }
+        catch (final Exception e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+    
+    @Test
     public void testGetValue()
     {
         char x = '5';
