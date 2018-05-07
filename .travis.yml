@@ -24,7 +24,7 @@ env:
 addons:
   coverity_scan:
     project:
-      name: "sysdevone/gab-validate"
+      name: "gab-studios/gab-validate"
       description: "Build submitted via Travis CI"
     #notification_email:
     build_command_prepend: "mvn clean"
