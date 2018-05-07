@@ -11,7 +11,7 @@ Integration: [![Build Status](https://travis-ci.org/sysdevone/gab-validate.svg?b
 GAB-Validate
 =======
 
-The GAB Social Validation Library for Java.  The purpose of this project is to analyze and examine how I would create a validation library for Java.  Comments are welcome.  Thank you.
+The GAB Studios Validation Library for Java.  The purpose of this project is to analyze and examine how I would create a validation library for Java.  Comments are welcome.  Thank you.
 
 
 Required
