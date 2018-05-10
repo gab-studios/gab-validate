@@ -15,19 +15,19 @@ after_success:
   - codecov
   - mvn clean test jacoco:report coveralls:report
 
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "qZDvRAYjB8HbDcEcWQJ/6EgRUIjFfsrOFZftRv4XcS5hVQ/LE6iwObj2pFjB1N0iN1hsYCQX5hTiX5XgjXRTEczFUDAJhIFnIoBHE8ja+Kg7Ec0SJgs+Fr23R4Nzdj8LEUM5wl7KsJYCmtkGy66sNXBHPDN0YUCQi1hPTFGIU/WvmbVRx5XUz3uZr1EfpNgBQt65wsJQs682RbbVVFYPOVE0UkpnV9XxHyzogDrNXBv/7/IsGv4CUBbUBrVv9abSmB1B/Ta+ySum988qWWL2DIkGTNE5xfZsnweS39WO4ihvcKqFSTub+MjadsezmU9b2U++ZN8t7UEYzuzCTawz2G5Z41g8wk7e1i8IrvOxc8Jm3Vm6rVp6b9/VV+CgKJWtcw4lDy3lHZZalxEp3u3fwJyi34ZgLyAKpZ1A4Toyx/+9OmIKD37MGxxJKWiuc4U/bsKUMpVISiqYZDAQXFdi9j9oij+OcAfyy4uHjGw2Cnj+d5kuXYcaF+G4HpOpKuOnqNkRDqpIe2WyOgG/bdJWrT0YcnW4ffVSmM4vhmd7/CT6Uc4So7Lbp9tHf4bOaAm40PHXd/xcDhZ1zYSkHHU8ef+l2sThG/EXoo7xIuaVP6FbSOz0YUjYZtw475rTx7iHwsDUq+uP4nJINJqvWr2mmhAcdm7wtTzdnSM6d/5voos="
+#env:
+#  global:
+#   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+#   #   via the "travis encrypt" command using the project repo's public key
+#   - secure: "qZDvRAYjB8HbDcEcWQJ/6EgRUIjFfsrOFZftRv4XcS5hVQ/LE6iwObj2pFjB1N0iN1hsYCQX5hTiX5XgjXRTEczFUDAJhIFnIoBHE8ja+Kg7Ec0SJgs+Fr23R4Nzdj8LEUM5wl7KsJYCmtkGy66sNXBHPDN0YUCQi1hPTFGIU/WvmbVRx5XUz3uZr1EfpNgBQt65wsJQs682RbbVVFYPOVE0UkpnV9XxHyzogDrNXBv/7/IsGv4CUBbUBrVv9abSmB1B/Ta+ySum988qWWL2DIkGTNE5xfZsnweS39WO4ihvcKqFSTub+MjadsezmU9b2U++ZN8t7UEYzuzCTawz2G5Z41g8wk7e1i8IrvOxc8Jm3Vm6rVp6b9/VV+CgKJWtcw4lDy3lHZZalxEp3u3fwJyi34ZgLyAKpZ1A4Toyx/+9OmIKD37MGxxJKWiuc4U/bsKUMpVISiqYZDAQXFdi9j9oij+OcAfyy4uHjGw2Cnj+d5kuXYcaF+G4HpOpKuOnqNkRDqpIe2WyOgG/bdJWrT0YcnW4ffVSmM4vhmd7/CT6Uc4So7Lbp9tHf4bOaAm40PHXd/xcDhZ1zYSkHHU8ef+l2sThG/EXoo7xIuaVP6FbSOz0YUjYZtw475rTx7iHwsDUq+uP4nJINJqvWr2mmhAcdm7wtTzdnSM6d/5voos="
 
-addons:
-  coverity_scan:
-    project:
-      name: "gab-studios/gab-validate"
-      description: "Build submitted via Travis CI"
-    #notification_email:
-    build_command_prepend: "mvn clean"
-    build_command:   "mvn -DskipTests=true compile"
-    branch_pattern: master
-    #branch_pattern: coverity_scan
+#addons:
+#  coverity_scan:
+#    project:
+#      name: "gab-studios/gab-validate"
+#      description: "Build submitted via Travis CI"
+#    #notification_email:
+#    build_command_prepend: "mvn clean"
+#    build_command:   "mvn -DskipTests=true compile"
+#    branch_pattern: master
+#    #branch_pattern: coverity_scan
