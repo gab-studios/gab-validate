@@ -1,10 +1,7 @@
 
-Master: [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=master)](https://travis-ci.org/gab-studios/gab-validate)
-[![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-validate?branch=master)
-[![Issue Count](https://codeclimate.com/github/sysdevone/gab-validate/badges/issue_count.svg)](https://codeclimate.com/github/sysdevone/gab-validate)
-
-Integration: [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=integration)](https://travis-ci.org/gab-studios/gab-validate)
-[![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/gab-studios/gab-validate?branch=integration)
+Master | [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=master)](https://travis-ci.org/gab-studios/gab-validate) | [![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-validate?branch=master)
+---: | :---: | :---:
+Integration | [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=integration)](https://travis-ci.org/gab-studios/gab-validate) | [![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/gab-studios/gab-validate?branch=integration)
 
 GAB-Validate
 =======
@@ -74,17 +71,17 @@ To validate a String:
 
 More Documentation
 ------------------
-Check the project [wiki] [].
+Check the project [wiki].
 
 
 Copyright
 -------
-[Copyright 2015 Gregory Brown] [copyright]
+[Copyright 2015 Gregory Brown]
 
 
 License
 -------
-This codebase is licensed under the [Apache v2.0 License] [license].
+This codebase is licensed under the [Apache v2.0 License].
 
 
 Feedback
@@ -92,7 +89,7 @@ Feedback
 Comments and feedback are greatly appreciated!!!
 
 
-[copyright]: https://github.com/sysdevone/gab-validate/tree/master/COPYRIGHT.txt
-[license]: https://github.com/sysdevone/gab-validate/tree/master/LICENSE.txt
+[Copyright 2015 Gregory Brown]: https://github.com/sysdevone/gab-validate/tree/master/COPYRIGHT.txt
+[Apache v2.0 License]: https://github.com/sysdevone/gab-validate/tree/master/LICENSE.txt
 [wiki]: https://github.com/sysdevone/gab-validate/wiki
 [examples]: https://github.com/sysdevone/gab-validate/wiki/Examples
