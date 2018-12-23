@@ -8,13 +8,22 @@ GAB-Validate
 
 The GAB Studios Validation Library for Java.  The purpose of this project is to analyze and examine how I would create a validation library for Java.  Comments are welcome.  Thank you.
 
-
 Required
 ---------
 This project requires the following: 
 
     * Java 8
     * Maven
+
+Maven Dependency
+---------
+```java
+<dependency>
+  <groupId>com.gabstudios</groupId>
+  <artifactId>gab-validate</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
 
 Build
 ---------
