@@ -20,3 +20,4 @@ hs_err_pid*
 /release2.properties.bak
 /release.properties
 /pom.xml.releaseBackup
+/.DS_Store
