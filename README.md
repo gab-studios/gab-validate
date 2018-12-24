@@ -98,7 +98,7 @@ Feedback
 Comments and feedback are greatly appreciated!!!
 
 
-[Copyright 2015 Gregory Brown]: https://github.com/sysdevone/gab-validate/tree/master/COPYRIGHT.txt
-[Apache v2.0 License]: https://github.com/sysdevone/gab-validate/tree/master/LICENSE.txt
-[wiki]: https://github.com/sysdevone/gab-validate/wiki
-[examples]: https://github.com/sysdevone/gab-validate/wiki/Examples
+[Copyright 2015 Gregory Brown]: https://github.com/gab-studios/gab-validate/tree/master/COPYRIGHT.txt
+[Apache v2.0 License]: https://github.com/gab-studios/gab-validate/tree/master/LICENSE.txt
+[wiki]: https://github.com/gab-studios/gab-validate/wiki
+[examples]: https://github.com/gab-studios/gab-validate/wiki/Examples
