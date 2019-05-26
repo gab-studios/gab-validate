@@ -8,13 +8,6 @@ GAB-Validate
 
 The GAB Studios Validation Library for Java.  The purpose of this project is to analyze and examine how I would create a validation library for Java.  Comments are welcome.  Thank you.
 
-Required
----------
-This project requires the following: 
-
-    * Java 8
-    * Maven
-
 Maven Dependency
 ---------
 ```java
@@ -28,6 +21,13 @@ Maven Dependency
 Build
 ---------
 Use Maven to build - `mvn package`.
+
+Required
+---------
+This project requires the following: 
+
+    * Java 8
+    * Maven
 
 Usage
 ---------
