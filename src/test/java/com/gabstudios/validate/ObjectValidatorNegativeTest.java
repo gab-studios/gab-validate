@@ -59,7 +59,7 @@ public class ObjectValidatorNegativeTest {
     public void testEmptyThrowValidateExceptionMessage() {
 
         ObjectValidatorTester validator = new ObjectValidatorTester("");
-        Assert.assertThrows(ValidateException.class, () -> validator.validate());
+        Assert.assertThrows(AssertionError.class, () -> validator.validate());
 
     }
 
@@ -67,7 +67,7 @@ public class ObjectValidatorNegativeTest {
     public void testNullThrowValidateExceptionMessage() {
 
         ObjectValidatorTester validator = new ObjectValidatorTester(null);
-        Assert.assertThrows(ValidateException.class, () -> validator.validate());
+        Assert.assertThrows(AssertionError.class, () -> validator.validate());
 
     }
 
