@@ -1,6 +1,6 @@
 
-Master | [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=master)](https://travis-ci.org/gab-studios/gab-validate) | [![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-validate?branch=master)
----: | :---: | :---:
+Master | [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=master)](https://travis-ci.org/gab-studios/gab-validate) | [![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=master)](https://codecov.io/github/gab-studios/gab-validate?branch=master) | [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-black.svg)](https://sonarcloud.io/dashboard?id=gab-studios_gab-validate)
+---: | :---: | :---: | :---:
 Integration | [![Build Status](https://travis-ci.org/gab-studios/gab-validate.svg?branch=integration)](https://travis-ci.org/gab-studios/gab-validate) | [![codecov.io](https://codecov.io/github/gab-studios/gab-validate/coverage.svg?branch=integration)](https://codecov.io/github/gab-studios/gab-validate?branch=integration)
 
 GAB-Validate
