@@ -79,7 +79,7 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 	 *            The value to perform the test with.
 	 * @return The same FloatValidator instance. This allows for method chaining.
 	 */
-	public NumberValidator testMaxValue(final C maxValue) {
+	public NumberValidator<C> testMaxValue(final C maxValue) {
 		this._isTestMaxValue = true;
 		this._maxValue = maxValue;
 		return (this);
@@ -94,7 +94,7 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 	 *            The value to perform the test with.
 	 * @return The same FloatValidator instance. This allows for method chaining.
 	 */
-	public NumberValidator testMinValue(final C minValue) {
+	public NumberValidator<C> testMinValue(final C minValue) {
 		this._isTestMinValue = true;
 		this._minValue = minValue;
 		return (this);
