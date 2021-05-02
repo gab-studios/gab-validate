@@ -15,3 +15,13 @@ before_script:
 after_success:
   - codecov
   - mvn clean test jacoco:report coveralls:report
+  
+addons:
+  sonarcloud:
+    organization: "gab-studios"
+    token:
+      secure: "fa5930aff2a0346dd6cd38ab5e318b87a8da98d5" # encrypted value of your token
+
+script:
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
