@@ -44,55 +44,30 @@ public class ObjectValidatorNegativeTest {
     @Test
     public void testEquals() {
 
-        try {
-            Validate.defineObject("HelloWorld").testEquals("HelloWorld1231").throwValidationExceptionOnFail()
-                    .validate();
-
-                    Assert.fail("Expected an AssertionError!");
-        } catch (final ValidateException e) {
-            Assert.assertTrue(true);
-        }
+        Assert.assertThrows(ValidateException.class, () -> Validate.defineObject("HelloWorld")
+                .testEquals("HelloWorld1231").throwValidationExceptionOnFail().validate());
 
     }
 
     @Test
     public void testNotNull() {
-
-        try {
-            Validate.defineObject(null).testNotNull().throwValidationExceptionOnFail().validate();
-
-            Assert.fail("Expected an AssertionError!");
-        } catch (final ValidateException e) {
-            Assert.assertTrue(true);
-        }
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineObject(null).testNotNull().throwValidationExceptionOnFail().validate());
     }
 
     @Test
     public void testEmptyThrowValidateExceptionMessage() {
-        try {
-            ObjectValidatorTester validator = new ObjectValidatorTester("");
-            validator.validate();
 
-            Assert.fail("Expected an AssertionError!");
-        } catch (final AssertionError e) {
-            Assert.assertTrue(true);
-        }
+        ObjectValidatorTester validator = new ObjectValidatorTester("");
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
 
     @Test
-    public void testNullThrowValidateExceptionMessage()
-    {
-        try
-        {
-        	ObjectValidatorTester validator = new ObjectValidatorTester(null);
-            validator.validate();
-            
-            Assert.fail("Expected an AssertionError!");
+    public void testNullThrowValidateExceptionMessage() {
 
-        } catch (AssertionError e) {
-            Assert.assertTrue(true);
-        }
+        ObjectValidatorTester validator = new ObjectValidatorTester(null);
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
 
