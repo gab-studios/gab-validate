@@ -24,179 +24,98 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A negative test class for the CharValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class CharValidatorNegativeTest
-{
+public class CharValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
+
     @Test
-    public void testMaxValue()
-    {
-        
-        try
-        {
-            char x = '5';
-            char max = '4';
-            Validate.defineChar(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testMaxValue() {
+
+        char x = '5';
+        char max = '4';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            char x = '5';
-            char min = '8';
-            Validate.defineChar(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testMinLength() {
+
+        char x = '5';
+        char min = '8';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
+    public void testEquals() {
+
+        try {
             char x = 'A';
             char y = 'a';
-            boolean retVal = Validate.defineChar(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
-            
+            boolean retVal = Validate.defineChar(x).testEquals(y).throwValidationExceptionOnFail().validate();
+
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.assertTrue(true);
         }
-        
+
     }
-    
+
     @Test
-    public void testIsDigit()
-    {
-        
-        try
-        {
-            char x = '#';
-            Validate.defineChar(x).testIsDigit()
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testIsDigit() {
+
+        char x = '#';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testIsDigit().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testIsLowerCase()
-    {
-        
-        try
-        {
-            char x = 'A';
-            Validate.defineChar(x).testIsLowerCase()
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testIsLowerCase() {
+        char x = 'A';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testIsLowerCase().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testIsUpperCase()
-    {
-        
-        try
-        {
-            char x = 'a';
-            Validate.defineChar(x).testIsUpperCase()
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testIsUpperCase() {
+
+        char x = 'a';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testIsUpperCase().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testIsWhitespace()
-    {
-        
-        try
-        {
-            char x = 'A';
-            Validate.defineChar(x).testIsWhitespace()
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testIsWhitespace() {
+        char x = 'A';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testIsWhitespace().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testNotEmpty()
-    {
-        
-        try
-        {
-            char x = '\0';
-            Validate.defineChar(x).testNotEmpty()
-                    .throwValidationExceptionOnFail().validate();
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testNotEmpty() {
+        char x = '\0';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineChar(x).testNotEmpty().throwValidationExceptionOnFail().validate());
+
     }
-    
+
 }

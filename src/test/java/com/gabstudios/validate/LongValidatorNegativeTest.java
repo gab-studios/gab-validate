@@ -24,86 +24,48 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the LongValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class LongValidatorNegativeTest
-{
+public class LongValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
+
     @Test
-    public void testMaxValue()
-    {
-
-        try
-        {
-            long x = 5;
-            long max = 4;
-            Validate.defineLong(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    public void testMaxValue() {
+        long x = 5;
+        long max = 4;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            long x = 5;
-            long min = 7;
-            Validate.defineLong(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
+    public void testMinLength() {
+        long x = 5;
+        long min = 7;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).testMinValue(min).throwValidationExceptionOnFail().validate());
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
     }
-    
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            long x = 5;
-            long y = 6;
-            Validate.defineLong(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testEquals() {
+        long x = 5;
+        long y = 6;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).testEquals(y).throwValidationExceptionOnFail().validate());
+
     }
-    
+
 }

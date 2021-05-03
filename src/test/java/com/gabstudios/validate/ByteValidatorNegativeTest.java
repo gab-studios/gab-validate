@@ -24,87 +24,51 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the ByteValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ByteValidatorNegativeTest
-{
+public class ByteValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
-    
+
     @Test
-    public void testMaxValue()
-    {
+    public void testMaxValue() {
 
-        try
-        {
-            byte x = '5';
-            byte max = '4';
-            Validate.defineByte(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+        byte x = '5';
+        byte max = '4';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            byte x = '5';
-            byte min = '7';
-            Validate.defineByte(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
+    public void testMinLength() {
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+        byte x = '5';
+        byte min = '7';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+
     }
-    
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            byte x = '5';
-            byte y = '6';
-            Validate.defineByte(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
+    public void testEquals() {
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+        byte x = '5';
+        byte y = '6';
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).testEquals(y).throwValidationExceptionOnFail().validate());
+
     }
-    
+
 }

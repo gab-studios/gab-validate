@@ -24,147 +24,95 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the DoubleValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class DoubleValidatorNegativeTest
-{
+public class DoubleValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
-    }
-    
-    
-    @Test
-    public void testMaxValue()
-    {
+    public void tearDown() {
 
-        try
-        {
+    }
+
+    @Test
+    public void testMaxValue() {
+
+        double x = 5;
+        double max = 4;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testMaxValue2() {
+
+        try {
             double x = 5;
             double max = 4;
-            Validate.defineDouble(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-
-    }
-    
-    @Test
-    public void testMaxValue2()
-    {
-
-        try
-        {
-            double x = 5;
-            double max = 4;
-            boolean retVal = Validate.defineDouble(x).testMaxValue(max)
-                    .validate();
+            boolean retVal = Validate.defineDouble(x).testMaxValue(max).validate();
 
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail();
         }
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
+    public void testMinLength() {
+
+        double x = 5;
+        double min = 7;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testMinLength2() {
+
+        try {
             double x = 5;
             double min = 7;
-            Validate.defineDouble(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
-    }
-    
-    @Test
-    public void testMinLength2()
-    {
-        
-        try
-        {
-            double x = 5;
-            double min = 7;
-            boolean retVal = Validate.defineDouble(x).testMinValue(min)
-                    .validate();
+            boolean retVal = Validate.defineDouble(x).testMinValue(min).validate();
 
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.assertTrue(false);
         }
-        
-    }
-    
-    
-    @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            double x = 5;
-            double y = 6;
-            Validate.defineDouble(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
     }
-    
+
     @Test
-    public void testEquals2()
-    {
-        
-        try
-        {
+    public void testEquals() {
+        double x = 5;
+        double y = 6;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).testEquals(y).throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testEquals2() {
+
+        try {
             double x = 5;
             double y = 6;
-            boolean retVal = Validate.defineDouble(x).testEquals(y)
-                    .validate();
+            boolean retVal = Validate.defineDouble(x).testEquals(y).validate();
 
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.assertTrue(false);
         }
-        
+
     }
-    
+
 }

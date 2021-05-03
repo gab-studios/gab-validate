@@ -24,97 +24,53 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  *
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class BooleanValidatorNegativeTest
-{
+public class BooleanValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
-    
+
     @Test
-    public void testTrue()
-    {
-        
-        try
-        {
-            Validate.defineBoolean(true).testFalse().throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testTrue() {
+
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineBoolean(true).testFalse().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testFalse()
-    {
-        
-        try
-        {
-            Validate.defineBoolean(false).testTrue().throwValidationExceptionOnFail()
-                    .validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testFalse() {
+
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineBoolean(false).testTrue().throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            Validate.defineBoolean(false).testEquals(true).throwValidationExceptionOnFail()
-                    .validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testEquals() {
+
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineBoolean(false).testEquals(true).throwValidationExceptionOnFail().validate());
+
     }
-    
+
     @Test
-    public void testEquals2()
-    {
-        
-        try
-        {
-            Validate.defineBoolean(true).testEquals(false)
-                    .throwValidationExceptionOnFail().validate();
-            
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+    public void testEquals2() {
+
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineBoolean(true).testEquals(false).throwValidationExceptionOnFail().validate());
+
     }
-    
+
 }
