@@ -24,157 +24,119 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the ArrayValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ArrayValidatorNegativeTest
-{
+public class ArrayValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
 
     @After
-    public void tearDown()
-    {
+    public void tearDown() {
 
     }
-    
+
     @Test
-    public void testMaxLength()
-    {
+    public void testMaxLength() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
 
-            Assert.assertThrows(ValidateException.class, () -> Validate.defineArray(strArray1).testMaxLength(2)
-                    .throwValidationExceptionOnFail().validate());
+        ArrayValidator validator = Validate.defineArray(strArray1).testMaxLength(2).throwValidationExceptionOnFail();
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
+
     @Test
-    public void testMaxLengthLessThanZero()
-    {
+    public void testMaxLengthLessThanZero() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMaxLength(-11)
-                    .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMaxLength(-11));
     }
-    
-    @Test
-    public void testMaxLengthGreaterThanMin()
-    {
+
+    public void testMaxLengthGreaterThanMin() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(11).testMaxLength(5)
-            .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class,
+                () -> Validate.defineArray(strArray1).testMinLength(11).testMaxLength(5));
 
     }
 
     @Test
-    public void testMinLength()
-    {
+    public void testMinLength() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(ValidateException.class, () -> Validate.defineArray(strArray1).testMinLength(5)
-                    .throwValidationExceptionOnFail().validate());
+        ArrayValidator validator = Validate.defineArray(strArray1).testMinLength(5).throwValidationExceptionOnFail();
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
+
     @Test
-    public void testMinLength2()
-    {
+    public void testMinLength2() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(-5)
-                    .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(-5));
 
     }
-    
+
     @Test
-    public void testMinLength3()
-    {
+    public void testMinLength3() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(11).testMaxLength(10)
-                    .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class,
+                () -> Validate.defineArray(strArray1).testMinLength(11).testMaxLength(10));
 
     }
-    
+
     @Test
-    public void testMinLengthLessThanZero()
-    {
+    public void testMinLengthLessThanZero() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(-10)
-                    .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMinLength(-10));
 
     }
-    
+
     @Test
-    public void testMinLengthLessThanMax()
-    {
+    public void testMinLengthLessThanMax() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
-        Assert.assertThrows(IllegalArgumentException.class, () -> Validate.defineArray(strArray1).testMaxLength(5).testMinLength(11)
-                    .throwValidationExceptionOnFail().validate());
+        Assert.assertThrows(IllegalArgumentException.class,
+                () -> Validate.defineArray(strArray1).testMaxLength(5).testMinLength(11));
 
     }
 
     @Test
-    public void testNotNullEmpty()
-    {
+    public void testNotNullEmpty() {
 
         String[] strArray1 = null;
-        Assert.assertThrows(ValidateException.class, () -> Validate.defineArray(strArray1).testNotNullEmpty()
-                    .throwValidationExceptionOnFail().validate());
+        ArrayValidator validator = Validate.defineArray(strArray1).testNotNullEmpty().throwValidationExceptionOnFail();
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
-    @Test
-    public void testNotNullEmpty2()
-    {
 
-        String[] strArray1 = { };
-        Assert.assertThrows(ValidateException.class, () -> Validate.defineArray(strArray1).testNotNullEmpty()
-                    .throwValidationExceptionOnFail().validate());
+    @Test
+    public void testNotNullEmpty2() {
+
+        String[] strArray1 = {};
+        ArrayValidator validator = Validate.defineArray(strArray1).testNotNullEmpty().throwValidationExceptionOnFail();
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
 
     @Test
-    public void testNotNull()
-    {
+    public void testNotNull() {
 
         String[] strArray1 = null;
-        try
-        {
-            Validate.defineArray(strArray1).testNotNull()
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+        ArrayValidator validator = Validate.defineArray(strArray1).testNotNull().throwValidationExceptionOnFail();
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
+
     @Test
-    public void testEquals()
-    {
+    public void testEquals() {
         String[] strArray1 = { "Hello", "World", "is", "awesome" };
         String[] strArray2 = { "Hello", "World", "is", "crazy" };
-        try
-        {
-            Validate.defineArray(strArray1).testEquals(strArray2)
-                    .throwValidationExceptionOnFail().validate();
+        ArrayValidator validator = Validate.defineArray(strArray1).testEquals(strArray2)
+                .throwValidationExceptionOnFail();
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+        Assert.assertThrows(ValidateException.class, () -> validator.validate());
 
     }
-    
-        
+
 }
