@@ -24,86 +24,50 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the IntegerValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class IntegerValidatorNegativeTest
-{
+public class IntegerValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
+
     @Test
-    public void testMaxValue()
-    {
+    public void testMaxValue() {
 
-        try
-        {
-            int x = 5;
-            int max = 4;
-            Validate.defineInteger(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+        int x = 5;
+        int max = 4;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            int x = 5;
-            int min = 7;
-            Validate.defineInteger(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
+    public void testMinLength() {
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+        int x = 5;
+        int min = 7;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+
     }
-    
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            int x = 5;
-            int y = 6;
-            Validate.defineInteger(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
+    public void testEquals() {
+        int x = 5;
+        int y = 6;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).testEquals(y).throwValidationExceptionOnFail().validate());
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
     }
-    
+
 }

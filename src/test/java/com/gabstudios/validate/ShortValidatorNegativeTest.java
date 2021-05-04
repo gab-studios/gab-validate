@@ -24,86 +24,50 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the ShortValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ShortValidatorNegativeTest
-{
+public class ShortValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
+
     @Test
-    public void testMaxValue()
-    {
-
-        try
-        {
-            short x = 5;
-            short max = 4;
-            Validate.defineShort(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    public void testMaxValue() {
+        short x = 5;
+        short max = 4;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            short x = 5;
-            short min = 7;
-            Validate.defineShort(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
+    public void testMinLength() {
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+        short x = 5;
+        short min = 7;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+
     }
-    
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            short x = 5;
-            short y = 6;
-            Validate.defineShort(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
+    public void testEquals() {
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
-        
+        short x = 5;
+        short y = 6;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).testEquals(y).throwValidationExceptionOnFail().validate());
+
     }
-    
+
 }

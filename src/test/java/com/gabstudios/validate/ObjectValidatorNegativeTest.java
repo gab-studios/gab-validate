@@ -24,121 +24,74 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the ObjectValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ObjectValidatorNegativeTest
-{
+public class ObjectValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
 
     @After
-    public void tearDown()
-    {
-
-    }   
-    
-    
-    @Test
-    public void testEquals()
-    {
-
-        try
-        {
-            Validate.defineObject("HelloWorld").testEquals("HelloWorld1231")
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    public void tearDown() {
 
     }
 
     @Test
-    public void testNotNull()
-    {
+    public void testEquals() {
 
-        try
-        {
-            Validate.defineObject(null).testNotNull()
-                    .throwValidationExceptionOnFail().validate();
+        Assert.assertThrows(ValidateException.class, () -> Validate.defineObject("HelloWorld")
+                .testEquals("HelloWorld1231").throwValidationExceptionOnFail().validate());
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
     }
-    
+
     @Test
-    public void testEmptyThrowValidateExceptionMessage()
-    {
-        try
-        {
-        	ObjectValidatorTester validator = new ObjectValidatorTester("");
-            validator.validate();
-            
-            Assert.fail();
-        }
-        catch (final AssertionError e)
-        {
-            Assert.assertTrue(true);
-        }
-
+    public void testNotNull() {
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineObject(null).testNotNull().throwValidationExceptionOnFail().validate());
     }
-    
-    
+
     @Test
-    public void testNullThrowValidateExceptionMessage()
-    {
-        try
-        {
-        	ObjectValidatorTester validator = new ObjectValidatorTester(null);
-            validator.validate();
-            
-            Assert.fail();
-        }
-        catch (final AssertionError e)
-        {
-            Assert.assertTrue(true);
-        }
+    public void testEmptyThrowValidateExceptionMessage() {
+
+        ObjectValidatorTester validator = new ObjectValidatorTester("");
+        Assert.assertThrows(AssertionError.class, () -> validator.validate());
 
     }
-        
+
+    @Test
+    public void testNullThrowValidateExceptionMessage() {
+
+        ObjectValidatorTester validator = new ObjectValidatorTester(null);
+        Assert.assertThrows(AssertionError.class, () -> validator.validate());
+
+    }
+
 }
 
-class ObjectValidatorTester extends ObjectValidator<Object>
-{
+class ObjectValidatorTester extends ObjectValidator<Object> {
 
     String _message;
-    
-    public ObjectValidatorTester(String message )
-    {
-    		super( new Object() );
+
+    public ObjectValidatorTester(String message) {
+        super(new Object());
         this._message = message;
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.gabstudios.validate.Validator#validate()
      */
     @Override
-    public boolean validate()
-    {
-        ObjectValidator
-        .throwValidateException(this._message);
-        
+    public boolean validate() {
+        ObjectValidator.throwValidateException(this._message);
+
         return false;
     }
-    
+
 }

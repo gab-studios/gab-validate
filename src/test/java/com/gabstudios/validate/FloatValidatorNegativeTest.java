@@ -24,82 +24,47 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the FloatValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class FloatValidatorNegativeTest
-{
+public class FloatValidatorNegativeTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
-    }
-    
-    @Test
-    public void testMaxValue()
-    {
-
-        try
-        {
-            float x = 5;
-            float max = 4;
-            Validate.defineFloat(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
-
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    public void tearDown() {
 
     }
-    
-    @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
-            float x = 5;
-            float min = 7;
-            Validate.defineFloat(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    @Test
+    public void testMaxValue() {
+        float x = 5;
+        float max = 4;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).testMaxValue(max).throwValidationExceptionOnFail().validate());
+
     }
-    
-    @Test
-    public void testEquals()
-    {
-        
-        try
-        {
-            float x = 5;
-            float y = 6;
-            Validate.defineFloat(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
 
-            Assert.fail();
-        }
-        catch (final ValidateException e)
-        {
-            Assert.assertTrue(true);
-        }
+    @Test
+    public void testMinLength() {
+
+        float x = 5;
+        float min = 7;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).testMinValue(min).throwValidationExceptionOnFail().validate());
+    }
+
+    @Test
+    public void testEquals() {
+        float x = 5;
+        float y = 6;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).testEquals(y).throwValidationExceptionOnFail().validate());
+
     }
 }
