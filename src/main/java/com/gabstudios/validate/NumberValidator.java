@@ -99,7 +99,7 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 		this._minValue = minValue;
 		return (this);
 	}
-
+    
 	/*
 	 * (non-Javadoc)
 	 * 
