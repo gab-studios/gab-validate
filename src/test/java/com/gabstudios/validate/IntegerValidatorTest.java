@@ -24,151 +24,159 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /**
  * A test class for the IntegerValidator
  *
  * @author Gregory Brown (sysdevone)
  *
  */
-public class IntegerValidatorTest
-{
+public class IntegerValidatorTest {
     @Before
-    public void setUp()
-    {
+    public void setUp() {
         //
     }
-    
+
     @After
-    public void tearDown()
-    {
-        
+    public void tearDown() {
+
     }
-    
+
     @Test
-    public void testToString()
-    {
-    	int x = 5;
-        try
-        {
+    public void testToString() {
+        int x = 5;
+        try {
             String desc = Validate.defineInteger(x).toString();
             Assert.assertTrue(desc != null && desc.length() != 0);
-        }
-        catch (final Exception e)
-        {
+        } catch (final Exception e) {
             Assert.fail(e.toString());
         }
 
     }
-    
+
     @Test
-    public void testGetValue()
-    {
-    	int x = 5;
-        try
-        {
+    public void testGetValue() {
+        int x = 5;
+        try {
             int retVal = Validate.defineInteger(x).getValue();
             Assert.assertEquals(x, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
 
     }
-    
-    
+
     @Test
-    public void testNoTest()
-    {
-    	int x = 5;
-        try
-        {
+    public void testNoTest() {
+        int x = 5;
+        try {
             boolean retVal = Validate.defineInteger(x).throwValidationExceptionOnFail().validate();
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
 
     }
-    
+
     @Test
-    public void testNoTest2()
-    {
-    	int x = 5;
-        try
-        {
+    public void testNoTest2() {
+        int x = 5;
+        try {
             boolean retVal = Validate.defineInteger(x).validate();
             Assert.assertEquals(false, retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
 
-    }         
-    
-    @Test
-    public void testMaxValue()
-    {
+    }
 
-        try
-        {
+    @Test
+    public void testMaxValue() {
+
+        try {
             int x = 5;
             int max = 10;
-            boolean retVal = Validate.defineInteger(x).testMaxValue(max)
-                    .throwValidationExceptionOnFail().validate();
+            boolean retVal = Validate.defineInteger(x).testMaxValue(max).throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
 
     }
-    
+
     @Test
-    public void testMinLength()
-    {
-        
-        try
-        {
+    public void testMinLength() {
+
+        try {
             int x = 5;
             int min = 4;
-            boolean retVal = Validate.defineInteger(x).testMinValue(min)
-                    .throwValidationExceptionOnFail().validate();
+            boolean retVal = Validate.defineInteger(x).testMinValue(min).throwValidationExceptionOnFail().validate();
 
             Assert.assertTrue(retVal);
-        }
-        catch (final ValidateException e)
-        {
+        } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
-        
+
     }
-    
-    
+
     @Test
-    public void testEquals()
-    {
-        
-        try
-        {
+    public void testEquals() {
+
+        try {
             int x = 5;
             int y = 5;
-            boolean retVal = Validate.defineInteger(x).testEquals(y)
-                    .throwValidationExceptionOnFail().validate();
+            boolean retVal = Validate.defineInteger(x).testEquals(y).throwValidationExceptionOnFail().validate();
 
+            Assert.assertTrue(retVal);
+        } catch (final ValidateException e) {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            int x = 0;
+            boolean retVal = Validate.defineInteger(x).isZeroValue().throwValidationExceptionOnFail().validate();
             Assert.assertTrue(retVal);
         }
         catch (final ValidateException e)
         {
             Assert.fail(e.toString());
         }
-        
+
     }
-    
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            int x = 5;
+            boolean retVal = Validate.defineInteger(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            int x = -5;
+            boolean retVal = Validate.defineInteger(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
 }

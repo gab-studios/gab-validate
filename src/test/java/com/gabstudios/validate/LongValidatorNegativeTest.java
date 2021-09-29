@@ -68,4 +68,31 @@ public class LongValidatorNegativeTest {
 
     }
 
+    @Test
+    public void testZeroValue() {
+
+        long x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        long x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        long x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineLong(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
+
 }

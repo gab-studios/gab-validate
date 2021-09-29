@@ -47,7 +47,7 @@ public class LongValidator  extends NumberValidator<Long>
      */
     protected LongValidator(final long value)
     {
-        super( value, Long.MIN_VALUE, Long.MAX_VALUE );
+        super( value, Long.MIN_VALUE, Long.MAX_VALUE, Long.valueOf(0) );
     }
 
 	/* (non-Javadoc)

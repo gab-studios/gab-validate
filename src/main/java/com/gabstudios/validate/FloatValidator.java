@@ -47,7 +47,7 @@ public class FloatValidator extends NumberValidator<Float>
      */
     protected FloatValidator(final float value)
     {
-        super( value, Float.MIN_VALUE, Float.MAX_VALUE );
+        super( value, Float.MIN_VALUE, Float.MAX_VALUE, Float.valueOf(0));
     }
 
 

@@ -70,4 +70,31 @@ public class ShortValidatorNegativeTest {
 
     }
 
+    @Test
+    public void testZeroValue() {
+
+        short x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        short x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        short x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineShort(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
+
 }

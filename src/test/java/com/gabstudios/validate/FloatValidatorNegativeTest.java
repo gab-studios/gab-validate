@@ -67,4 +67,31 @@ public class FloatValidatorNegativeTest {
                 () -> Validate.defineFloat(x).testEquals(y).throwValidationExceptionOnFail().validate());
 
     }
+
+    @Test
+    public void testZeroValue() {
+
+        float x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        float x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        float x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineFloat(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
 }

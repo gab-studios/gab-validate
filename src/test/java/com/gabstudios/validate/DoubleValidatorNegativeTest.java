@@ -115,4 +115,31 @@ public class DoubleValidatorNegativeTest {
 
     }
 
+    @Test
+    public void testZeroValue() {
+
+        double x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        double x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        double x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineDouble(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
+
 }

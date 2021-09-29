@@ -47,7 +47,7 @@ public class ShortValidator extends NumberValidator<Short>
      */
     protected ShortValidator(final short value)
     {
-        super( value, Short.MIN_VALUE, Short.MAX_VALUE );
+        super( value, Short.MIN_VALUE, Short.MAX_VALUE, (short)0);
     }
 
 	/* (non-Javadoc)

@@ -45,6 +45,24 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 	protected boolean _isTestMinValue = false;
 
 	/*
+	 * A flag indicating that a positive value test will be performed when the
+	 * validate() method is called.
+	 */
+	protected boolean _isTestPositiveValue = false;
+
+	/*
+	 * A flag indicating that a negative value test will be performed when the
+	 * validate() method is called.
+	 */
+	protected boolean _isTestNegativeValue = false;
+
+	/*
+	 * A flag indicating that a zero value test will be performed when the
+	 * validate() method is called.
+	 */
+	protected boolean _isTestZeroValue = false;
+
+	/*
 	 * The max value to test for. Defaults to Float.MAX_VALUE.
 	 */
 	protected C _maxValue;
@@ -55,6 +73,11 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 	protected C _minValue;
 
 	/**
+	 * Used for the zero, negative, and postive testing against zero.
+	 */
+	protected C _zeroValue;
+
+	/**
 	 * Protected constructor. Use Validate static method to create validator.
 	 *
 	 * @param value
@@ -63,11 +86,14 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 	 *            The min value to use in tests.
 	 * @param maxValue
 	 *            The max value to use in tests.
+	 * @param zeroValue
+	 *            The zero value to use in tests.
 	 */
-	protected NumberValidator(final C value, final C minValue, final C maxValue) {
+	protected NumberValidator(final C value, final C minValue, final C maxValue, final C zeroValue ) {
 		super(value);
 		this._minValue = minValue;
 		this._maxValue = maxValue;
+		this._zeroValue = zeroValue;
 	}
 
 	/**
@@ -99,6 +125,42 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 		this._minValue = minValue;
 		return (this);
 	}
+
+	/**
+	 * A method to mark that an "zero value" test will be performed when the
+	 * validate() method is called. Tests if the value is greater than or equal to
+	 * the min value when the validate method is called.
+	 * 
+	 * @return The same NumberValidator instance. This allows for method chaining.
+	 */
+	public NumberValidator<C> isZeroValue() {
+		this._isTestZeroValue = true;
+		return (this);
+	}
+
+	/**
+	 * A method to mark that an "positive value" test will be performed when the
+	 * validate() method is called. Tests if the value is greater than or equal to
+	 * the min value when the validate method is called.
+	 * 
+	 * @return The same NumberValidator instance. This allows for method chaining.
+	 */
+	public NumberValidator<C> isPositiveValue() {
+		this._isTestPositiveValue = true;
+		return (this);
+	}
+
+	/**
+	 * A method to mark that an "negative value" test will be performed when the
+	 * validate() method is called. Tests if the value is greater than or equal to
+	 * the min value when the validate method is called.
+	 * 
+	 * @return The same NumberValidator instance. This allows for method chaining.
+	 */
+	public NumberValidator<C> isNegativeValue() {
+		this._isTestNegativeValue = true;
+		return (this);
+	}
     
 	/*
 	 * (non-Javadoc)
@@ -109,7 +171,7 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 
 		// call ObjectValidator validate method.
 		boolean isValid = super.validate(true);
-		// System.out.println( "Super.validate: " + isValid);
+		//System.out.println( "Super.validate: " + isValid);
 		if (this._isTestMinValue) {
 			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._minValue) >= 0);
@@ -128,6 +190,37 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 				ObjectValidator
 						.throwValidateException("The value must be less than or equal to the max value (value = '"
 								+ this._value + "' max value = '" + this._maxValue + "').");
+			}
+		}
+
+		if (this._isTestZeroValue) {
+			this._isTested = true;
+			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) == 0);
+			//System.out.println( "Zero: " + isValid );
+			if (this._isValidationExceptionThrownOnFail && !isValid) {
+				ObjectValidator.throwValidateException("The value is not a zero value x = 0 (value = '" + this._value + "').");
+			}
+		}
+
+		if (this._isTestPositiveValue) {
+			this._isTested = true;
+			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) > 0);
+			//System.out.println( "Pos: " + isValid );
+			if (this._isValidationExceptionThrownOnFail && !isValid) {
+				ObjectValidator
+						.throwValidateException("The value must be be a positive value x > 0 (value = '"
+								+ this._value + "').");
+			}
+		}
+		
+		if (this._isTestNegativeValue) {
+			this._isTested = true;
+			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) < 0);
+			//System.out.println( "Neg: " + isValid );
+			if (this._isValidationExceptionThrownOnFail && !isValid) {
+				ObjectValidator
+				.throwValidateException("The value must be be a negative value x < 0 (value = '"
+				+ this._value + "').");
 			}
 		}
 
