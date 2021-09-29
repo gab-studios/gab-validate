@@ -172,5 +172,51 @@ public class ByteValidatorTest
         }
         
     }
+
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            byte x = 0;
+            boolean retVal = Validate.defineByte(x).isZeroValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            byte x = 5;
+            boolean retVal = Validate.defineByte(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            byte x = -5;
+            boolean retVal = Validate.defineByte(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
     
 }

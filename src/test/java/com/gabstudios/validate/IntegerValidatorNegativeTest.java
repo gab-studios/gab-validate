@@ -70,4 +70,31 @@ public class IntegerValidatorNegativeTest {
 
     }
 
+    @Test
+    public void testZeroValue() {
+
+        int x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        int x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        int x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineInteger(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
+
 }

@@ -170,5 +170,50 @@ public class FloatValidatorTest
         }
         
     }
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            float x = 0f;
+            boolean retVal = Validate.defineFloat(x).isZeroValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            float x = 5f;
+            boolean retVal = Validate.defineFloat(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            float x = -5f;
+            boolean retVal = Validate.defineFloat(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
     
 }

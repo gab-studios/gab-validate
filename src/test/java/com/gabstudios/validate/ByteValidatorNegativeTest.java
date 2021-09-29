@@ -71,4 +71,31 @@ public class ByteValidatorNegativeTest {
 
     }
 
+    @Test
+    public void testZeroValue() {
+
+        byte x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).isZeroValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        byte x = -5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).isPositiveValue().throwValidationExceptionOnFail().validate());
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        byte x = 5;
+        Assert.assertThrows(ValidateException.class,
+                () -> Validate.defineByte(x).isNegativeValue().throwValidationExceptionOnFail().validate());
+
+    }
+
 }

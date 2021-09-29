@@ -47,7 +47,7 @@ public class IntegerValidator extends NumberValidator<Integer>
      */
     protected IntegerValidator(final int value)
     {
-        super( value, Integer.MIN_VALUE, Integer.MAX_VALUE );
+        super( value, Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
     }
 
 	/* (non-Javadoc)

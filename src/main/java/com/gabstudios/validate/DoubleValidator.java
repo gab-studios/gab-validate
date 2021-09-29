@@ -47,7 +47,7 @@ public class DoubleValidator extends NumberValidator<Double>
      */
     protected DoubleValidator(final double value)
     {
-        super(value, Double.MIN_VALUE, Double.MAX_VALUE);
+        super(value, Double.MIN_VALUE, Double.MAX_VALUE, Double.valueOf(0));
     }
 
 

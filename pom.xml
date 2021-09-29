@@ -30,7 +30,7 @@
 		<connection>scm:git:https://github.com/gab-studios/gab-validate.git</connection>
 		<developerConnection>scm:git:https://github.com/gab-studios/gab-validate.git</developerConnection>
 		<url>https://github.com/gab-studios/gab-validate/tree/master</url>
-		<tag>v1.0.0</tag>
+		<tag>v@{project.version}</tag>
 	</scm>
 
 	<distributionManagement>
@@ -84,7 +84,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
-				<version>2.4</version>
+				<version>3.2.1</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>

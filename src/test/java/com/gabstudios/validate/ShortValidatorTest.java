@@ -170,5 +170,50 @@ public class ShortValidatorTest
         }
         
     }
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            short x = 0;
+            boolean retVal = Validate.defineShort(x).isZeroValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            short x = 5;
+            boolean retVal = Validate.defineShort(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            short x = -5;
+            boolean retVal = Validate.defineShort(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
     
 }

@@ -170,5 +170,50 @@ public class LongValidatorTest
         }
         
     }
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            long x = 0L;
+            boolean retVal = Validate.defineLong(x).isZeroValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            long x = 5L;
+            boolean retVal = Validate.defineLong(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            long x = -5L;
+            boolean retVal = Validate.defineLong(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
     
 }

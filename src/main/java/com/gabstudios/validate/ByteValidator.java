@@ -47,7 +47,7 @@ public class ByteValidator extends NumberValidator<Byte>
      */
     protected ByteValidator(final byte value)
     {
-        super( value, Byte.MIN_VALUE, Byte.MAX_VALUE);
+        super( value, Byte.MIN_VALUE, Byte.MAX_VALUE, Integer.valueOf(0).byteValue());
     }
   
 	/* (non-Javadoc)

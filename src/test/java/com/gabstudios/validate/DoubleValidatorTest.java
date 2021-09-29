@@ -171,5 +171,50 @@ public class DoubleValidatorTest
         }
         
     }
+
+    @Test
+    public void testZeroValue() {
+
+        try {
+            double x = 0d;
+            boolean retVal = Validate.defineDouble(x).isZeroValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testPositiveValue() {
+
+        try {
+            double x = 5d;
+            boolean retVal = Validate.defineDouble(x).isPositiveValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
+
+    @Test
+    public void testNegativeValue() {
+
+        try {
+            double x = -5d;
+            boolean retVal = Validate.defineDouble(x).isNegativeValue().throwValidationExceptionOnFail().validate();
+            Assert.assertTrue(retVal);
+        }
+        catch (final ValidateException e)
+        {
+            Assert.fail(e.toString());
+        }
+
+    }
     
 }
