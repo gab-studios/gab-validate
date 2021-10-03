@@ -206,43 +206,43 @@ public class ValidateTest
         
     }
     
-    /*
-     * Tests the defineLong method.
-     */
-    @Test
-    public void defineObject1()
-    {
+    // /*
+    //  * Tests the defineLong method.
+    //  */
+    // @Test
+    // public void defineObject1()
+    // {
         
-        try
-        {
-            ObjectValidator<?> objectValidator = Validate.defineObject(100L);
-            Assert.assertTrue(objectValidator != null);
-        }
-        catch (final Exception e)
-        {
-            Assert.fail(e.toString());
-        }
+    //     try
+    //     {
+    //         ObjectValidator<?> objectValidator = Validate.defineObject(100L);
+    //         Assert.assertTrue(objectValidator != null);
+    //     }
+    //     catch (final Exception e)
+    //     {
+    //         Assert.fail(e.toString());
+    //     }
         
-    }
+    // }
     
-    /*
-     * Tests the defineLong method.
-     */
-    @Test
-    public void defineObject2()
-    {
-        Object object = new Object();
-        try
-        {
-            ObjectValidator<?> objectValidator = Validate.defineObject(object);
-            Assert.assertTrue(objectValidator != null);
-        }
-        catch (final Exception e)
-        {
-            Assert.fail(e.toString());
-        }
+    // /*
+    //  * Tests the defineLong method.
+    //  */
+    // @Test
+    // public void defineObject2()
+    // {
+    //     Object object = new Object();
+    //     try
+    //     {
+    //         ObjectValidator<?> objectValidator = Validate.defineObject(object);
+    //         Assert.assertTrue(objectValidator != null);
+    //     }
+    //     catch (final Exception e)
+    //     {
+    //         Assert.fail(e.toString());
+    //     }
         
-    }
+    // }
     
     @Before
     public void setUp()

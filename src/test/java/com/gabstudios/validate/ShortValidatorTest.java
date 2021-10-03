@@ -85,7 +85,7 @@ public class ShortValidatorTest
         try
         {
             boolean retVal = Validate.defineShort(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -101,7 +101,7 @@ public class ShortValidatorTest
         try
         {
             boolean retVal = Validate.defineShort(x).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

@@ -83,7 +83,7 @@ public class BooleanValidatorTest
         try
         {
             boolean retVal = Validate.defineBoolean(true).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -99,7 +99,7 @@ public class BooleanValidatorTest
         try
         {
             boolean retVal = Validate.defineBoolean(true).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

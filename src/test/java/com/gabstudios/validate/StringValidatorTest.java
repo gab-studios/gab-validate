@@ -85,7 +85,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -101,7 +101,7 @@ public class StringValidatorTest
         try
         {
             boolean retVal = Validate.defineString(x).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

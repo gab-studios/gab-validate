@@ -37,7 +37,7 @@ package com.gabstudios.validate;
  * @param <C> An object class such as String, Boolean, Character, Short, Integer, etc.
  *
  */
-public class ObjectValidator<C> implements Validator
+public abstract class ObjectValidator<C> implements Validator
 {
 	
     /*
@@ -61,11 +61,6 @@ public class ObjectValidator<C> implements Validator
 	 * method is called.
 	 */
 	protected boolean _isTestNotNull = false;
-	
-	/*
-	 * A flag to indicate if a test was flagged during validation.
-	 */
-	protected boolean _isTested = false;
 
 	/*
 	 * The value that will be tested.
@@ -123,43 +118,42 @@ public class ObjectValidator<C> implements Validator
 	 * @see com.gabstudios.gabvalidate.Validator#validate()
 	 */
 	public boolean validate() {
-		boolean isValid = this.validate( false );
-		return (isValid);
-	}
-	
-	protected boolean notNullValue()
-	{
-		return( this._value != null );
+        boolean isValid = validateNotNull();
+        isValid &= validateEquals();
+
+        return (isValid);
 	}
 
-	protected boolean equalsValue()
-	{
-		return( this._value != null && this._value.equals(this._equalsValue) );
-	}
-	
 	/*
-	 * 
-	 */
-	protected boolean validate(boolean isInhertited) 
-	{
+     * Used as part of the validation process to test to not null.
+     * @return A <code>boolean</code> value of true it is valid or false the validate failed.
+     */
+    protected boolean validateNotNull()
+    {
 		boolean isValid = true;
-
         if (this._isTestNotNull)
         {
-        		this._isTested = true;
-            isValid &= notNullValue();
+			isValid = (this._value != null);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
                         .throwValidateException("The value must not be null");
             }
         }
-        
+        return(isValid);
+    }
+
+	/*
+     * Used as part of the validation process to test for equality.
+     * @return A <code>boolean</code> value of true it is valid or false the validate failed.
+     */
+	protected boolean validateEquals()
+    {
+		boolean isValid = true;
         if (this._isTestEquals)
         {
-        		this._isTested = true;
-            isValid &= equalsValue();
-            if (this._isValidationExceptionThrownOnFail && !isValid)
+		    isValid = this._value != null && this._value.equals(this._equalsValue);
+            if (this._isValidationExceptionThrownOnFail && !isValid )
             {
             	ObjectValidator
                         .throwValidateException("The value does not equal the expected value (value = '"
@@ -168,13 +162,8 @@ public class ObjectValidator<C> implements Validator
                                 + this._equalsValue + "').");
             }
         }
-
-		if (!isInhertited && !this._isTested) {
-			isValid = false;
-		}
-		
-		return (isValid);
-	}
+        return(isValid);
+    }
     
     /*
      * Forces an ValidateException to be thrown.
@@ -212,8 +201,8 @@ public class ObjectValidator<C> implements Validator
 	@Override
 	public String toString() {
 		return String.format(
-				"ObjectValidator [_isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
-				_isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals, _isTestNotNull, _isTested, _value);
+				"ObjectValidator [_isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
+				_isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals, _isTestNotNull, _value);
 	}
 
 

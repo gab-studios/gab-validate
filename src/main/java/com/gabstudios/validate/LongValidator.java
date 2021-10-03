@@ -36,7 +36,7 @@ package com.gabstudios.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class LongValidator  extends NumberValidator<Long>
+public final class LongValidator  extends NumberValidator<Long>
 {
    
     /**
@@ -56,9 +56,9 @@ public class LongValidator  extends NumberValidator<Long>
 	@Override
 	public String toString() {
 		return String.format(
-				"LongValidator [_isTestMaxValue=%s, _isTestMinValue=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				"LongValidator [_isTestMaxValue=%s, _isTestMinValue=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
 				_isTestMaxValue, _isTestMinValue, _maxValue, _minValue, _isValidationExceptionThrownOnFail,
-				_equalsValue, _isTestEquals, _isTestNotNull, _isTested, _value);
+				_equalsValue, _isTestEquals, _isTestNotNull, _value);
 	}
     
     

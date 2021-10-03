@@ -70,7 +70,7 @@ public class IntegerValidatorTest {
         int x = 5;
         try {
             boolean retVal = Validate.defineInteger(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }
@@ -82,7 +82,7 @@ public class IntegerValidatorTest {
         int x = 5;
         try {
             boolean retVal = Validate.defineInteger(x).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         } catch (final ValidateException e) {
             Assert.fail(e.toString());
         }

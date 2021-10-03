@@ -27,11 +27,11 @@ package com.gabstudios.validate;
 public abstract interface Validator
 {
     /**
-     * Performs a validation test based on the methods that were called.If the
+     * Performs a validation test based on the methods that were called.  If the
      * method throwValidationExceptionOnFail has been called, then an
      * ValidateException will be thrown.
      * 
-     * If no test method is called, this method returns a false.
+     * If no test method is called, this method returns a TRUE.
      *
      * @return A boolean value that is true if the value is valid. Otherwise
      *         false is return.

@@ -85,7 +85,7 @@ public class FloatValidatorTest
         try
         {
             boolean retVal = Validate.defineFloat(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -101,7 +101,7 @@ public class FloatValidatorTest
         try
         {
             boolean retVal = Validate.defineFloat(x).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

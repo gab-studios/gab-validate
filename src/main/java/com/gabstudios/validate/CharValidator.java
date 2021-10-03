@@ -36,7 +36,7 @@ package com.gabstudios.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class CharValidator extends ObjectValidator<Character>
+public final class CharValidator extends ObjectValidator<Character>
 {
     
     /*
@@ -201,21 +201,34 @@ public class CharValidator extends ObjectValidator<Character>
         return (this);
     }
     
+
     /*
      * (non-Javadoc)
      * 
      * @see com.gabstudios.gabvalidate.Validator#validate()
      */
     @Override
-    public boolean validate()
+	public boolean validate() 
     {
-    	
-		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-        
+        // call ObjectValidator validate method.
+        boolean isValid = super.validate();
+        isValid &= validateNotEmpty();
+        isValid &= validateMinValue();
+        isValid &= validateMaxValue();
+        isValid &= validateIsDigit();
+        isValid &= validateIsLowerCase();
+        isValid &= validateIsUpperCase();
+        isValid &= validateWhitespace();
+
+        return ( isValid );
+
+    }
+
+    protected boolean validateNotEmpty()
+    {
+        boolean isValid = true;
         if (this._isTestNotEmpty)
         {
-			this._isTested = true;
             isValid &= this._value != '\0';
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -223,10 +236,14 @@ public class CharValidator extends ObjectValidator<Character>
                         .throwValidateException("The char must not be empty.");
             }
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateMinValue()
+    {
+        boolean isValid = true;
         if (this._isTestMinValue)
         {
-			this._isTested = true;
             isValid &= (this._value >= this._minValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -238,10 +255,14 @@ public class CharValidator extends ObjectValidator<Character>
             }
             
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateMaxValue()
+    {
+        boolean isValid = true;
         if (this._isTestMaxValue)
         {
-			this._isTested = true;
             isValid &= (this._value <= this._maxValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -252,10 +273,14 @@ public class CharValidator extends ObjectValidator<Character>
                                 + this._maxValue + "').");
             }
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateIsDigit()
+    {
+        boolean isValid = true;
         if (this._testIsDigit)
         {
-			this._isTested = true;
             isValid &= (Character.isDigit(this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -264,10 +289,14 @@ public class CharValidator extends ObjectValidator<Character>
                                 + this._value + "').");
             }
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateIsLowerCase()
+    {
+        boolean isValid = true;  
         if (this._testIsLowerCase)
         {
-			this._isTested = true;
             isValid &= (Character.isLowerCase(this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -276,10 +305,14 @@ public class CharValidator extends ObjectValidator<Character>
                                 + this._value + "').");
             }
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateIsUpperCase()
+    {
+        boolean isValid = true;
         if (this._testIsUpperCase)
         {
-			this._isTested = true;
             isValid &= (Character.isUpperCase(this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -288,10 +321,14 @@ public class CharValidator extends ObjectValidator<Character>
                                 + this._value + "').");
             }
         }
-        
+        return( isValid );
+    }
+
+    protected boolean validateWhitespace()
+    {
+        boolean isValid = true;
         if (this._testIsWhitespace)
         {
-			this._isTested = true;
             isValid &= (Character.isWhitespace(this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -299,16 +336,10 @@ public class CharValidator extends ObjectValidator<Character>
                         .throwValidateException("The char is not a whitespace (value = '"
                                 + this._value + "').");
             }
-        }
-        
-        if (!this._isTested)
-        {
-            isValid = false;
-        }
-        
-        return (isValid);
-        
+        } 
+        return( isValid );
     }
+
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -316,10 +347,10 @@ public class CharValidator extends ObjectValidator<Character>
 	@Override
 	public String toString() {
 		return String.format(
-				"CharValidator [_testIsDigit=%s, _testIsLowerCase=%s, _isTestMaxValue=%s, _isTestMinValue=%s, _isTestNotEmpty=%s, _testIsUpperCase=%s, _testIsWhitespace=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				"CharValidator [_testIsDigit=%s, _testIsLowerCase=%s, _isTestMaxValue=%s, _isTestMinValue=%s, _isTestNotEmpty=%s, _testIsUpperCase=%s, _testIsWhitespace=%s, _maxValue=%s, _minValue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
 				_testIsDigit, _testIsLowerCase, _isTestMaxValue, _isTestMinValue, _isTestNotEmpty, _testIsUpperCase,
 				_testIsWhitespace, _maxValue, _minValue, _isValidationExceptionThrownOnFail, _equalsValue,
-				_isTestEquals, _isTestNotNull, _isTested, _value);
+				_isTestEquals, _isTestNotNull, _value);
 	}
     
     

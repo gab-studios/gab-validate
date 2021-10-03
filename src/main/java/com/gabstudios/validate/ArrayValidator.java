@@ -39,7 +39,7 @@ import java.util.Arrays;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class ArrayValidator extends ObjectValidator<Object[]>
+public final class ArrayValidator extends ObjectValidator<Object[]>
 {
     
     /*
@@ -88,6 +88,7 @@ public class ArrayValidator extends ObjectValidator<Object[]>
      * 
      * @return A String value.
      */
+    @Override
     public Object[] getValue()
     {
         Object[] retVal = null;
@@ -108,6 +109,7 @@ public class ArrayValidator extends ObjectValidator<Object[]>
      * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
+    @Override
     public ArrayValidator testEquals(final Object[] equalsValue)
     {
         // have to test for null if empty is selected.
@@ -193,6 +195,7 @@ public class ArrayValidator extends ObjectValidator<Object[]>
      * @return The same ArrayValidator instance. This allows for method
      *         chaining.
      */
+    @Override
     public ArrayValidator testNotNull()
     {
         this._isTestNotNull = true;
@@ -213,104 +216,111 @@ public class ArrayValidator extends ObjectValidator<Object[]>
         this._isTestNotEmpty = true;
         return (this);
     }
-    
+
     /*
      * (non-Javadoc)
      * 
      * @see com.gabstudios.gabvalidate.Validator#validate()
      */
-    public boolean validate()
+    @Override
+	public boolean validate() 
     {
-    	
-		// call ObjectValidator validate method.
-		//super.validate();
-		
-        boolean isTested = false;
+        // call ObjectValidator validate method.
+        boolean isValid = super.validate();
+        isValid &= validateNotEmpty();
+        isValid &= validateMinLength();
+        isValid &= validateMaxLength();
+
+        return ( isValid );
+
+    }
+
+    protected boolean validateNotEmpty()
+    {
         boolean isValid = true;
-        
-        if (this._isTestNotNull)
-        {
-            isTested = true;
-            isValid &= (this._value != null);
-            if (this._isValidationExceptionThrownOnFail && !isValid)
-            {
-            	ObjectValidator
-                        .throwValidateException("The value must not be null");
-            }
-        }
-        
         if (this._isTestNotEmpty)
         {
             
-            isTested = true;
-            isValid &= (this._value != null && this._value.length > 0);
+            isValid = (this._value != null && this._value.length > 0);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-            	ObjectValidator
+                ObjectValidator
                         .throwValidateException("The value must not be empty.");
             }
         }
-        
+        return(isValid);
+    }
+
+    /*
+     * Used as part of the validation process to test min length
+     * @return A <code>boolean</code> value of true it is valid or false the validate failed.
+     */
+    protected boolean validateMinLength()
+    {
+        boolean isValid = true;
         if (this._isTestMinLength)
         {
-            isTested = true;
-            isValid &= (this._value != null && this._value.length >= this._minLength);
+			isValid = (this._value != null && this._value.length >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
-                        .throwValidateException("The value must be greater than or equal to the min value.");
-                // + " (value = '"
-                // + this._value
-                // + "' min value = '"
-                // + this._minLength + "').");
+                        .throwValidateException("The value must be greater than or equal to the min value."
+                + " (value = '" + this._value
+                + "' min value = '"
+                + this._minLength + "').");
             }
-            
         }
-        
+        return(isValid);
+    }
+
+    /*
+     * Used as part of the validation process to test max length.
+     * @return A <code>boolean</code> value of true it is valid or false the validate failed.
+     */
+    protected boolean validateMaxLength()
+    {
+        boolean isValid = true;
         if (this._isTestMaxLength)
         {
-            isTested = true;
-            isValid &= (this._value != null && this._value.length <= this._maxLength);
+			isValid = (this._value != null && this._value.length <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
-                        .throwValidateException("The value must be less than or equal to the max value.");
-                // + " (value = '"
-                // + this._value
-                // + "' max value = '"
-                // + this._maxLength + "').");
+                        .throwValidateException("The value must be less than or equal to the max value."
+                + " (value = '"
+                + this._value
+                + "' min value = '"
+                + this._minLength + "').");
             }
         }
-        
+        return(isValid);
+    }
+
+
+    /*
+     * Used as part of the validation process to test to not empty.
+     * @return A <code>boolean</code> value of true it is valid or false the validate failed.
+     */
+    @Override
+    protected boolean validateEquals()
+    {
+        boolean isValid = true;
         if (this._isTestEquals)
         {
-            
-            isTested = true;
-            // test only if they are not the same object.
-            if (this._value != this._equalsValue)
+			isValid = Arrays.equals(this._value, this._equalsValue);
+            if (this._isValidationExceptionThrownOnFail && !isValid )
             {
-                isValid &= Arrays.equals(this._value, this._equalsValue);
-                
-                if (this._isValidationExceptionThrownOnFail && !isValid)
-                {
-                	ObjectValidator
-                            .throwValidateException("The value does not equal the expected value.");
-                    // (value = '"
-                    // + this._value
-                    // + "' expected value = '"
-                    // + this._equalsValue + "').");
-                }
+                ObjectValidator
+                        .throwValidateException("The value does not equal the expected value."
+                + " (value = '"
+                + this._value
+                + "' expected value = '"
+                + this._equalsValue + "').");
             }
         }
-        
-        if (!isTested)
-        {
-            isValid = false;
-        }
-        
-        return (isValid);
-        
+        return(isValid);
     }
+    
 
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
@@ -318,10 +328,10 @@ public class ArrayValidator extends ObjectValidator<Object[]>
 	@Override
 	public String toString() {
 		return String.format(
-				"ArrayValidator [_isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				"ArrayValidator [_isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
 				_isTestMaxLength, _isTestMinLength, _isTestNotEmpty, _maxLength, _minLength,
 				_isValidationExceptionThrownOnFail, Arrays.toString(_equalsValue), _isTestEquals, _isTestNotNull,
-				_isTested, Arrays.toString(_value));
+				Arrays.toString(_value));
 	}
     
     

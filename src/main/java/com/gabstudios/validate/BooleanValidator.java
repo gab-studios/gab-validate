@@ -36,7 +36,7 @@ package com.gabstudios.validate;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class BooleanValidator extends ObjectValidator<Boolean>
+public final class BooleanValidator extends ObjectValidator<Boolean>
 {
     
     /*
@@ -96,14 +96,20 @@ public class BooleanValidator extends ObjectValidator<Boolean>
     @Override
     public boolean validate()
     {
-    	
 		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-        
+        boolean isValid = super.validate();
+        isValid &= validateFalse();
+        isValid &= validateTrue();
+
+        return ( isValid );
+    }
+
+    protected boolean validateFalse()
+    {
+        boolean isValid = true;
         if (this._isTestFalse)
         {
-    			this._isTested = true;
-            isValid &= this._value.equals(Boolean.FALSE);
+			isValid = this._value.equals(Boolean.FALSE);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
@@ -111,11 +117,15 @@ public class BooleanValidator extends ObjectValidator<Boolean>
                                 + this._value + "').");
             }
         }
-        
+        return(isValid);
+    }
+
+    protected boolean validateTrue()
+    {
+        boolean isValid = true;
         if (this._isTestTrue)
         {
-			this._isTested = true;
-            isValid &= this._value.equals(Boolean.TRUE);
+		    isValid = this._value.equals(Boolean.TRUE);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
             	ObjectValidator
@@ -123,13 +133,7 @@ public class BooleanValidator extends ObjectValidator<Boolean>
                                 + this._value + "').");
             }
         }
-        
-        if (!this._isTested)
-        {
-            isValid = false;
-        }
-        
-        return (isValid);
+        return(isValid);
     }
 
 	/* (non-Javadoc)
@@ -138,9 +142,9 @@ public class BooleanValidator extends ObjectValidator<Boolean>
 	@Override
 	public String toString() {
 		return String.format(
-				"BooleanValidator [_isTestFalse=%s, _isTestTrue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				"BooleanValidator [_isTestFalse=%s, _isTestTrue=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
 				_isTestFalse, _isTestTrue, _isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals,
-				_isTestNotNull, _isTested, _value);
+				_isTestNotNull, _value);
 	}
     
     
