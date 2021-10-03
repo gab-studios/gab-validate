@@ -8,11 +8,21 @@ The GAB Studios Validation Library for Java.  The purpose of this project is to 
 
 Maven Dependency
 ---------
+Release
 ```java
 <dependency>
   <groupId>com.gabstudios</groupId>
   <artifactId>gab-validate</artifactId>
   <version>1.0.0</version>
+</dependency>
+```
+
+Development
+```java
+<dependency>
+  <groupId>com.gabstudios</groupId>
+  <artifactId>gab-validate</artifactId>
+  <version>2.0.0-SNAPSHOT</version>
 </dependency>
 ```
 
