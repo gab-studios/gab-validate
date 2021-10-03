@@ -20,12 +20,13 @@
 package com.gabstudios.validate;
 
 /**
- * The purpose of this class is to help validate arguments. If a test fails then
- * an IllegalArgumentException is thrown.
+ * The purpose of this class is to help validate arguments. 
  * 
  * Use the appropriate defineXXXXX(xxx) method to get a validator instance. Then
  * call methods on that validator to enable the tests that will be performed
  * when the validate() method is called.
+ * 
+ * The default return from a validate() - if no tests are selected is TRUE.
  *
  * @author Gregory Brown (sysdevone)
  */
@@ -152,18 +153,18 @@ public class Validate
         return (new StringValidator(value));
     }
     
-    /**
-     * This method defines a String validator. Each call creates a new
-     * validator.
-     *
-     * @param value
-     *            The Object value to validate.
-     * @return A <code>ObjectValidator</code> instance.
-     */
-    public static final ObjectValidator<Object> defineObject(final Object value)
-    {
-        return (new ObjectValidator<Object>(value));
-    }
+    // /**
+    //  * This method defines a String validator. Each call creates a new
+    //  * validator.
+    //  *
+    //  * @param value
+    //  *            The Object value to validate.
+    //  * @return A <code>ObjectValidator</code> instance.
+    //  */
+    // public static final ObjectValidator<Object> defineObject(final Object value)
+    // {
+    //     return (new ObjectValidator<Object>(value));
+    // }
     
     /**
      * This method defines a Array validator. Each call creates a new validator.

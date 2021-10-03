@@ -85,7 +85,7 @@ public class ByteValidatorTest
         {
             byte x = 5;
             boolean retVal = Validate.defineByte(x).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -102,7 +102,7 @@ public class ByteValidatorTest
         {
             byte x = 5;
             boolean retVal = Validate.defineByte(x).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

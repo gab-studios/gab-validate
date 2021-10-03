@@ -38,7 +38,7 @@ import java.util.regex.Pattern;
  * @author Gregory Brown (sysdevone)
  *
  */
-public class StringValidator extends ObjectValidator<String>
+public final class StringValidator extends ObjectValidator<String>
 {
     
     /*
@@ -109,6 +109,7 @@ public class StringValidator extends ObjectValidator<String>
      * @return The same StringValidator instance. This allows for method
      *         chaining.
      */
+    @Override
     public StringValidator testEquals(final String equalsValue)
     {
         // have to test for null if empty is selected.
@@ -237,36 +238,66 @@ public class StringValidator extends ObjectValidator<String>
 	{
 		return( this._value != null && this._value.length() > 0 );
 	}
-    
-    /*
-     * (non-Javadoc)
-     * 
-     * @see com.gabstudios.gabvalidate.Validator#validate()
-     */
-    public boolean validate()
-    {
-    	
-    		// call ObjectValidator validate method.
-        boolean isValid = super.validate(true);
-        
+
+   /*
+    * (non-Javadoc)
+    * 
+    * @see com.gabstudios.gabvalidate.Validator#validate()
+    */
+   @Override
+   public boolean validate() 
+   {
+       // call ObjectValidator validate method.
+        boolean isValid = super.validate();
+        isValid &= validateNotEmpty();
+        isValid &= validateEqualsNoCase();
+        isValid &= validateMinLength();
+        isValid &= validateMaxLength();
+        isValid &= validateMatch();
+
+        return ( isValid );
+
+   }
+
+   protected boolean validateNotEmpty()
+   {
+       boolean isValid = true;
+       if (this._isTestNotEmpty)
+       {
+           
+           isValid = (this._value != null && this._value.length() > 0);
+           if (this._isValidationExceptionThrownOnFail && !isValid)
+           {
+               ObjectValidator
+                       .throwValidateException("The value must not be empty.");
+           }
+       }
+       return(isValid);
+   }
+
+   protected boolean validateEqualsNoCase()
+   {
+        boolean isValid = true;
         if (this._isTestEqualsNoCase)
         {
-        		this._isTested = true;
             isValid &= this._value != null && this._value.equalsIgnoreCase(this._equalsValue);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
-            	ObjectValidator
+                ObjectValidator
                         .throwValidateException("The value does not equal the expected value (string value = '"
                                 + this._value
                                 + "' expected value = '"
                                 + this._equalsValue + "').");
             }
         }
-        
-        
+        return(isValid);
+    }
+
+    protected boolean validateMinLength()
+    {
+        boolean isValid = true;
         if (this._isTestMinLength)
         {
-        		this._isTested = true;
             isValid &= (this._value != null && this._value.length() >= this._minLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -280,10 +311,14 @@ public class StringValidator extends ObjectValidator<String>
             }
             
         }
-        
+        return(isValid);
+    }
+
+    protected boolean validateMaxLength()
+    {
+        boolean isValid = true;
         if (this._isTestMaxLength)
         {
-        		this._isTested = true;
             isValid &= (this._value != null && this._value.length() <= this._maxLength);
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -296,10 +331,14 @@ public class StringValidator extends ObjectValidator<String>
                                 + this._maxLength + "').");
             }
         }
-        
+        return(isValid);
+    }
+
+    protected boolean validateMatch()
+    {
+        boolean isValid = true;
         if (this._isTestMatch)
         {
-        		this._isTested = true;
             isValid &= this._value != null && (Pattern.matches(this._matchValue, this._value));
             if (this._isValidationExceptionThrownOnFail && !isValid)
             {
@@ -310,16 +349,7 @@ public class StringValidator extends ObjectValidator<String>
                                 + this._matchValue + "').");
             }
         }
-        
-        // since we are using bitwise &, we have to start with a true condition.  We need to have this test to ensure that 
-        // tests are executed in order to return a true.
-        if (!this._isTested)
-        {
-            isValid = false;
-        }
-        
-        return (isValid);
-        
+        return(isValid);
     }
 
 
@@ -329,10 +359,10 @@ public class StringValidator extends ObjectValidator<String>
 	@Override
 	public String toString() {
 		return String.format(
-				"StringValidator [_matchValue=%s, _isTestEqualsNoCase=%s, _isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _isTestMatch=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _isTested=%s, _value=%s]",
+				"StringValidator [_matchValue=%s, _isTestEqualsNoCase=%s, _isTestMaxLength=%s, _isTestMinLength=%s, _isTestNotEmpty=%s, _isTestMatch=%s, _maxLength=%s, _minLength=%s, _isValidationExceptionThrownOnFail=%s, _equalsValue=%s, _isTestEquals=%s, _isTestNotNull=%s, _value=%s]",
 				_matchValue, _isTestEqualsNoCase, _isTestMaxLength, _isTestMinLength, _isTestNotEmpty, _isTestMatch,
 				_maxLength, _minLength, _isValidationExceptionThrownOnFail, _equalsValue, _isTestEquals, _isTestNotNull,
-				_isTested, _value);
+				_value);
 	}
 
 

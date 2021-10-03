@@ -85,7 +85,7 @@ public class ArrayValidatorTest
         {
             String[] strArray1 = { "Hello", "World", "is", "awesome" };
             boolean retVal = Validate.defineArray(strArray1).throwValidationExceptionOnFail().validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {
@@ -102,7 +102,7 @@ public class ArrayValidatorTest
         try
         {
             boolean retVal = Validate.defineArray(strArray1).validate();
-            Assert.assertEquals(false, retVal);
+            Assert.assertEquals(true, retVal);
         }
         catch (final ValidateException e)
         {

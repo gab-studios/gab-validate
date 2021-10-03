@@ -162,18 +162,31 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 		return (this);
 	}
     
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.gabstudios.gabvalidate.Validator#validate()
-	 */
-	protected boolean validate(boolean isInhertited) {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.gabstudios.gabvalidate.Validator#validate()
+     */
+    @Override
+	public boolean validate() 
+    {
+        // call ObjectValidator validate method.
+        boolean isValid = super.validate();
+        isValid &= validateMinValue();
+        isValid &= validateMaxValue();
+        isValid &= validateZeroValue();
+        isValid &= validatePositiveValue();
+        isValid &= validateNegativeValue();
 
-		// call ObjectValidator validate method.
-		boolean isValid = super.validate(true);
-		//System.out.println( "Super.validate: " + isValid);
+        return ( isValid );
+
+    }
+
+
+	protected boolean validateMinValue()
+	{
+		boolean isValid = true;
 		if (this._isTestMinValue) {
-			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._minValue) >= 0);
 			if (this._isValidationExceptionThrownOnFail && !isValid) {
 				ObjectValidator
@@ -182,9 +195,13 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 			}
 
 		}
+		return( isValid );
+	}
 
+	protected boolean validateMaxValue()
+	{
+		boolean isValid = true;
 		if (this._isTestMaxValue) {
-			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._maxValue) <= 0);
 			if (this._isValidationExceptionThrownOnFail && !isValid) {
 				ObjectValidator
@@ -192,18 +209,26 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 								+ this._value + "' max value = '" + this._maxValue + "').");
 			}
 		}
+		return( isValid );
+	}
 
+	protected boolean validateZeroValue()
+	{
+		boolean isValid = true;
 		if (this._isTestZeroValue) {
-			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) == 0);
 			//System.out.println( "Zero: " + isValid );
 			if (this._isValidationExceptionThrownOnFail && !isValid) {
 				ObjectValidator.throwValidateException("The value is not a zero value x = 0 (value = '" + this._value + "').");
 			}
 		}
+		return( isValid );
+	}
 
+	protected boolean validatePositiveValue()
+	{
+		boolean isValid = true;
 		if (this._isTestPositiveValue) {
-			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) > 0);
 			//System.out.println( "Pos: " + isValid );
 			if (this._isValidationExceptionThrownOnFail && !isValid) {
@@ -212,9 +237,13 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 								+ this._value + "').");
 			}
 		}
-		
+		return( isValid );
+	}
+
+	protected boolean validateNegativeValue()
+	{
+		boolean isValid = true;
 		if (this._isTestNegativeValue) {
-			this._isTested = true;
 			isValid &= (((Comparable) this._value).compareTo((Comparable) this._zeroValue) < 0);
 			//System.out.println( "Neg: " + isValid );
 			if (this._isValidationExceptionThrownOnFail && !isValid) {
@@ -223,11 +252,7 @@ public abstract class NumberValidator<C extends Number> extends ObjectValidator<
 				+ this._value + "').");
 			}
 		}
-
-		if (!isInhertited && !this._isTested) {
-			isValid = false;
-		}
-
-		return (isValid);
+		return( isValid );
 	}
+
 }
