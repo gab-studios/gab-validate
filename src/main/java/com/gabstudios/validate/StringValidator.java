@@ -305,7 +305,7 @@ public final class StringValidator extends ObjectValidator<String>
                         .throwValidateException("The value must be greater than or equal to the min value (value = '"
                                 + this._value
                                 + "' length = '"
-                                + this._value.length()
+                                + ((this._value != null) ? this._value.length() : "null" )
                                 + "' min value = '"
                                 + this._minLength + "').");
             }
@@ -326,7 +326,7 @@ public final class StringValidator extends ObjectValidator<String>
                         .throwValidateException("The value must be less than or equal to the max value (value = '"
                                 + this._value
                                 + "' length = '"
-                                + this._value.length()
+                                + ((this._value != null) ? this._value.length() : "null" )
                                 + "' max value = '"
                                 + this._maxLength + "').");
             }
